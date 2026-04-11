@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ingeniería de Requerimientos | SENA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sena-green: #39A900;
+    --sena-dark: #2D2D2D;
+    --sena-gray: #5A5A5A;
+    --sena-light: #F4F9F0;
+    --sena-accent: #FF6B00;
+    --sena-blue: #003DA5;
+    --sena-purple: #6B21A8;
+    --white: #FFFFFF;
+    --card-shadow: 0 4px 20px rgba(0,0,0,0.10);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Open Sans', sans-serif; background: #f7f7f7; color: var(--sena-dark); }
+
+  header {
+    background: linear-gradient(135deg, #3d0070 0%, #6B21A8 60%, #9333ea 100%);
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .header-bar {
+    background: var(--sena-dark);
+    display: flex;
+    align-items: center;
+    padding: 10px 40px;
+    gap: 20px;
+  }
+  .sena-logo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 28px;
+    color: var(--sena-green);
+    letter-spacing: 2px;
+  }
+  .sena-logo span { color: white; }
+  .header-subtitle-bar { font-size: 12px; color: #ccc; border-left: 2px solid var(--sena-green); padding-left: 16px; line-height: 1.4; }
+  .header-hero { padding: 60px 40px 50px; max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+  .header-hero::after { content: '📄'; position: absolute; right: 60px; top: 20px; font-size: 140px; opacity: 0.08; }
+  .badge { display: inline-block; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.35); color: white; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 5px 16px; border-radius: 20px; margin-bottom: 18px; }
+  .header-hero h1 { font-family: 'Montserrat', sans-serif; font-size: 40px; font-weight: 900; line-height: 1.15; margin-bottom: 16px; }
+  .header-hero h1 span { color: #d8b4fe; }
+  .header-hero p { font-size: 16px; max-width: 650px; opacity: 0.92; line-height: 1.7; margin-bottom: 28px; }
+  .chips { display: flex; gap: 10px; flex-wrap: wrap; }
+  .chip { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; }
+
+  main { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .section { padding: 56px 0 40px; }
+  .section-title { font-family: 'Montserrat', sans-serif; font-size: 26px; font-weight: 800; color: var(--sena-dark); margin-bottom: 8px; display: flex; align-items: center; gap: 12px; }
+  .section-title .icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; color: white; }
+  .icon-purple { background: var(--sena-purple); }
+  .icon-green { background: var(--sena-green); }
+  .icon-blue { background: var(--sena-blue); }
+  .icon-orange { background: var(--sena-accent); }
+  .section-desc { color: var(--sena-gray); font-size: 15px; margin-bottom: 32px; margin-left: 48px; }
+  .divider { height: 3px; border-radius: 2px; margin-bottom: 32px; }
+  .divider-purple { background: linear-gradient(90deg, var(--sena-purple), transparent); }
+  .divider-green { background: linear-gradient(90deg, var(--sena-green), transparent); }
+  .divider-blue { background: linear-gradient(90deg, var(--sena-blue), transparent); }
+  .divider-orange { background: linear-gradient(90deg, var(--sena-accent), transparent); }
+
+  /* QUÉ ES */
+  .qes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width:700px) { .qes-grid { grid-template-columns: 1fr; } }
+  .qes-card { background: white; border-radius: 14px; box-shadow: var(--card-shadow); padding: 24px; }
+  .qes-card h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 16px; color: var(--sena-dark); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .qes-card p { font-size: 14px; color: var(--sena-gray); line-height: 1.7; }
+  .conexion-card {
+    background: linear-gradient(135deg, #f0e8ff, #e8d5ff);
+    border-radius: 14px;
+    padding: 24px;
+    border: 1px solid #c4b5fd;
+    grid-column: 1 / -1;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  .conexion-card .ico { font-size: 40px; flex-shrink: 0; }
+  .conexion-card h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 16px; color: #4c1d95; margin-bottom: 8px; }
+  .conexion-card p { font-size: 14px; color: #5b21b6; line-height: 1.7; }
+
+  /* PROCESO */
+  .proceso-steps { display: flex; flex-direction: column; gap: 0; }
+  .proceso-step { display: flex; gap: 24px; align-items: flex-start; }
+  .paso-left { display: flex; flex-direction: column; align-items: center; width: 50px; flex-shrink: 0; }
+  .paso-circle { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 18px; color: white; flex-shrink: 0; }
+  .paso-line { width: 2px; background: #e0e0e0; flex: 1; min-height: 30px; margin: 4px 0; }
+  .proceso-step:last-child .paso-line { display: none; }
+  .paso-content { background: white; border-radius: 12px; box-shadow: var(--card-shadow); padding: 20px 24px; margin-bottom: 16px; flex: 1; }
+  .paso-content h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 16px; color: var(--sena-dark); margin-bottom: 6px; }
+  .paso-content p { font-size: 14px; color: var(--sena-gray); line-height: 1.65; margin-bottom: 10px; }
+  .herramienta-tag { display: inline-flex; align-items: center; gap: 5px; background: #f0e8ff; color: #6B21A8; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; }
+  .conexion-instrumentos { background: #f8f9ff; border-left: 3px solid var(--sena-purple); border-radius: 0 8px 8px 0; padding: 10px 14px; font-size: 13px; color: var(--sena-gray); }
+  .conexion-instrumentos strong { color: var(--sena-dark); display: block; margin-bottom: 4px; }
+
+  /* TIPOS DE REQUERIMIENTOS */
+  .req-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+  .req-card { background: white; border-radius: 14px; box-shadow: var(--card-shadow); overflow: hidden; }
+  .req-header { padding: 18px 22px; display: flex; align-items: center; gap: 12px; }
+  .req-header h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px; color: white; }
+  .req-header .rnum { font-size: 28px; }
+  .req-body { padding: 16px 22px; }
+  .req-body p { font-size: 14px; color: var(--sena-gray); line-height: 1.65; margin-bottom: 12px; }
+  .req-body .formato { background: #f8f8f8; border-radius: 8px; padding: 12px 14px; font-size: 13px; border-left: 3px solid; }
+  .req-ejemplos { margin-top: 12px; }
+  .req-ejemplo { background: #f8f8f8; border-radius: 6px; padding: 10px 12px; margin-bottom: 8px; font-size: 13px; color: var(--sena-gray); line-height: 1.5; }
+  .req-ejemplo strong { color: var(--sena-dark); display: block; margin-bottom: 3px; }
+
+  /* PLANTILLA REQUERIMIENTO */
+  .plantilla-card { background: white; border-radius: 14px; box-shadow: var(--card-shadow); overflow: hidden; }
+  .plantilla-header { background: var(--sena-purple); color: white; padding: 18px 24px; }
+  .plantilla-header h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 18px; }
+  .plantilla-header p { font-size: 13px; opacity: 0.85; margin-top: 4px; }
+  .plantilla-body { padding: 24px; }
+  .plantilla-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .plantilla-table td { padding: 10px 14px; border: 1px solid #e8e8e8; vertical-align: top; }
+  .plantilla-table td:first-child { background: #f8f0ff; font-weight: 700; color: var(--sena-purple); width: 35%; }
+  .plantilla-table tr.separador td { background: var(--sena-purple); color: white; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* TABLA COMPLETA DE REQUISITOS */
+  .tabla-req-wrap { overflow-x: auto; border-radius: 12px; box-shadow: var(--card-shadow); }
+  .tabla-req { width: 100%; border-collapse: collapse; background: white; font-size: 13px; }
+  .tabla-req thead { background: var(--sena-purple); color: white; }
+  .tabla-req thead th { padding: 12px 14px; font-family: 'Montserrat', sans-serif; font-weight: 700; text-align: left; }
+  .tabla-req tbody tr:nth-child(even) { background: #faf5ff; }
+  .tabla-req tbody td { padding: 10px 14px; border-bottom: 1px solid #eee; color: var(--sena-gray); }
+  .tabla-req tbody td:first-child { font-weight: 700; color: var(--sena-purple); }
+  .req-tipo { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 700; text-transform: uppercase; }
+  .t-func { background: #e8f8e0; color: #2a7d00; }
+  .t-nfunc { background: #e6eeff; color: var(--sena-blue); }
+  .t-neg { background: #fff4e6; color: #cc5500; }
+  .prio-alta { color: #dc2626; font-weight: 700; }
+  .prio-media { color: #d97706; font-weight: 700; }
+  .prio-baja { color: #16a34a; font-weight: 700; }
+
+  /* CASOS DE USO */
+  .cu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+  .cu-card { background: white; border-radius: 12px; box-shadow: var(--card-shadow); overflow: hidden; }
+  .cu-header { background: #1e3a5f; color: white; padding: 14px 18px; }
+  .cu-header h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; }
+  .cu-header span { font-size: 12px; opacity: 0.75; }
+  .cu-body { padding: 16px 18px; }
+  .cu-row { display: flex; gap: 10px; margin-bottom: 8px; font-size: 13px; }
+  .cu-label { color: var(--sena-blue); font-weight: 700; min-width: 90px; flex-shrink: 0; }
+  .cu-val { color: var(--sena-gray); line-height: 1.5; }
+  .flujo-list { list-style: none; }
+  .flujo-list li { padding: 4px 0; font-size: 12px; color: var(--sena-gray); display: flex; gap: 8px; }
+  .flujo-list li::before { content: attr(data-n)"."; color: var(--sena-blue); font-weight: 700; min-width: 18px; }
+
+  /* LABORATORIO FINAL */
+  .lab-section {
+    background: linear-gradient(135deg, #2d0055, var(--sena-purple));
+    border-radius: 18px;
+    padding: 50px 40px;
+    color: white;
+    margin: 40px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .lab-section::before { content: '🏆'; position: absolute; right: 40px; top: 20px; font-size: 130px; opacity: 0.08; }
+  .lab-badge-final { background: var(--sena-green); color: white; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; padding: 6px 16px; border-radius: 20px; display: inline-block; margin-bottom: 20px; }
+  .lab-section h2 { font-family: 'Montserrat', sans-serif; font-size: 28px; font-weight: 900; margin-bottom: 12px; }
+  .lab-section h2 span { color: #d8b4fe; }
+  .lab-section > p { font-size: 15px; opacity: 0.88; line-height: 1.7; margin-bottom: 30px; max-width: 700px; }
+
+  .entrega-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 30px; }
+  .entrega-card {
+    background: rgba(255,255,255,0.10);
+    border: 1px solid rgba(255,255,255,0.20);
+    border-radius: 14px;
+    padding: 22px;
+  }
+  .entrega-card .enum { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 36px; color: #d8b4fe; margin-bottom: 10px; line-height: 1; }
+  .entrega-card h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px; margin-bottom: 8px; }
+  .entrega-card p { font-size: 13px; opacity: 0.85; line-height: 1.65; }
+  .entrega-card .items { list-style: none; margin-top: 10px; }
+  .entrega-card .items li { font-size: 12px; opacity: 0.82; padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; gap: 8px; }
+  .entrega-card .items li:last-child { border-bottom: none; }
+  .entrega-card .items li::before { content: '→'; color: #d8b4fe; }
+
+  .rubrica {
+    background: rgba(255,255,255,0.07);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+    overflow-x: auto;
+  }
+  .rubrica h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px; margin-bottom: 14px; color: #d8b4fe; }
+  .rubrica table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 550px; }
+  .rubrica thead { border-bottom: 1px solid rgba(255,255,255,0.15); }
+  .rubrica th { padding: 8px 12px; text-align: left; font-weight: 700; opacity: 0.7; font-size: 12px; text-transform: uppercase; }
+  .rubrica td { padding: 9px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 13px; opacity: 0.85; }
+  .rubrica td:first-child { font-weight: 600; }
+  .rubrica .pts { color: #a3e635; font-weight: 700; }
+
+  .nota-final {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 12px;
+    padding: 20px 24px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .nota-final .ico { font-size: 32px; flex-shrink: 0; }
+  .nota-final h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; margin-bottom: 8px; }
+  .nota-final p { font-size: 13px; opacity: 0.85; line-height: 1.65; }
+
+  footer { background: var(--sena-dark); color: #aaa; text-align: center; padding: 28px 20px; margin-top: 60px; font-size: 13px; }
+  footer strong { color: var(--sena-green); }
+
+  .ejemplo-toggle { width: 100%; background: none; border: 1.5px solid var(--sena-purple); color: var(--sena-purple); border-radius: 8px; padding: 9px 16px; font-size: 13px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: space-between; transition: background 0.2s; }
+  .ejemplo-toggle:hover { background: #f0e8ff; }
+  .ejemplo-content { display: none; margin-top: 12px; background: #f8f5ff; border-radius: 8px; padding: 16px; font-size: 13px; color: var(--sena-gray); line-height: 1.7; }
+  .ejemplo-content.open { display: block; }
+  .ejemplo-content h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--sena-dark); margin-bottom: 10px; font-size: 14px; }
+
+  @media (max-width:700px) {
+    .header-hero h1 { font-size: 26px; }
+    .lab-section { padding: 30px 20px; }
+    .entrega-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-bar">
+    <div class="sena-logo">SENA<span>.</span></div>
+    <div class="header-subtitle-bar">
+      Servicio Nacional de Aprendizaje<br>
+      Análisis y Desarrollo de Software
+    </div>
+  </div>
+  <div class="header-hero">
+    <div class="badge">📄 Módulo 3 · Ingeniería de Software</div>
+    <h1>Ingeniería de<br><span>Requerimientos</span></h1>
+    <p>Aprende a transformar los datos recolectados y analizados en un documento formal de requerimientos del sistema. El puente entre el mundo del usuario y el mundo del software.</p>
+    <div class="chips">
+      <span class="chip">📋 Tipos de requisitos</span>
+      <span class="chip">✍️ Especificación formal</span>
+      <span class="chip">🎭 Casos de uso</span>
+      <span class="chip">📊 Validación</span>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ¿QUÉ ES? -->
+  <section class="section">
+    <div class="section-title">
+      <div class="icon icon-purple">🧩</div>
+      1. ¿Qué es la Ingeniería de Requerimientos?
+    </div>
+    <div class="section-desc">Y su conexión directa con los instrumentos de recolección de información.</div>
+    <div class="divider divider-purple"></div>
+
+    <div class="qes-grid">
+      <div class="qes-card">
+        <h3>📌 Definición</h3>
+        <p>La Ingeniería de Requerimientos (IR) es el proceso de <strong>identificar, documentar, validar y gestionar las necesidades</strong> de los usuarios y stakeholders para construir un sistema de software. No es solo hacer una lista de lo que quiere el cliente — es entender <em>por qué</em> lo quiere, <em>cómo</em> lo usa y <em>qué espera</em> que haga el sistema.</p>
+      </div>
+      <div class="qes-card">
+        <h3>🎯 ¿Por qué es crítica?</h3>
+        <p>Los estudios muestran que los errores en requerimientos son la causa #1 de fracaso en proyectos de software. Un requerimiento mal entendido se convierte en código mal escrito que luego hay que rehacer. Es más barato corregir un documento que corregir software ya construido.</p>
+      </div>
+      <div class="conexion-card">
+        <div class="ico">🔗</div>
+        <div>
+          <h3>Conexión directa con los módulos anteriores</h3>
+          <p><strong>Los instrumentos de recolección</strong> (entrevistas, encuestas, observación) te dieron la materia prima. <strong>El análisis de datos</strong> te ayudó a encontrar patrones y prioridades. Ahora, la <strong>Ingeniería de Requerimientos</strong> toma esos hallazgos y los convierte en documentos formales que guiarán todo el desarrollo del software. Es el módulo que conecta al usuario con el programador.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESO -->
+  <section class="section">
+    <div class="section-title">
+      <div class="icon icon-purple">⚙️</div>
+      2. El Proceso de Ingeniería de Requerimientos
+    </div>
+    <div class="section-desc">Cinco pasos que van desde los datos crudos hasta el documento formal de especificación.</div>
+    <div class="divider divider-purple"></div>
+
+    <div class="proceso-steps">
+
+      <div class="proceso-step">
+        <div class="paso-left">
+          <div class="paso-circle" style="background:#6B21A8;">1</div>
+          <div class="paso-line"></div>
+        </div>
+        <div class="paso-content">
+          <h3>Elicitación de Requerimientos</h3>
+          <p>Es el proceso de <strong>extraer y descubrir</strong> los requerimientos a partir de las fuentes de información. Aquí usas todos los instrumentos que aprendiste.</p>
+          <div class="conexion-instrumentos">
+            <strong>🔗 ¿Qué instrumentos usas en este paso?</strong>
+            Entrevistas estructuradas · Encuestas · Observación directa · Revisión documental · Talleres grupales
+          </div>
+          <p style="margin-top:12px; font-size:14px; color:var(--sena-gray);"><strong>Resultado:</strong> Lista inicial de necesidades en bruto — sin clasificar ni priorizar aún.</p>
+          <span class="herramienta-tag">🛠️ Herramienta: Notas de entrevista, grabaciones, formularios completados</span>
+        </div>
+      </div>
+
+      <div class="proceso-step">
+        <div class="paso-left">
+          <div class="paso-circle" style="background:#7c3aed;">2</div>
+          <div class="paso-line"></div>
+        </div>
+        <div class="paso-content">
+          <h3>Análisis de Requerimientos</h3>
+          <p>Se estudian los requerimientos elicitados para <strong>detectar conflictos, ambigüedades, duplicados e inconsistencias</strong>. También se clasifica cada requerimiento según su tipo y se priorizan.</p>
+          <div class="conexion-instrumentos">
+            <strong>🔗 ¿Qué técnicas del módulo 2 usas aquí?</strong>
+            Tabla de frecuencias · Matriz de priorización · Categorización cualitativa · Identificación de contradicciones
+          </div>
+          <p style="margin-top:12px; font-size:14px; color:var(--sena-gray);"><strong>Resultado:</strong> Requerimientos depurados, clasificados y priorizados. Sin ambigüedades.</p>
+          <span class="herramienta-tag">🛠️ Herramienta: Excel con matriz de análisis, tabla de priorización</span>
+        </div>
+      </div>
+
+      <div class="proceso-step">
+        <div class="paso-left">
+          <div class="paso-circle" style="background:#8b5cf6;">3</div>
+          <div class="paso-line"></div>
+        </div>
+        <div class="paso-content">
+          <h3>Especificación de Requerimientos</h3>
+          <p>Se documentan formalmente todos los requerimientos en un <strong>documento estructurado</strong> — el SRS (Software Requirements Specification). Cada requerimiento tiene un ID único, descripción clara, fuente, tipo y criterio de aceptación.</p>
+          <div class="conexion-instrumentos">
+            <strong>🔗 Basado en:</strong>
+            Los hallazgos del análisis de datos, las citas textuales de entrevistas, los resultados de encuestas, la lista de módulos identificados
+          </div>
+          <p style="margin-top:12px; font-size:14px; color:var(--sena-gray);"><strong>Resultado:</strong> Documento SRS — la "biblia" del proyecto que todos deben conocer y respetar.</p>
+          <span class="herramienta-tag">🛠️ Herramienta: Plantilla SRS en Word, casos de uso en diagramas</span>
+        </div>
+      </div>
+
+      <div class="proceso-step">
+        <div class="paso-left">
+          <div class="paso-circle" style="background:#a855f7;">4</div>
+          <div class="paso-line"></div>
+        </div>
+        <div class="paso-content">
+          <h3>Validación de Requerimientos</h3>
+          <p>El documento se <strong>revisa con los usuarios y stakeholders</strong> para confirmar que lo que se documentó efectivamente refleja lo que necesitan. Es la verificación de que no hubo malos entendidos.</p>
+          <div class="conexion-instrumentos">
+            <strong>🔗 Técnicas:</strong>
+            Presentación al cliente · Revisión con lista de chequeo · Prototipo de interfaz para validar · Simulación de casos de uso
+          </div>
+          <p style="margin-top:12px; font-size:14px; color:var(--sena-gray);"><strong>Resultado:</strong> SRS aprobado y firmado por el cliente. Es el contrato del proyecto.</p>
+          <span class="herramienta-tag">🛠️ Herramienta: Checklist de validación, acta de reunión firmada</span>
+        </div>
+      </div>
+
+      <div class="proceso-step">
+        <div class="paso-left">
+          <div class="paso-circle" style="background:#c084fc;">5</div>
+        </div>
+        <div class="paso-content">
+          <h3>Gestión de Requerimientos</h3>
+          <p>El proceso continuo de <strong>controlar cambios</strong> en los requerimientos durante el desarrollo. Los requerimientos cambian — la gestión asegura que esos cambios se documenten y que el equipo esté al tanto.</p>
+          <div class="conexion-instrumentos">
+            <strong>🔗 Actividades:</strong>
+            Control de versiones del documento · Trazabilidad (qué código responde a qué requisito) · Gestión de solicitudes de cambio
+          </div>
+          <p style="margin-top:12px; font-size:14px; color:var(--sena-gray);"><strong>Resultado:</strong> SRS vivo y actualizado a lo largo de todo el proyecto.</p>
+          <span class="herramienta-tag">🛠️ Herramienta: Log de cambios, numeración de versiones del SRS</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TIPOS DE REQUERIMIENTOS -->
+  <section class="section">
+    <div class="section-title">
+      <div class="icon icon-green">📂</div>
+      3. Tipos de Requerimientos
+    </div>
+    <div class="section-desc">Todo requerimiento pertenece a una categoría. Clasificarlos correctamente es clave para documentarlos bien.</div>
+    <div class="divider divider-green"></div>
+
+    <div class="req-grid">
+      <!-- FUNCIONALES -->
+      <div class="req-card">
+        <div class="req-header" style="background: #166534;">
+          <span class="rnum">⚙️</span>
+          <h3>Requerimientos Funcionales</h3>
+        </div>
+        <div class="req-body">
+          <p>Describen <strong>lo que el sistema DEBE HACER</strong> — las funciones, comportamientos y servicios que ofrece. Son los más visibles para el usuario.</p>
+          <div class="req-body formato" style="border-color: var(--sena-green);">
+            <strong>📝 Formato:</strong> "El sistema DEBE/PERMITIRÁ + [acción] + [objeto] + [condición/resultado]"
+          </div>
+          <div class="req-ejemplos">
+            <div class="req-ejemplo">
+              <strong>RF-001 · Registro de venta</strong>
+              El sistema debe permitir al cajero registrar una venta seleccionando productos del catálogo y calculando automáticamente el total.
+            </div>
+            <div class="req-ejemplo">
+              <strong>RF-002 · Alerta de inventario</strong>
+              El sistema debe notificar al administrador cuando el stock de un producto sea igual o menor al mínimo configurado.
+            </div>
+            <div class="req-ejemplo">
+              <strong>RF-003 · Cierre de caja</strong>
+              El sistema debe generar un reporte de ventas del día al ejecutar el cierre de caja, mostrando total de ventas, cantidad de transacciones y efectivo recibido.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NO FUNCIONALES -->
+      <div class="req-card">
+        <div class="req-header" style="background: var(--sena-blue);">
+          <span class="rnum">🔧</span>
+          <h3>Requerimientos No Funcionales</h3>
+        </div>
+        <div class="req-body">
+          <p>Describen <strong>cómo debe ser el sistema</strong> — sus atributos de calidad: rendimiento, seguridad, usabilidad, disponibilidad. No son acciones sino restricciones y propiedades.</p>
+          <div class="req-body formato" style="border-color: var(--sena-blue);">
+            <strong>📝 Categorías:</strong> Rendimiento · Seguridad · Usabilidad · Disponibilidad · Escalabilidad · Mantenibilidad
+          </div>
+          <div class="req-ejemplos">
+            <div class="req-ejemplo">
+              <strong>RNF-001 · Rendimiento</strong>
+              El sistema debe responder a cualquier consulta en menos de 2 segundos con hasta 5 usuarios simultáneos.
+            </div>
+            <div class="req-ejemplo">
+              <strong>RNF-002 · Seguridad</strong>
+              El sistema debe requerir autenticación con usuario y contraseña. Las contraseñas deben tener mínimo 8 caracteres.
+            </div>
+            <div class="req-ejemplo">
+              <strong>RNF-003 · Usabilidad</strong>
+              Un empleado sin experiencia en sistemas debe poder realizar una venta en menos de 3 minutos tras 1 hora de capacitación.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DE NEGOCIO -->
+      <div class="req-card">
+        <div class="req-header" style="background: #92400e;">
+          <span class="rnum">🏢</span>
+          <h3>Requerimientos de Negocio</h3>
+        </div>
+        <div class="req-body">
+          <p>Expresan los <strong>objetivos y metas del negocio</strong> que el sistema debe apoyar. Son el "para qué" del sistema — el beneficio que busca la organización.</p>
+          <div class="req-body formato" style="border-color: var(--sena-accent);">
+            <strong>📝 Formato:</strong> "El sistema debe contribuir a / permitir que el negocio + [objetivo de negocio]"
+          </div>
+          <div class="req-ejemplos">
+            <div class="req-ejemplo">
+              <strong>RN-001 · Reducción de errores</strong>
+              El sistema debe eliminar los errores de suma manual en el proceso de ventas, reduciendo los descuadres de caja a cero.
+            </div>
+            <div class="req-ejemplo">
+              <strong>RN-002 · Control de pérdidas</strong>
+              El sistema debe permitir identificar productos con alta rotación para optimizar las compras y reducir productos vencidos.
+            </div>
+            <div class="req-ejemplo">
+              <strong>RN-003 · Escalabilidad del negocio</strong>
+              El sistema debe soportar la gestión de hasta 3 sucursales con la misma plataforma, sin necesidad de desarrollar otro sistema.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANTILLA SRS -->
+  <section class="section">
+    <div class="section-title">
+      <div class="icon icon-blue">📋</div>
+      4. Plantilla de Especificación de Requerimiento
+    </div>
+    <div class="section-desc">Cada requerimiento debe documentarse con esta estructura mínima para que sea completo, claro y trazable.</div>
+    <div class="divider divider-blue"></div>
+
+    <div class="plantilla-card">
+      <div class="plantilla-header">
+        <h3>Plantilla de Requerimiento Individual</h3>
+        <p>Usar para cada requerimiento funcional del sistema</p>
+      </div>
+      <div class="plantilla-body">
+        <table class="plantilla-table">
+          <tbody>
+            <tr class="separador"><td colspan="2">📌 IDENTIFICACIÓN</td></tr>
+            <tr>
+              <td>ID del Requerimiento</td>
+              <td>RF-001 (RF = Funcional, RNF = No Funcional, RN = Negocio)</td>
+            </tr>
+            <tr>
+              <td>Nombre</td>
+              <td>Nombre corto que identifica la funcionalidad (Ej: "Registro de venta")</td>
+            </tr>
+            <tr>
+              <td>Módulo</td>
+              <td>Módulo del sistema al que pertenece (Ej: Ventas, Inventario, Usuarios)</td>
+            </tr>
+            <tr class="separador"><td colspan="2">📝 DESCRIPCIÓN</td></tr>
+            <tr>
+              <td>Descripción</td>
+              <td>Descripción completa de lo que el sistema debe hacer o cómo debe comportarse. Clara y sin ambigüedades.</td>
+            </tr>
+            <tr>
+              <td>Justificación</td>
+              <td>¿Por qué es necesario este requerimiento? ¿Qué problema resuelve?</td>
+            </tr>
+            <tr class="separador"><td colspan="2">🏷️ CLASIFICACIÓN</td></tr>
+            <tr>
+              <td>Tipo</td>
+              <td>Funcional / No Funcional / Negocio</td>
+            </tr>
+            <tr>
+              <td>Prioridad</td>
+              <td>Alta / Media / Baja — basada en la matriz de priorización del módulo 2</td>
+            </tr>
+            <tr>
+              <td>Estado</td>
+              <td>Propuesto / En análisis / Aprobado / Implementado / Verificado</td>
+            </tr>
+            <tr class="separador"><td colspan="2">🔗 TRAZABILIDAD</td></tr>
+            <tr>
+              <td>Fuente</td>
+              <td>¿De dónde vino? (Ej: Entrevista Don Carlos - 15/03/2025, Encuesta pregunta 3)</td>
+            </tr>
+            <tr>
+              <td>Actor(es)</td>
+              <td>¿Quién usará esta funcionalidad? (Ej: Cajero, Administrador, Cliente)</td>
+            </tr>
+            <tr>
+              <td>Casos de uso relacionados</td>
+              <td>ID del caso de uso donde este requerimiento se expresa (Ej: CU-004)</td>
+            </tr>
+            <tr class="separador"><td colspan="2">✅ ACEPTACIÓN</td></tr>
+            <tr>
+              <td>Criterio de aceptación</td>
+              <td>¿Cómo verificamos que el requerimiento fue implementado correctamente? (Ej: "Dado que hay una venta, cuando el cajero selecciona productos y confirma, entonces el sistema genera el recibo y descuenta el inventario")</td>
+            </tr>
+            <tr>
+              <td>Restricciones</td>
+              <td>Limitaciones técnicas o de negocio que aplican a este requerimiento</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- TABLA COMPLETA DE REQUISITOS EJEMPLO -->
+  <section class="section">
+    <div class="section-title">
+      <div class="icon icon-green">📊</div>
+      5. Catálogo de Requerimientos — Supermercado "La Esquina"
+    </div>
+    <div class="section-desc">Ejemplo completo de cómo se ve el catálogo de requerimientos después de aplicar los módulos 1, 2 y 3.</div>
+    <div class="divider divider-green"></div>
+
+    <div class="tabla-req-wrap">
+      <table class="tabla-req">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Tipo</th>
+            <th>Descripción resumida</th>
+            <th>Fuente</th>
+            <th>Prioridad</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>RF-001</td>
+            <td>Registro de venta</td>
+            <td><span class="req-tipo t-func">Funcional</span></td>
+            <td>El cajero puede registrar productos vendidos, calcular total y emitir recibo</td>
+            <td>Observación + Entrevista</td>
+            <td><span class="prio-alta">⬆ Alta</span></td>
+          </tr>
+          <tr>
+            <td>RF-002</td>
+            <td>Control de inventario</td>
+            <td><span class="req-tipo t-func">Funcional</span></td>
+            <td>El sistema descuenta stock automáticamente con cada venta y permite ajustes manuales</td>
+            <td>Entrevista Don Carlos</td>
+            <td><span class="prio-alta">⬆ Alta</span></td>
+          </tr>
+          <tr>
+            <td>RF-003</td>
+            <td>Alerta de stock mínimo</td>
+            <td><span class="req-tipo t-func">Funcional</span></td>
+            <td>Notificación automática cuando un producto llega al mínimo configurado</td>
+            <td>Observación directa</td>
+            <td><span class="prio-alta">⬆ Alta</span></td>
+          </tr>
+          <tr>
+            <td>RF-004</td>
+            <td>Gestión de usuarios</td>
+            <td><span class="req-tipo t-func">Funcional</span></td>
+            <td>El administrador puede crear, editar y desactivar usuarios con roles y permisos</td>
+            <td>Entrevista + Taller</td>
+            <td><span class="prio-alta">⬆ Alta</span></td>
+          </tr>
+          <tr>
+            <td>RF-005</td>
+            <td>Cierre de caja</td>
+            <td><span class="req-tipo t-func">Funcional</span></td>
+            <td>Genera reporte diario de ventas, transacciones y totales al cerrar la jornada</td>
+            <td>Revisión documental</td>
+            <td><span class="prio-media">→ Media</span></td>
+          </tr>
+          <tr>
+            <td>RF-006</td>
+            <td>Catálogo de productos</td>
+            <td><span class="req-tipo t-func">Funcional</span></td>
+            <td>CRUD completo de productos con nombre, precio, categoría, stock mínimo y proveedor</td>
+            <td>Rev. documental (lista precios)</td>
+            <td><span class="prio-alta">⬆ Alta</span></td>
+          </tr>
+          <tr>
+            <td>RF-007</td>
+            <td>Gestión de proveedores</td>
+            <td><span class="req-tipo t-func">Funcional</span></td>
+            <td>Registrar proveedores, asociarlos a productos y registrar órdenes de compra</td>
+            <td>Taller grupal</td>
+            <td><span class="prio-media">→ Media</span></td>
+          </tr>
+          <tr>
+            <td>RF-008</td>
+            <td>Reportes de ventas</td>
+            <td><span class="req-tipo t-func">Funcional</span></td>
+            <td>Generar reportes por período (día, semana, mes) con filtros por producto y usuario</td>
+            <td>Encuesta pregunta 4</td>
+            <td><span class="prio-media">→ Media</span></td>
+          </tr>
+          <tr>
+            <td>RNF-001</td>
+            <td>Rendimiento</td>
+            <td><span class="req-tipo t-nfunc">No funcional</span></td>
+            <td>Respuesta en menos de 2 segundos para cualquier operación con hasta 3 usuarios activos</td>
+            <td>Análisis de contexto</td>
+            <td><span class="prio-alta">⬆ Alta</span></td>
+          </tr>
+          <tr>
+            <td>RNF-002</td>
+            <td>Seguridad básica</td>
+            <td><span class="req-tipo t-nfunc">No funcional</span></td>
+            <td>Autenticación obligatoria; sesión expira tras 30 min de inactividad; log de operaciones</td>
+            <td>Análisis de contexto</td>
+            <td><span class="prio-alta">⬆ Alta</span></td>
+          </tr>
+          <tr>
+            <td>RNF-003</td>
+            <td>Usabilidad</td>
+            <td><span class="req-tipo t-nfunc">No funcional</span></td>
+            <td>Interfaz en español, sin tecnicismos; registro de venta en máximo 5 pasos</td>
+            <td>Observación directa</td>
+            <td><span class="prio-alta">⬆ Alta</span></td>
+          </tr>
+          <tr>
+            <td>RN-001</td>
+            <td>Eliminación de errores manuales</td>
+            <td><span class="req-tipo t-neg">Negocio</span></td>
+            <td>El sistema debe reducir los descuadres de caja a cero reemplazando el cálculo manual</td>
+            <td>Entrevista Don Carlos</td>
+            <td><span class="prio-alta">⬆ Alta</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- CASOS DE USO -->
+  <section class="section">
+    <div class="section-title">
+      <div class="icon icon-orange">🎭</div>
+      6. Casos de Uso — Expresar Requerimientos en Escenarios
+    </div>
+    <div class="section-desc">Los casos de uso describen cómo un usuario interactúa con el sistema para lograr un objetivo. Son la forma más clara de documentar comportamientos.</div>
+    <div class="divider divider-orange"></div>
+
+    <div class="cu-grid">
+      <div class="cu-card">
+        <div class="cu-header">
+          <h4>CU-001 · Registrar Venta</h4>
+          <span>Módulo: Ventas</span>
+        </div>
+        <div class="cu-body">
+          <div class="cu-row"><span class="cu-label">Actor:</span><span class="cu-val">Cajero (Martha o Julián)</span></div>
+          <div class="cu-row"><span class="cu-label">Precondición:</span><span class="cu-val">Usuario autenticado. Productos en catálogo con precios.</span></div>
+          <div class="cu-row"><span class="cu-label">Flujo normal:</span><span class="cu-val"></span></div>
+          <ul class="flujo-list">
+            <li data-n="1">Cajero selecciona o busca producto en catálogo</li>
+            <li data-n="2">Ingresa cantidad vendida</li>
+            <li data-n="3">Sistema calcula subtotal y total automáticamente</li>
+            <li data-n="4">Cajero confirma la venta</li>
+            <li data-n="5">Sistema descuenta del inventario y genera recibo</li>
+          </ul>
+          <div class="cu-row" style="margin-top:10px;"><span class="cu-label">Excepción:</span><span class="cu-val">Si el producto no existe, el sistema muestra mensaje de error. Si el stock es cero, muestra alerta.</span></div>
+          <div class="cu-row"><span class="cu-label">Postcondición:</span><span class="cu-val">Venta registrada, inventario actualizado, recibo generado.</span></div>
+          <div class="cu-row"><span class="cu-label">Req. asociado:</span><span class="cu-val">RF-001, RF-002</span></div>
+        </div>
+      </div>
+
+      <div class="cu-card">
+        <div class="cu-header">
+          <h4>CU-002 · Consultar Stock de Producto</h4>
+          <span>Módulo: Inventario</span>
+        </div>
+        <div class="cu-body">
+          <div class="cu-row"><span class="cu-label">Actor:</span><span class="cu-val">Administrador (Don Carlos)</span></div>
+          <div class="cu-row"><span class="cu-label">Precondición:</span><span class="cu-val">Usuario autenticado con rol Administrador.</span></div>
+          <div class="cu-row"><span class="cu-label">Flujo normal:</span><span class="cu-val"></span></div>
+          <ul class="flujo-list">
+            <li data-n="1">Administrador accede al módulo de inventario</li>
+            <li data-n="2">Busca producto por nombre o categoría</li>
+            <li data-n="3">Sistema muestra stock actual, mínimo y últimas entradas</li>
+            <li data-n="4">Si el stock está bajo el mínimo, el sistema resalta el producto en rojo</li>
+          </ul>
+          <div class="cu-row" style="margin-top:10px;"><span class="cu-label">Excepción:</span><span class="cu-val">Producto no encontrado → mensaje "Producto no existe en catálogo".</span></div>
+          <div class="cu-row"><span class="cu-label">Postcondición:</span><span class="cu-val">Información de stock visualizada.</span></div>
+          <div class="cu-row"><span class="cu-label">Req. asociado:</span><span class="cu-val">RF-002, RF-003</span></div>
+        </div>
+      </div>
+
+      <div class="cu-card">
+        <div class="cu-header">
+          <h4>CU-003 · Generar Reporte de Cierre</h4>
+          <span>Módulo: Reportes</span>
+        </div>
+        <div class="cu-body">
+          <div class="cu-row"><span class="cu-label">Actor:</span><span class="cu-val">Administrador (Don Carlos)</span></div>
+          <div class="cu-row"><span class="cu-label">Precondición:</span><span class="cu-val">Existen ventas registradas en el día actual.</span></div>
+          <div class="cu-row"><span class="cu-label">Flujo normal:</span><span class="cu-val"></span></div>
+          <ul class="flujo-list">
+            <li data-n="1">Administrador selecciona "Cierre de caja"</li>
+            <li data-n="2">Sistema pregunta confirmación de cierre</li>
+            <li data-n="3">Administrador confirma</li>
+            <li data-n="4">Sistema genera reporte: ventas totales, por usuario, por producto y efectivo</li>
+            <li data-n="5">Reporte disponible para imprimir o exportar a PDF</li>
+          </ul>
+          <div class="cu-row" style="margin-top:10px;"><span class="cu-label">Excepción:</span><span class="cu-val">Sin ventas del día → sistema notifica "No hay ventas registradas hoy".</span></div>
+          <div class="cu-row"><span class="cu-label">Postcondición:</span><span class="cu-val">Caja cerrada. Reporte del día disponible.</span></div>
+          <div class="cu-row"><span class="cu-label">Req. asociado:</span><span class="cu-val">RF-005, RF-008</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LABORATORIO FINAL -->
+  <section class="section">
+    <div class="lab-section">
+      <div class="lab-badge-final">🏆 Laboratorio Final de Entrega</div>
+      <h2>Documento SRS:<br><span>Supermercado "La Esquina"</span></h2>
+      <p>Este es el laboratorio final del ciclo. Cada equipo va a consolidar TODO el trabajo de los tres módulos en un documento de Especificación de Requerimientos de Software completo. Una evidencia por equipo.</p>
+
+      <div class="entrega-grid">
+        <div class="entrega-card">
+          <div class="enum">01</div>
+          <h4>Sección: Introducción del Proyecto</h4>
+          <p>Describan el contexto, el problema y el objetivo del software a desarrollar.</p>
+          <ul class="items">
+            <li>Descripción del negocio (supermercado)</li>
+            <li>Problema actual que justifica el sistema</li>
+            <li>Objetivo general del software</li>
+            <li>Alcance del sistema (qué incluye y qué no)</li>
+            <li>Listado de actores/usuarios del sistema</li>
+          </ul>
+        </div>
+        <div class="entrega-card">
+          <div class="enum">02</div>
+          <h4>Sección: Hallazgos de la Recolección</h4>
+          <p>Resumen ejecutivo de los datos obtenidos con los instrumentos aplicados.</p>
+          <ul class="items">
+            <li>Instrumentos utilizados (con justificación)</li>
+            <li>Tabla de frecuencias principal de la encuesta</li>
+            <li>Hallazgos clave de la observación y entrevistas</li>
+            <li>Mínimo 2 citas textuales relevantes</li>
+            <li>Al menos 1 gráfica de los datos analizados</li>
+          </ul>
+        </div>
+        <div class="entrega-card">
+          <div class="enum">03</div>
+          <h4>Sección: Catálogo de Requerimientos</h4>
+          <p>Tabla completa con todos los requerimientos identificados, clasificados y priorizados.</p>
+          <ul class="items">
+            <li>Mínimo 10 requerimientos funcionales</li>
+            <li>Mínimo 3 requerimientos no funcionales</li>
+            <li>Mínimo 2 requerimientos de negocio</li>
+            <li>Cada uno con: ID, nombre, tipo, descripción, fuente, prioridad</li>
+            <li>Matriz de priorización que respalde el orden</li>
+          </ul>
+        </div>
+        <div class="entrega-card">
+          <div class="enum">04</div>
+          <h4>Sección: Casos de Uso</h4>
+          <p>Descripción detallada de al menos 3 casos de uso del sistema.</p>
+          <ul class="items">
+            <li>Actor principal de cada caso de uso</li>
+            <li>Precondiciones y postcondiciones</li>
+            <li>Flujo normal paso a paso</li>
+            <li>Flujo de excepción (qué pasa si algo falla)</li>
+            <li>Requerimientos asociados a cada CU</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="rubrica">
+        <h4>📊 Rúbrica de Evaluación</h4>
+        <table>
+          <thead>
+            <tr><th>Criterio</th><th>Descripción</th><th>Puntaje</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Recolección de información</td><td>¿Aplicaron y documentaron correctamente los instrumentos?</td><td class="pts">20 pts</td></tr>
+            <tr><td>Análisis de datos</td><td>¿Hay tablas, gráficas e interpretaciones claras?</td><td class="pts">20 pts</td></tr>
+            <tr><td>Catálogo de requerimientos</td><td>¿Están completos, bien clasificados y con fuentes?</td><td class="pts">25 pts</td></tr>
+            <tr><td>Casos de uso</td><td>¿Son coherentes con los requerimientos y bien estructurados?</td><td class="pts">20 pts</td></tr>
+            <tr><td>Redacción y presentación</td><td>¿El documento es claro, ordenado y profesional?</td><td class="pts">15 pts</td></tr>
+            <tr><td><strong>TOTAL</strong></td><td></td><td class="pts"><strong>100 pts</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="nota-final">
+        <div class="ico">💡</div>
+        <div>
+          <h4>Nota sobre el formato de entrega</h4>
+          <p>El documento debe entregarse en formato Word o PDF. Una sola entrega por equipo subida a la plataforma del SENA (Sofia Plus). El nombre del archivo debe seguir el formato: <strong>SRS_NombreEquipo_Supermercado.pdf</strong>. Incluir en la portada: nombres de todos los integrantes, programa, ficha y fecha.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <strong>SENA</strong> · Servicio Nacional de Aprendizaje · Análisis y Desarrollo de Software<br>
+  Módulo 3: Ingeniería de Requerimientos · Material de Formación Complementaria
+</footer>
+
+<script>
+function toggleEjemplo(btn) {
+  const content = btn.nextElementSibling;
+  const arrow = btn.querySelector('span');
+  content.classList.toggle('open');
+  arrow.textContent = content.classList.contains('open') ? '▲' : '▼';
+}
+</script>
+</body>
+</html>
