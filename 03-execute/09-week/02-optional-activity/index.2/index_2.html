@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Análisis de Datos Recolectados | SENA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sena-green: #39A900;
+    --sena-dark: #2D2D2D;
+    --sena-gray: #5A5A5A;
+    --sena-light: #F4F9F0;
+    --sena-accent: #FF6B00;
+    --sena-blue: #003DA5;
+    --excel-green: #217346;
+    --excel-light: #E8F5EE;
+    --white: #FFFFFF;
+    --card-shadow: 0 4px 20px rgba(0,0,0,0.10);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Open Sans', sans-serif; background: #f7f7f7; color: var(--sena-dark); }
+
+  header {
+    background: linear-gradient(135deg, #003DA5 0%, #0056E0 60%, #3a7bd5 100%);
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .header-bar {
+    background: var(--sena-dark);
+    display: flex;
+    align-items: center;
+    padding: 10px 40px;
+    gap: 20px;
+  }
+  .sena-logo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 28px;
+    color: var(--sena-green);
+    letter-spacing: 2px;
+  }
+  .sena-logo span { color: white; }
+  .header-subtitle-bar {
+    font-size: 12px;
+    color: #ccc;
+    border-left: 2px solid var(--sena-green);
+    padding-left: 16px;
+    line-height: 1.4;
+  }
+  .header-hero {
+    padding: 60px 40px 50px;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .header-hero::after {
+    content: '📊';
+    position: absolute;
+    right: 60px; top: 30px;
+    font-size: 130px;
+    opacity: 0.10;
+  }
+  .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.35);
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+  }
+  .header-hero h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 40px;
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .header-hero h1 span { color: #90d4ff; }
+  .header-hero p { font-size: 16px; max-width: 620px; opacity: 0.92; line-height: 1.7; margin-bottom: 28px; }
+  .chips { display: flex; gap: 10px; flex-wrap: wrap; }
+  .chip { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; }
+
+  main { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+  .section { padding: 56px 0 40px; }
+  .section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--sena-dark);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-title .icon {
+    background: var(--sena-blue);
+    color: white;
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .section-title .icon.green { background: var(--sena-green); }
+  .section-title .icon.orange { background: var(--sena-accent); }
+  .section-desc { color: var(--sena-gray); font-size: 15px; margin-bottom: 32px; margin-left: 48px; }
+  .divider { height: 3px; background: linear-gradient(90deg, var(--sena-blue), transparent); border-radius: 2px; margin-bottom: 32px; }
+  .divider.green { background: linear-gradient(90deg, var(--sena-green), transparent); }
+
+  /* FLUJO DE ANÁLISIS */
+  .flujo-wrap { display: flex; align-items: flex-start; gap: 0; flex-wrap: wrap; }
+  .flujo-step {
+    background: white;
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    padding: 20px;
+    flex: 1;
+    min-width: 160px;
+    position: relative;
+    text-align: center;
+  }
+  .flujo-step .fnum {
+    background: var(--sena-blue);
+    color: white;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 10px;
+  }
+  .flujo-step h4 { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; color: var(--sena-dark); margin-bottom: 6px; }
+  .flujo-step p { font-size: 12px; color: var(--sena-gray); line-height: 1.5; }
+  .flujo-arrow { font-size: 24px; color: var(--sena-blue); align-self: center; padding: 0 8px; opacity: 0.5; }
+
+  /* TÉCNICAS GRID */
+  .tecnica-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+  .tecnica-card {
+    background: white;
+    border-radius: 14px;
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    transition: transform 0.2s;
+  }
+  .tecnica-card:hover { transform: translateY(-3px); }
+  .tecnica-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid #eee;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .tecnica-ico { font-size: 32px; }
+  .tecnica-card h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 16px; color: var(--sena-dark); margin-bottom: 4px; }
+  .tecnica-card .tsub { font-size: 12px; color: var(--sena-blue); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+  .tecnica-body { padding: 18px 24px; }
+  .tecnica-body p { font-size: 14px; color: var(--sena-gray); line-height: 1.65; margin-bottom: 14px; }
+  .pasos-list { list-style: none; margin-bottom: 14px; }
+  .pasos-list li {
+    padding: 7px 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 13px;
+    color: var(--sena-gray);
+    display: flex;
+    gap: 10px;
+  }
+  .pasos-list li:last-child { border-bottom: none; }
+  .paso-n {
+    background: var(--sena-blue);
+    color: white;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .ejemplo-toggle {
+    width: 100%;
+    background: none;
+    border: 1.5px solid var(--sena-blue);
+    color: var(--sena-blue);
+    border-radius: 8px;
+    padding: 9px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.2s;
+  }
+  .ejemplo-toggle:hover { background: #e8eeff; }
+  .ejemplo-content {
+    display: none;
+    margin-top: 12px;
+    background: #f8f9ff;
+    border-radius: 8px;
+    padding: 16px;
+    font-size: 13px;
+    color: var(--sena-gray);
+    line-height: 1.7;
+  }
+  .ejemplo-content.open { display: block; }
+  .ejemplo-content h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--sena-dark); margin-bottom: 10px; font-size: 14px; }
+
+  /* EXCEL SIMULADO */
+  .excel-table-wrap {
+    background: white;
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+  .excel-bar {
+    background: var(--excel-green);
+    color: white;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .excel-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .excel-table thead { background: #1a5c38; color: white; }
+  .excel-table thead th { padding: 10px 14px; font-weight: 600; text-align: left; }
+  .excel-table tbody tr:nth-child(even) { background: #f0faf4; }
+  .excel-table tbody td { padding: 9px 14px; border-bottom: 1px solid #e0eee6; color: var(--sena-gray); }
+  .excel-table tbody td:first-child { font-weight: 600; color: var(--sena-dark); }
+  .excel-formula { background: #fff9e6; border: 1px solid #ffd166; border-radius: 6px; padding: 8px 12px; font-size: 12px; color: #7a5800; margin-top: 8px; font-family: 'Courier New', monospace; }
+
+  /* PASO A PASO EXCEL */
+  .excel-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+  .excel-step-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: var(--card-shadow);
+    padding: 18px;
+    border-top: 3px solid var(--excel-green);
+  }
+  .excel-step-num { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 28px; color: var(--excel-green); margin-bottom: 8px; }
+  .excel-step-card h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; color: var(--sena-dark); margin-bottom: 8px; }
+  .excel-step-card p { font-size: 13px; color: var(--sena-gray); line-height: 1.6; }
+  .excel-step-card .formula { background: #f0faf4; border-radius: 6px; padding: 6px 10px; font-size: 12px; margin-top: 8px; font-family: 'Courier New', monospace; color: var(--excel-green); font-weight: 600; }
+
+  /* ANÁLISIS CUALITATIVO */
+  .cualitativo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .cual-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    padding: 22px;
+    border-left: 4px solid var(--sena-accent);
+  }
+  .cual-card h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px; color: var(--sena-dark); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .cual-card p { font-size: 13px; color: var(--sena-gray); line-height: 1.65; margin-bottom: 12px; }
+  .tag-cloud { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { background: #fff4e6; color: #cc5500; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; }
+  .tag.blue { background: #e6eeff; color: var(--sena-blue); }
+  .tag.green { background: var(--sena-light); color: #2a7d00; }
+
+  /* ERRORES COMUNES */
+  .errores-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .error-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: var(--card-shadow);
+    padding: 18px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .error-ico { font-size: 28px; flex-shrink: 0; }
+  .error-card h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; color: var(--sena-dark); margin-bottom: 6px; }
+  .error-card p { font-size: 13px; color: var(--sena-gray); line-height: 1.6; }
+  .error-fix { font-size: 12px; color: var(--sena-green); font-weight: 600; margin-top: 6px; }
+
+  /* LABORATORIO */
+  .lab-section {
+    background: linear-gradient(135deg, #001f6e, #003DA5);
+    border-radius: 18px;
+    padding: 50px 40px;
+    color: white;
+    margin: 40px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .lab-section::before { content: '📊'; position: absolute; right: 40px; top: 20px; font-size: 120px; opacity: 0.08; }
+  .lab-badge { background: var(--sena-accent); color: white; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; padding: 6px 16px; border-radius: 20px; display: inline-block; margin-bottom: 20px; }
+  .lab-section h2 { font-family: 'Montserrat', sans-serif; font-size: 28px; font-weight: 900; margin-bottom: 12px; }
+  .lab-section h2 span { color: #90d4ff; }
+  .lab-section > p { font-size: 15px; opacity: 0.88; line-height: 1.7; margin-bottom: 30px; max-width: 700px; }
+
+  .datos-raw {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px;
+    padding: 22px 26px;
+    margin-bottom: 24px;
+  }
+  .datos-raw h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px; margin-bottom: 14px; color: #90d4ff; }
+  .datos-raw table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .datos-raw thead { border-bottom: 1px solid rgba(255,255,255,0.2); }
+  .datos-raw th { padding: 8px 12px; text-align: left; font-weight: 700; opacity: 0.7; font-size: 12px; text-transform: uppercase; }
+  .datos-raw td { padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.07); font-size: 13px; opacity: 0.85; }
+
+  .tareas-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 24px; }
+  .tarea-card { background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.18); border-radius: 10px; padding: 18px; }
+  .tarea-card .tnum { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 24px; color: #90d4ff; margin-bottom: 8px; }
+  .tarea-card h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; margin-bottom: 8px; }
+  .tarea-card p { font-size: 12px; opacity: 0.82; line-height: 1.6; }
+
+  .entregables { background: rgba(255,255,255,0.06); border-radius: 12px; padding: 22px 28px; }
+  .entregables h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 16px; margin-bottom: 14px; color: #90d4ff; }
+  .entregables ul { list-style: none; }
+  .entregables li { padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.08); font-size: 14px; opacity: 0.88; display: flex; align-items: flex-start; gap: 10px; }
+  .entregables li:last-child { border-bottom: none; }
+  .entregables li::before { content: '✓'; color: #90d4ff; font-weight: 700; flex-shrink: 0; }
+
+  footer { background: var(--sena-dark); color: #aaa; text-align: center; padding: 28px 20px; margin-top: 60px; font-size: 13px; }
+  footer strong { color: var(--sena-green); }
+
+  @media (max-width: 700px) {
+    .header-hero h1 { font-size: 26px; }
+    .lab-section { padding: 30px 20px; }
+    .flujo-arrow { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-bar">
+    <div class="sena-logo">SENA<span>.</span></div>
+    <div class="header-subtitle-bar">
+      Servicio Nacional de Aprendizaje<br>
+      Análisis y Desarrollo de Software
+    </div>
+  </div>
+  <div class="header-hero">
+    <div class="badge">📊 Módulo 2 · Ingeniería de Software</div>
+    <h1>Técnicas para<br><span>Analizar los Datos Recolectados</span></h1>
+    <p>Ya aplicaste los instrumentos y tienes información. ¿Ahora qué? Aprende a organizar, clasificar, interpretar y visualizar los datos para convertirlos en requisitos de software claros.</p>
+    <div class="chips">
+      <span class="chip">📑 Organización de datos</span>
+      <span class="chip">📈 Excel básico</span>
+      <span class="chip">🔍 Análisis cualitativo</span>
+      <span class="chip">📌 Identificar requisitos</span>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- FLUJO GENERAL -->
+  <section class="section">
+    <div class="section-title">
+      <div class="icon">🔄</div>
+      1. ¿Cómo Fluye el Análisis de Datos?
+    </div>
+    <div class="section-desc">El análisis no es magia — es un proceso ordenado que va de los datos crudos a los requisitos del sistema.</div>
+    <div class="divider"></div>
+
+    <div class="flujo-wrap">
+      <div class="flujo-step">
+        <div class="fnum">1</div>
+        <h4>Recolectar</h4>
+        <p>Aplicar instrumentos: entrevistas, encuestas, observación...</p>
+      </div>
+      <div class="flujo-arrow">→</div>
+      <div class="flujo-step">
+        <div class="fnum">2</div>
+        <h4>Organizar</h4>
+        <p>Tabular y agrupar la información en una estructura manejable</p>
+      </div>
+      <div class="flujo-arrow">→</div>
+      <div class="flujo-step">
+        <div class="fnum">3</div>
+        <h4>Limpiar</h4>
+        <p>Eliminar duplicados, errores y respuestas incompletas</p>
+      </div>
+      <div class="flujo-arrow">→</div>
+      <div class="flujo-step">
+        <div class="fnum">4</div>
+        <h4>Analizar</h4>
+        <p>Aplicar técnicas cuantitativas y cualitativas para encontrar patrones</p>
+      </div>
+      <div class="flujo-arrow">→</div>
+      <div class="flujo-step">
+        <div class="fnum">5</div>
+        <h4>Interpretar</h4>
+        <p>Transformar los hallazgos en necesidades del sistema</p>
+      </div>
+      <div class="flujo-arrow">→</div>
+      <div class="flujo-step">
+        <div class="fnum">6</div>
+        <h4>Documentar</h4>
+        <p>Escribir los requisitos identificados de forma clara</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TÉCNICAS CUANTITATIVAS -->
+  <section class="section">
+    <div class="section-title">
+      <div class="icon">📊</div>
+      2. Técnicas para Datos Cuantitativos (Números)
+    </div>
+    <div class="section-desc">Cuando tienes números de encuestas, conteos y mediciones, estas técnicas te ayudan a interpretarlos.</div>
+    <div class="divider"></div>
+
+    <div class="tecnica-grid">
+
+      <!-- TABLAS DE FRECUENCIA -->
+      <div class="tecnica-card">
+        <div class="tecnica-header">
+          <div class="tecnica-ico">📋</div>
+          <div>
+            <h3>Tabla de Frecuencias</h3>
+            <span class="tsub">La técnica más básica y poderosa</span>
+          </div>
+        </div>
+        <div class="tecnica-body">
+          <p>Cuenta cuántas veces aparece cada respuesta. Te dice qué opciones son más comunes y cuáles son minoritarias.</p>
+          <ol class="pasos-list">
+            <li><span class="paso-n">1</span> Lista todas las respuestas posibles en una columna</li>
+            <li><span class="paso-n">2</span> Cuenta cuántas veces aparece cada una</li>
+            <li><span class="paso-n">3</span> Calcula el porcentaje de cada respuesta</li>
+            <li><span class="paso-n">4</span> Ordena de mayor a menor frecuencia</li>
+          </ol>
+          <button class="ejemplo-toggle" onclick="toggleEjemplo(this)">
+            📊 Ver ejemplo con datos del supermercado
+            <span>▼</span>
+          </button>
+          <div class="ejemplo-content">
+            <h4>Pregunta de encuesta: "¿Qué funcionalidad quiere en el sistema?"</h4>
+            <div class="excel-table-wrap">
+              <div class="excel-bar">📗 Excel — Tabla de Frecuencias</div>
+              <table class="excel-table">
+                <thead><tr><th>Respuesta</th><th>Conteo</th><th>Frecuencia %</th></tr></thead>
+                <tbody>
+                  <tr><td>Registro de ventas</td><td>18</td><td>90%</td></tr>
+                  <tr><td>Control de inventario</td><td>16</td><td>80%</td></tr>
+                  <tr><td>Factura electrónica</td><td>14</td><td>70%</td></tr>
+                  <tr><td>Control de proveedores</td><td>8</td><td>40%</td></tr>
+                  <tr><td>App para clientes</td><td>4</td><td>20%</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="excel-formula">Fórmula: =CONTAR.SI(B:B,"Registro de ventas")</div>
+            <p style="margin-top:10px;"><strong>💡 Conclusión:</strong> El 90% quiere registro de ventas → Es un requisito PRIORITARIO del sistema.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ESTADÍSTICAS DESCRIPTIVAS -->
+      <div class="tecnica-card">
+        <div class="tecnica-header">
+          <div class="tecnica-ico">📐</div>
+          <div>
+            <h3>Estadísticas Descriptivas</h3>
+            <span class="tsub">Promedio, mínimo, máximo, moda</span>
+          </div>
+        </div>
+        <div class="tecnica-body">
+          <p>Resumen numérico básico de tus datos. Sin necesidad de estadística avanzada, estas métricas te dan una visión rápida de la realidad.</p>
+          <ol class="pasos-list">
+            <li><span class="paso-n">1</span> Ingresa los datos en Excel (una columna por variable)</li>
+            <li><span class="paso-n">2</span> Calcula promedio (PROMEDIO), máximo (MAX), mínimo (MIN)</li>
+            <li><span class="paso-n">3</span> Calcula la moda (MODA) para saber el valor más frecuente</li>
+            <li><span class="paso-n">4</span> Interpreta qué significa cada número para el proyecto</li>
+          </ol>
+          <button class="ejemplo-toggle" onclick="toggleEjemplo(this)">
+            📊 Ver ejemplo con datos del supermercado
+            <span>▼</span>
+          </button>
+          <div class="ejemplo-content">
+            <h4>Variable: "¿Cuántas ventas diarias hace su negocio?"</h4>
+            <div class="excel-table-wrap">
+              <div class="excel-bar">📗 Excel — Estadísticas descriptivas</div>
+              <table class="excel-table">
+                <thead><tr><th>Métrica</th><th>Valor</th><th>Fórmula Excel</th></tr></thead>
+                <tbody>
+                  <tr><td>Promedio diario</td><td>47 ventas</td><td>=PROMEDIO(B2:B20)</td></tr>
+                  <tr><td>Mínimo registrado</td><td>22 ventas</td><td>=MIN(B2:B20)</td></tr>
+                  <tr><td>Máximo registrado</td><td>89 ventas</td><td>=MAX(B2:B20)</td></tr>
+                  <tr><td>Día más común</td><td>Sábado</td><td>=MODA(C2:C20)</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p style="margin-top:10px;"><strong>💡 Conclusión:</strong> El sistema debe soportar mínimo 90 transacciones/día (con margen de crecimiento). La carga pico es los sábados → considerar rendimiento.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- GRÁFICAS -->
+      <div class="tecnica-card">
+        <div class="tecnica-header">
+          <div class="tecnica-ico">📈</div>
+          <div>
+            <h3>Gráficas en Excel</h3>
+            <span class="tsub">Visualizar para entender mejor</span>
+          </div>
+        </div>
+        <div class="tecnica-body">
+          <p>Una gráfica bien hecha comunica en segundos lo que una tabla tarda minutos en explicar. En Excel puedes crear gráficas sin conocimientos avanzados.</p>
+          <ol class="pasos-list">
+            <li><span class="paso-n">1</span> Selecciona los datos de tu tabla de frecuencias</li>
+            <li><span class="paso-n">2</span> Insertar → Gráfico → elige el tipo apropiado</li>
+            <li><span class="paso-n">3</span> Agrega título, etiquetas y leyenda</li>
+            <li><span class="paso-n">4</span> Exporta como imagen para el informe</li>
+          </ol>
+          <button class="ejemplo-toggle" onclick="toggleEjemplo(this)">
+            📊 Ver guía de tipos de gráfica
+            <span>▼</span>
+          </button>
+          <div class="ejemplo-content">
+            <h4>¿Qué gráfica usar según los datos?</h4>
+            <div class="excel-table-wrap">
+              <div class="excel-bar">📗 Guía de selección de gráficas</div>
+              <table class="excel-table">
+                <thead><tr><th>Tipo de dato</th><th>Gráfica recomendada</th><th>Ejemplo</th></tr></thead>
+                <tbody>
+                  <tr><td>Comparar opciones</td><td>📊 Barras horizontales</td><td>Funcionalidades más pedidas</td></tr>
+                  <tr><td>Mostrar proporciones</td><td>🥧 Pastel / torta</td><td>% de usuarios por rol</td></tr>
+                  <tr><td>Tendencia en el tiempo</td><td>📈 Líneas</td><td>Ventas por día de la semana</td></tr>
+                  <tr><td>Categorías simples</td><td>📊 Barras verticales</td><td>Ventas por producto</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p style="margin-top:10px;"><strong>💡 Tip:</strong> Para el informe del supermercado, usa barras para funcionalidades y pastel para tipos de usuarios.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRIORIZACIÓN -->
+      <div class="tecnica-card">
+        <div class="tecnica-header">
+          <div class="tecnica-ico">🎯</div>
+          <div>
+            <h3>Matriz de Priorización</h3>
+            <span class="tsub">Urgente vs. Importante</span>
+          </div>
+        </div>
+        <div class="tecnica-body">
+          <p>No todo lo que los usuarios piden tiene la misma importancia. Esta técnica ayuda a ordenar los requisitos según su impacto y urgencia.</p>
+          <ol class="pasos-list">
+            <li><span class="paso-n">1</span> Lista todos los requisitos identificados</li>
+            <li><span class="paso-n">2</span> Califica cada uno: Importancia (1-5) y Urgencia (1-5)</li>
+            <li><span class="paso-n">3</span> Multiplica: Prioridad = Importancia × Urgencia</li>
+            <li><span class="paso-n">4</span> Ordena de mayor a menor prioridad</li>
+          </ol>
+          <button class="ejemplo-toggle" onclick="toggleEjemplo(this)">
+            📊 Ver matriz del supermercado
+            <span>▼</span>
+          </button>
+          <div class="ejemplo-content">
+            <h4>Matriz de priorización — Supermercado La Esquina</h4>
+            <div class="excel-table-wrap">
+              <div class="excel-bar">📗 Excel — Matriz de Priorización</div>
+              <table class="excel-table">
+                <thead><tr><th>Requisito</th><th>Importancia</th><th>Urgencia</th><th>Prioridad</th></tr></thead>
+                <tbody>
+                  <tr><td>Registro de ventas</td><td>5</td><td>5</td><td><strong>25 🔴</strong></td></tr>
+                  <tr><td>Control de inventario</td><td>5</td><td>4</td><td><strong>20 🔴</strong></td></tr>
+                  <tr><td>Gestión de usuarios</td><td>4</td><td>4</td><td><strong>16 🟠</strong></td></tr>
+                  <tr><td>Factura electrónica</td><td>3</td><td>3</td><td><strong>9 🟡</strong></td></tr>
+                  <tr><td>App para clientes</td><td>2</td><td>1</td><td><strong>2 🟢</strong></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="excel-formula">=C2*D2  ← Fórmula para columna Prioridad</div>
+            <p style="margin-top:10px;"><strong>💡 Conclusión:</strong> MVP incluye: ventas + inventario + usuarios. Fase 2: facturación. Fase 3: app clientes.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PASO A PASO EXCEL -->
+  <section class="section">
+    <div class="section-title">
+      <div class="icon green">📗</div>
+      3. Paso a Paso en Excel para Analizar tu Encuesta
+    </div>
+    <div class="section-desc">Guía práctica para organizar los datos de tu encuesta en Excel desde cero.</div>
+    <div class="divider green"></div>
+
+    <div class="excel-steps">
+      <div class="excel-step-card">
+        <div class="excel-step-num">01</div>
+        <h4>Crear la hoja de datos</h4>
+        <p>Primera fila: nombres de las preguntas como encabezados. Cada fila siguiente: respuestas de un participante.</p>
+        <div class="formula">Columna A: ID | B: Pregunta1 | C: Pregunta2...</div>
+      </div>
+      <div class="excel-step-card">
+        <div class="excel-step-num">02</div>
+        <h4>Limpiar datos</h4>
+        <p>Eliminar filas vacías, corregir inconsistencias (Sí / SI / si → unificar). Usar Buscar y Reemplazar (Ctrl+H).</p>
+        <div class="formula">Datos → Quitar duplicados</div>
+      </div>
+      <div class="excel-step-card">
+        <div class="excel-step-num">03</div>
+        <h4>Contar respuestas</h4>
+        <p>Para cada opción de respuesta, usa CONTAR.SI para saber cuántas veces aparece.</p>
+        <div class="formula">=CONTAR.SI(B:B,"Sí")</div>
+      </div>
+      <div class="excel-step-card">
+        <div class="excel-step-num">04</div>
+        <h4>Calcular porcentajes</h4>
+        <p>Divide el conteo entre el total de respuestas y multiplica por 100. Formatea como porcentaje.</p>
+        <div class="formula">=C2/SUMA(C:C)*100</div>
+      </div>
+      <div class="excel-step-card">
+        <div class="excel-step-num">05</div>
+        <h4>Crear tabla resumen</h4>
+        <p>Nueva hoja con: Respuesta | Conteo | % | Interpretación. Esta será la base de tu informe.</p>
+        <div class="formula">Insertar → Tabla (Ctrl+T)</div>
+      </div>
+      <div class="excel-step-card">
+        <div class="excel-step-num">06</div>
+        <h4>Insertar gráfica</h4>
+        <p>Selecciona la tabla resumen. Insertar → Gráfico de barras. Agrega título descriptivo y etiquetas de datos.</p>
+        <div class="formula">Insertar → Gráfico recomendado</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANÁLISIS CUALITATIVO -->
+  <section class="section">
+    <div class="section-title">
+      <div class="icon orange">🔍</div>
+      4. Técnicas para Datos Cualitativos (Textos y Opiniones)
+    </div>
+    <div class="section-desc">Los datos de entrevistas y observaciones no son números — pero también tienen patrones que debes descubrir.</div>
+    <div class="divider" style="background: linear-gradient(90deg, var(--sena-accent), transparent);"></div>
+
+    <div class="cualitativo-grid">
+      <div class="cual-card">
+        <h4>🏷️ Categorización y Etiquetado</h4>
+        <p>Lee todas las respuestas de las entrevistas y asigna etiquetas (categorías) a cada idea expresada. Luego agrupa las etiquetas similares.</p>
+        <p><strong>Ejemplo:</strong> Respuesta: "A veces no sé cuánto llevo vendido en el día" → Etiquetas:</p>
+        <div class="tag-cloud">
+          <span class="tag">Control de ventas</span>
+          <span class="tag">Visibilidad en tiempo real</span>
+          <span class="tag">Reportes diarios</span>
+        </div>
+      </div>
+      <div class="cual-card">
+        <h4>🔢 Frecuencia de Temas</h4>
+        <p>Cuenta cuántas veces aparece cada categoría en todas las entrevistas. Los temas más frecuentes son los más importantes para el sistema.</p>
+        <p><strong>Ejemplo:</strong> Tema "inventario" mencionado por:</p>
+        <div class="tag-cloud">
+          <span class="tag green">Dueño ✓</span>
+          <span class="tag green">Empleado ✓</span>
+          <span class="tag green">Esposa ✓</span>
+        </div>
+        <p style="margin-top:10px; font-size:13px; color:var(--sena-gray);">→ Mencionado por 3/3 usuarios = requisito crítico</p>
+      </div>
+      <div class="cual-card">
+        <h4>🗂️ Agrupación por Módulos</h4>
+        <p>Clasifica los hallazgos según el módulo del sistema al que corresponden. Esto te da la estructura inicial del software.</p>
+        <div class="tag-cloud" style="margin-bottom:8px;">
+          <span class="tag blue">📦 Inventario</span>
+          <span class="tag blue">💰 Ventas</span>
+        </div>
+        <div class="tag-cloud">
+          <span class="tag blue">🚚 Proveedores</span>
+          <span class="tag blue">👥 Usuarios</span>
+        </div>
+      </div>
+      <div class="cual-card">
+        <h4>💬 Citas Textuales Clave</h4>
+        <p>Selecciona frases exactas de las entrevistas que expresan claramente una necesidad. Úsalas en el informe como evidencia.</p>
+        <p style="font-style:italic; background:#fff4e6; border-radius:6px; padding:10px; font-size:13px; color:#cc5500; margin-top:8px;">"No sé cuándo se va a acabar un producto hasta que ya no hay" — Don Carlos, dueño</p>
+        <p style="font-size:13px; color:var(--sena-gray); margin-top:8px;">→ Requisito: Alertas de stock mínimo</p>
+      </div>
+      <div class="cual-card">
+        <h4>🔁 Identificar Contradicciones</h4>
+        <p>A veces diferentes usuarios quieren cosas opuestas. Documentarlas y discutirlas con el cliente es parte del análisis.</p>
+        <p><strong>Ejemplo de contradicción:</strong></p>
+        <p style="font-size:13px; color:var(--sena-gray);">Dueño: "Solo yo debo ver las ventas totales" vs. Empleado: "Necesito ver mi rendimiento del día"</p>
+        <div class="tag-cloud" style="margin-top:8px;"><span class="tag">→ Solución: sistema de roles y permisos</span></div>
+      </div>
+      <div class="cual-card">
+        <h4>📝 Lluvia de Requisitos</h4>
+        <p>Después de analizar todo, el equipo hace una lista de todas las necesidades identificadas. Sin filtrar — primero cantidad, luego calidad.</p>
+        <p><strong>Herramienta:</strong> Post-its en pared o tabla en Excel/Word con columnas: ID | Descripción | Fuente | Tipo.</p>
+        <div class="tag-cloud" style="margin-top:8px;">
+          <span class="tag green">Funcional</span>
+          <span class="tag blue">No funcional</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ERRORES COMUNES -->
+  <section class="section">
+    <div class="section-title">
+      <div class="icon" style="background:#e74c3c;">⚠️</div>
+      5. Errores Comunes al Analizar Datos
+    </div>
+    <div class="section-desc">Conocer los errores más frecuentes te ayuda a evitarlos en tu propio análisis.</div>
+    <div class="divider" style="background: linear-gradient(90deg, #e74c3c, transparent);"></div>
+
+    <div class="errores-grid">
+      <div class="error-card">
+        <div class="error-ico">😴</div>
+        <div>
+          <h4>Copiar sin analizar</h4>
+          <p>Pegar las respuestas textuales en el informe sin transformarlas en conclusiones ni requisitos.</p>
+          <div class="error-fix">✅ Siempre cierra con: "Esto significa que el sistema debe..."</div>
+        </div>
+      </div>
+      <div class="error-card">
+        <div class="error-ico">🔊</div>
+        <div>
+          <h4>El usuario más hablador dicta todo</h4>
+          <p>Quien más habla en la entrevista no siempre representa la mayoría. La frecuencia de menciones vale más que el énfasis verbal.</p>
+          <div class="error-fix">✅ Usa frecuencias y encuestas para validar opiniones individuales</div>
+        </div>
+      </div>
+      <div class="error-card">
+        <div class="error-ico">📦</div>
+        <div>
+          <h4>Confundir deseos con necesidades</h4>
+          <p>"Quisiera una app para celular" ≠ "El negocio necesita registrar ventas". Los deseos son opcionales, las necesidades no.</p>
+          <div class="error-fix">✅ Pregunta: ¿el negocio puede operar sin esto? Si la respuesta es sí, es deseo</div>
+        </div>
+      </div>
+      <div class="error-card">
+        <div class="error-ico">📉</div>
+        <div>
+          <h4>Ignorar los datos que no encajan</h4>
+          <p>Descartar respuestas que contradicen nuestra idea previa del sistema. Todo dato revela algo importante.</p>
+          <div class="error-fix">✅ Documenta todo, incluso las contradicciones — son oportunidades de diseño</div>
+        </div>
+      </div>
+      <div class="error-card">
+        <div class="error-ico">🚀</div>
+        <div>
+          <h4>Saltar directo a la solución</h4>
+          <p>Empezar a diseñar pantallas antes de terminar el análisis. El análisis incompleto genera requisitos incompletos.</p>
+          <div class="error-fix">✅ Cierra el análisis con un documento de hallazgos ANTES de diseñar</div>
+        </div>
+      </div>
+      <div class="error-card">
+        <div class="error-ico">📋</div>
+        <div>
+          <h4>No documentar las fuentes</h4>
+          <p>Escribir "el usuario dijo X" sin registrar quién, cuándo y en qué instrumento. Los datos sin fuente no son verificables.</p>
+          <div class="error-fix">✅ Siempre registra: quién dijo qué, cuándo y en qué instrumento</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LABORATORIO -->
+  <section class="section">
+    <div class="lab-section">
+      <div class="lab-badge">🔬 Laboratorio Práctico</div>
+      <h2>Analiza los Datos del<br><span>Supermercado "La Esquina"</span></h2>
+      <p>Con los datos que su equipo recolectó en el laboratorio anterior, ahora van a aplicar las técnicas de análisis para transformar esa información en los primeros requisitos del sistema.</p>
+
+      <div class="datos-raw">
+        <h4>📋 Dataset de Práctica (si no tienen datos propios)</h4>
+        <table>
+          <thead>
+            <tr><th>Participante</th><th>Rol</th><th>Funcionalidad más importante</th><th>Ventas/día</th><th>¿Factura electrónica?</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Carlos R.</td><td>Dueño</td><td>Control de inventario</td><td>50</td><td>Sí</td></tr>
+            <tr><td>Martha R.</td><td>Cajera</td><td>Registro de ventas</td><td>50</td><td>No sé</td></tr>
+            <tr><td>Julián P.</td><td>Empleado</td><td>Registro de ventas</td><td>50</td><td>No me importa</td></tr>
+            <tr><td>Cliente 1</td><td>Cliente</td><td>Ver precios en pantalla</td><td>-</td><td>Sí</td></tr>
+            <tr><td>Cliente 2</td><td>Cliente</td><td>Pago con tarjeta</td><td>-</td><td>Sí</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4 style="font-family:'Montserrat',sans-serif; font-size:15px; margin-bottom:16px; color:#90d4ff;">📌 Tareas del Laboratorio</h4>
+      <div class="tareas-grid">
+        <div class="tarea-card">
+          <div class="tnum">T1</div>
+          <h4>Tabla de Frecuencias</h4>
+          <p>En Excel: ¿Qué funcionalidad fue mencionada más veces? Incluye conteos y porcentajes.</p>
+        </div>
+        <div class="tarea-card">
+          <div class="tnum">T2</div>
+          <h4>Estadísticas</h4>
+          <p>Calcula promedio, mínimo y máximo de ventas diarias. Interpreta qué significa para el sistema.</p>
+        </div>
+        <div class="tarea-card">
+          <div class="tnum">T3</div>
+          <h4>Gráfica</h4>
+          <p>Crea al menos una gráfica de barras con los datos de la encuesta. Agrega título e interpretación.</p>
+        </div>
+        <div class="tarea-card">
+          <div class="tnum">T4</div>
+          <h4>Categorización</h4>
+          <p>De las entrevistas simuladas, extrae y etiqueta las ideas principales. Agrúpalas por módulo del sistema.</p>
+        </div>
+        <div class="tarea-card">
+          <div class="tnum">T5</div>
+          <h4>Matriz de Priorización</h4>
+          <p>Lista de 6-8 requisitos identificados con calificación de importancia y urgencia. Ordena el resultado.</p>
+        </div>
+        <div class="tarea-card">
+          <div class="tnum">T6</div>
+          <h4>Lista de Requisitos</h4>
+          <p>Consolida todo: mínimo 8 requisitos identificados con: ID, descripción, tipo y fuente.</p>
+        </div>
+      </div>
+
+      <div class="entregables">
+        <h4>📦 Evidencia a Entregar (por equipo)</h4>
+        <ul>
+          <li>Archivo Excel con: hoja de datos, tablas de frecuencias, estadísticas y al menos 2 gráficas</li>
+          <li>Documento Word con: análisis cualitativo, categorización y citas textuales clave</li>
+          <li>Matriz de priorización completada (puede ser en Excel o tabla Word)</li>
+          <li>Lista de requisitos identificados (mínimo 8, con ID, descripción, tipo y fuente)</li>
+          <li>Conclusión escrita (1 página): ¿qué módulos necesita el sistema basándose en el análisis?</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <strong>SENA</strong> · Servicio Nacional de Aprendizaje · Análisis y Desarrollo de Software<br>
+  Módulo 2: Análisis de Datos · Material de Formación Complementaria
+</footer>
+
+<script>
+function toggleEjemplo(btn) {
+  const content = btn.nextElementSibling;
+  const arrow = btn.querySelector('span');
+  content.classList.toggle('open');
+  arrow.textContent = content.classList.contains('open') ? '▲' : '▼';
+}
+</script>
+</body>
+</html>
