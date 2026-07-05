@@ -1,0 +1,47 @@
+@startuml supermercado-class
+class Usuario {
+  +id_usuario: int
+  +nombre: string
+  +usuario: string
+  +contrasena_hash: string
+  +rol: string
+  +estado: string
+}
+
+class Producto {
+  +id_producto: int
+  +nombre: string
+  +categoria: string
+  +precio_unitario: float
+  +stock_actual: int
+  +stock_minimo: int
+  +estado: string
+}
+
+class Venta {
+  +id_venta: int
+  +fecha_hora: datetime
+  +total: float
+  +calcularTotal(): float
+}
+
+class DetalleVenta {
+  +id_detalle: int
+  +cantidad: int
+  +precio_unitario: float
+  +subtotal: float
+}
+
+class MovimientoInventario {
+  +id_movimiento: int
+  +tipo: string
+  +cantidad: int
+  +motivo: string
+}
+
+Usuario "1" -- "many" Venta : registra >
+Venta "1" -- "many" DetalleVenta : contiene >
+Producto "1" -- "many" DetalleVenta : aparece en >
+Producto "1" -- "many" MovimientoInventario : tiene >
+Usuario "1" -- "many" MovimientoInventario : realiza >
+@enduml

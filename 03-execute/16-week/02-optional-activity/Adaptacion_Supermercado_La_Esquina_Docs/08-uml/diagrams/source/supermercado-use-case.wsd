@@ -1,0 +1,23 @@
+@startuml supermercado-use-case
+left to right direction
+actor Cajero
+actor Administrador
+actor Cliente
+
+rectangle "Sistema de Gestión Supermercado \"La Esquina\"" {
+  usecase "CU-01 Registrar Venta" as CU01
+  usecase "CU-02 Gestionar Productos" as CU02
+  usecase "CU-03 Consultar Reportes" as CU03
+  usecase "Iniciar sesión" as LOGIN
+  usecase "Consultar precios" as PRECIOS
+  usecase "Recibir comprobante" as COMPROBANTE
+}
+
+Cajero --> LOGIN
+Cajero --> CU01
+Administrador --> LOGIN
+Administrador --> CU02
+Administrador --> CU03
+Cliente --> PRECIOS
+CU01 --> COMPROBANTE
+@enduml

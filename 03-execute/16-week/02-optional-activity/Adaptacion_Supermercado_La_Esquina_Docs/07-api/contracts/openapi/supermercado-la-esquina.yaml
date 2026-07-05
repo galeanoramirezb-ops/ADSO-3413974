@@ -1,0 +1,93 @@
+openapi: 3.0.3
+info:
+  title: Sistema de Gestión Supermercado "La Esquina"
+  version: "1.0"
+  description: >
+    API interna de la aplicación Flask del supermercado "La Esquina".
+    Cubre autenticación, productos, ventas, inventario y reportes básicos.
+paths:
+  /login:
+    post:
+      summary: Iniciar sesión (RF-01)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                usuario:
+                  type: string
+                contrasena:
+                  type: string
+      responses:
+        "200":
+          description: Sesión iniciada
+        "401":
+          description: Credenciales inválidas
+
+  /productos:
+    get:
+      summary: Listar productos
+      responses:
+        "200":
+          description: Lista de productos
+    post:
+      summary: Crear producto (RF-05, solo Administrador)
+      responses:
+        "201":
+          description: Producto creado
+        "403":
+          description: Rol sin permiso
+
+  /productos/{id}:
+    put:
+      summary: Editar producto (RF-05, solo Administrador)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Producto actualizado
+    delete:
+      summary: Eliminar/inactivar producto (RF-05, solo Administrador)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Producto inactivado
+
+  /ventas:
+    post:
+      summary: Registrar venta (RF-02, RF-03, RF-04)
+      description: Calcula el total automáticamente y descuenta stock del inventario.
+      responses:
+        "201":
+          description: Venta registrada
+        "400":
+          description: Stock insuficiente
+
+  /reportes/ventas:
+    get:
+      summary: Consultar reportes básicos de ventas (solo Administrador)
+      parameters:
+        - name: desde
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: hasta
+          in: query
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: Reporte de ventas del rango solicitado

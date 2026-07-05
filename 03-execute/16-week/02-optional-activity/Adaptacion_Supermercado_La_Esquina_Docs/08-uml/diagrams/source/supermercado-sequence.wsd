@@ -1,0 +1,27 @@
+@startuml supermercado-sequence
+actor Cajero
+participant "Frontend (Bootstrap/JS)" as FE
+participant "Backend Flask" as BE
+database "SQLite" as DB
+
+Cajero -> FE: Inicia sesión
+FE -> BE: POST /login
+BE -> DB: Verifica usuario y contraseña
+DB --> BE: Usuario válido (rol: cajero)
+BE --> FE: Sesión iniciada
+
+Cajero -> FE: Busca producto y cantidad
+FE -> BE: GET /productos?nombre=...
+BE -> DB: Consulta producto y stock
+DB --> BE: Producto + stock disponible
+BE --> FE: Datos del producto
+
+Cajero -> FE: Confirma venta
+FE -> BE: POST /ventas
+BE -> BE: Calcula total (RF-03)
+BE -> DB: Inserta venta y detalle
+BE -> DB: Descuenta stock (RF-04)
+DB --> BE: OK
+BE --> FE: Venta registrada + comprobante
+FE --> Cajero: Muestra comprobante
+@enduml
