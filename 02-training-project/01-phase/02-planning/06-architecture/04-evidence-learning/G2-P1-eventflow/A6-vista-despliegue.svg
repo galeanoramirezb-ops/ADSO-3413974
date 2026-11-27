@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="880" viewBox="0 0 1500 880" font-family="Arial, Helvetica, sans-serif">
+<defs><marker id="arr" markerWidth="12" markerHeight="12" refX="10" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#000"/></marker>
+<marker id="tri" markerWidth="18" markerHeight="18" refX="16" refY="9" orient="auto"><path d="M0,0 L16,9 L0,18 Z" fill="#fff" stroke="#000" stroke-width="1.4"/></marker>
+<marker id="opn" markerWidth="14" markerHeight="14" refX="12" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12" fill="none" stroke="#000" stroke-width="1.4"/></marker>
+<marker id="dia" markerWidth="24" markerHeight="14" refX="1" refY="7" orient="auto"><path d="M1,7 L11,1 L22,7 L11,13 Z" fill="#000" stroke="#000"/></marker>
+<marker id="diaO" markerWidth="24" markerHeight="14" refX="1" refY="7" orient="auto"><path d="M1,7 L11,1 L22,7 L11,13 Z" fill="#fff" stroke="#000" stroke-width="1.3"/></marker></defs>
+<rect width="1500" height="880" fill="#fff"/>
+<text x="20" y="30" font-size="19" font-weight="bold" fill="#1f3b57">Vista de despliegue · EventFlow Manager (UML 2.5)</text>
+<path d="M30,94 L44,80 L344,80 L344,256 L330,270 Z" fill="#dfe6ee" stroke="#000"/>
+<rect x="30" y="94" width="300" height="176" fill="#eef5ff" stroke="#000" stroke-width="1.4"/><path d="M330,94 L344,80" stroke="#000"/>
+<text x="180.0" y="118" font-size="11" text-anchor="middle" fill="#000" font-style="italic">«device»</text>
+<text x="180.0" y="136" font-size="14" text-anchor="middle" fill="#000" font-weight="bold">Dispositivo cliente</text>
+<text x="180.0" y="153" font-size="14" text-anchor="middle" fill="#000" font-weight="bold">(navegador / móvil)</text>
+<rect x="44" y="172" width="272" height="26" fill="#fff" stroke="#555"/>
+<text x="54" y="189.0" font-size="11.5" text-anchor="start" fill="#000">«artifact» SPA React (HTML/JS)</text>
+<rect x="44" y="204" width="272" height="26" fill="#fff" stroke="#555"/>
+<text x="54" y="221.0" font-size="11.5" text-anchor="start" fill="#000">«artifact» PWA validador + IndexedDB</text>
+<path d="M440,94 L454,80 L754,80 L754,216 L740,230 Z" fill="#dfe6ee" stroke="#000"/>
+<rect x="440" y="94" width="300" height="136" fill="#f5f5f5" stroke="#000" stroke-width="1.4"/><path d="M740,94 L754,80" stroke="#000"/>
+<text x="590.0" y="118" font-size="11" text-anchor="middle" fill="#000" font-style="italic">«node»</text>
+<text x="590.0" y="136" font-size="14" text-anchor="middle" fill="#000" font-weight="bold">Proxy inverso y</text>
+<text x="590.0" y="153" font-size="14" text-anchor="middle" fill="#000" font-weight="bold">balanceador (Nginx)</text>
+<rect x="454" y="172" width="272" height="26" fill="#fff" stroke="#555"/>
+<text x="464" y="189.0" font-size="11.5" text-anchor="start" fill="#000">«artifact» nginx.conf (TLS 1.3)</text>
+<path d="M850,54 L864,40 L1164,40 L1164,176 L1150,190 Z" fill="#dfe6ee" stroke="#000"/>
+<rect x="850" y="54" width="300" height="136" fill="#f5f5f5" stroke="#000" stroke-width="1.4"/><path d="M1150,54 L1164,40" stroke="#000"/>
+<text x="1000.0" y="78" font-size="11" text-anchor="middle" fill="#000" font-style="italic">«node»</text>
+<text x="1000.0" y="96" font-size="14" text-anchor="middle" fill="#000" font-weight="bold">Servidor de aplicación 1</text>
+<text x="1000.0" y="113" font-size="14" text-anchor="middle" fill="#000" font-weight="bold">(contenedor Docker)</text>
+<rect x="864" y="132" width="272" height="26" fill="#fff" stroke="#555"/>
+<text x="874" y="149.0" font-size="11.5" text-anchor="start" fill="#000">«artifact» eventflow-api.jar</text>
+<path d="M850,254 L864,240 L1164,240 L1164,376 L1150,390 Z" fill="#dfe6ee" stroke="#000"/>
+<rect x="850" y="254" width="300" height="136" fill="#f5f5f5" stroke="#000" stroke-width="1.4"/><path d="M1150,254 L1164,240" stroke="#000"/>
+<text x="1000.0" y="278" font-size="11" text-anchor="middle" fill="#000" font-style="italic">«node»</text>
+<text x="1000.0" y="296" font-size="14" text-anchor="middle" fill="#000" font-weight="bold">Servidor de aplicación 2</text>
+<text x="1000.0" y="313" font-size="14" text-anchor="middle" fill="#000" font-weight="bold">(contenedor Docker)</text>
+<rect x="864" y="332" width="272" height="26" fill="#fff" stroke="#555"/>
+<text x="874" y="349.0" font-size="11.5" text-anchor="start" fill="#000">«artifact» eventflow-api.jar</text>
+<path d="M850,514 L864,500 L1164,500 L1164,636 L1150,650 Z" fill="#dfe6ee" stroke="#000"/>
+<rect x="850" y="514" width="300" height="136" fill="#eef7ee" stroke="#000" stroke-width="1.4"/><path d="M1150,514 L1164,500" stroke="#000"/>
+<text x="1000.0" y="538" font-size="11" text-anchor="middle" fill="#000" font-style="italic">«node»</text>
+<text x="1000.0" y="556" font-size="14" text-anchor="middle" fill="#000" font-weight="bold">Servidor BD primario</text>
+<rect x="864" y="574" width="272" height="26" fill="#fff" stroke="#555"/>
+<text x="874" y="591.0" font-size="11.5" text-anchor="start" fill="#000">«artifact» PostgreSQL 16 · esquema eventflow</text>
+<path d="M440,514 L454,500 L754,500 L754,636 L740,650 Z" fill="#dfe6ee" stroke="#000"/>
+<rect x="440" y="514" width="300" height="136" fill="#eef7ee" stroke="#000" stroke-width="1.4"/><path d="M740,514 L754,500" stroke="#000"/>
+<text x="590.0" y="538" font-size="11" text-anchor="middle" fill="#000" font-style="italic">«node»</text>
+<text x="590.0" y="556" font-size="14" text-anchor="middle" fill="#000" font-weight="bold">Servidor BD réplica</text>
+<text x="590.0" y="573" font-size="14" text-anchor="middle" fill="#000" font-weight="bold">(en espera)</text>
+<rect x="454" y="592" width="272" height="26" fill="#fff" stroke="#555"/>
+<text x="464" y="609.0" font-size="11.5" text-anchor="start" fill="#000">«artifact» PostgreSQL 16 réplica</text>
+<path d="M30,514 L44,500 L344,500 L344,636 L330,650 Z" fill="#dfe6ee" stroke="#000"/>
+<rect x="30" y="514" width="300" height="136" fill="#fff8e7" stroke="#000" stroke-width="1.4"/><path d="M330,514 L344,500" stroke="#000"/>
+<text x="180.0" y="538" font-size="11" text-anchor="middle" fill="#000" font-style="italic">«node»</text>
+<text x="180.0" y="556" font-size="14" text-anchor="middle" fill="#000" font-weight="bold">Almacenamiento</text>
+<text x="180.0" y="573" font-size="14" text-anchor="middle" fill="#000" font-weight="bold">de respaldos</text>
+<rect x="44" y="592" width="272" height="26" fill="#fff" stroke="#555"/>
+<text x="54" y="609.0" font-size="11.5" text-anchor="start" fill="#000">«artifact» Copias diarias + WAL</text>
+<path d="M1220,514 L1234,500 L1484,500 L1484,636 L1470,650 Z" fill="#dfe6ee" stroke="#000"/>
+<rect x="1220" y="514" width="250" height="136" fill="#eeeeee" stroke="#000" stroke-width="1.4"/><path d="M1470,514 L1484,500" stroke="#000"/>
+<text x="1345.0" y="538" font-size="11" text-anchor="middle" fill="#000" font-style="italic">«node»</text>
+<text x="1345.0" y="556" font-size="14" text-anchor="middle" fill="#000" font-weight="bold">Proveedor de</text>
+<text x="1345.0" y="573" font-size="14" text-anchor="middle" fill="#000" font-weight="bold">correo / SMS</text>
+<rect x="1234" y="592" width="222" height="26" fill="#fff" stroke="#555"/>
+<text x="1244" y="609.0" font-size="11.5" text-anchor="start" fill="#000">«artifact» Servicio SMTP</text>
+<polyline points="330.0,170.0 440.0,170.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="385" y="160" font-size="12" text-anchor="middle" fill="#7a2e00" font-style="italic" stroke="#fff" stroke-width="4" paint-order="stroke">HTTPS 443 · WSS 443</text>
+<polyline points="740.0,140.0 795.0,140.0 795.0,115.0 850.0,115.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="800" y="100" font-size="12" text-anchor="middle" fill="#7a2e00" font-style="italic" stroke="#fff" stroke-width="4" paint-order="stroke">HTTP 8080 (red interna)</text>
+<polyline points="740.0,190.0 795.0,190.0 795.0,315.0 850.0,315.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="800" y="335" font-size="12" text-anchor="middle" fill="#7a2e00" font-style="italic" stroke="#fff" stroke-width="4" paint-order="stroke">HTTP 8080</text>
+<polyline points="1164.0,150.0 1195.0,150.0 1195.0,460.0 1100.0,460.0 1100.0,500.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="1150" y="452" font-size="12" text-anchor="middle" fill="#7a2e00" font-style="italic" stroke="#fff" stroke-width="4" paint-order="stroke">JDBC/TLS 5432</text>
+<polyline points="920.0,390.0 920.0,500.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="975" y="470" font-size="12" text-anchor="middle" fill="#7a2e00" font-style="italic" stroke="#fff" stroke-width="4" paint-order="stroke">JDBC/TLS 5432</text>
+<polyline points="850.0,590.0 740.0,590.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="795" y="580" font-size="12" text-anchor="middle" fill="#7a2e00" font-style="italic" stroke="#fff" stroke-width="4" paint-order="stroke">replicación 5432</text>
+<polyline points="1000.0,650.0 1000.0,720.0 180.0,720.0 180.0,650.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="590" y="712" font-size="12" text-anchor="middle" fill="#7a2e00" font-style="italic" stroke="#fff" stroke-width="4" paint-order="stroke">pg_basebackup + WAL · SSH/TLS</text>
+<polyline points="1150.0,120.0 1345.0,120.0 1345.0,500.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="1345" y="105" font-size="12" text-anchor="middle" fill="#7a2e00" font-style="italic" stroke="#fff" stroke-width="4" paint-order="stroke">SMTP 587 STARTTLS / HTTPS 443</text>
+<path d="M30,760 L1458,760 L1470,772 L1470,806 L30,806 Z" fill="#fffde7" stroke="#777"/>
+<text x="38" y="778" font-size="12" text-anchor="start" fill="#000">Decisiones por RNF: RNF-03 disponibilidad 99,8 % → 2 instancias de la API tras el balanceador y réplica de BD en espera · RNF-02 seguridad en tránsito → TLS 1.3 terminado en Nginx y TLS a la BD ·</text>
+<text x="38" y="793" font-size="12" text-anchor="start" fill="#000">RNF-05 500 peticiones/s → API sin estado (JWT) escalable horizontalmente · RNF-10 contingencia offline → la PWA guarda hasta 2.000 validaciones en IndexedDB y sincroniza al volver la red.</text>
+<text x="20" y="868" font-size="11.5" fill="#555">8 nodos · protocolo y puerto en cada conexión</text>
+</svg>

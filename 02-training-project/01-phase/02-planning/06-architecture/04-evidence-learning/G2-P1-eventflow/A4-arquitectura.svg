@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1300" height="980" viewBox="0 0 1300 980" font-family="Arial, Helvetica, sans-serif">
+<defs><marker id="arr" markerWidth="12" markerHeight="12" refX="10" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#000"/></marker>
+<marker id="tri" markerWidth="18" markerHeight="18" refX="16" refY="9" orient="auto"><path d="M0,0 L16,9 L0,18 Z" fill="#fff" stroke="#000" stroke-width="1.4"/></marker>
+<marker id="opn" markerWidth="14" markerHeight="14" refX="12" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12" fill="none" stroke="#000" stroke-width="1.4"/></marker>
+<marker id="dia" markerWidth="24" markerHeight="14" refX="1" refY="7" orient="auto"><path d="M1,7 L11,1 L22,7 L11,13 Z" fill="#000" stroke="#000"/></marker>
+<marker id="diaO" markerWidth="24" markerHeight="14" refX="1" refY="7" orient="auto"><path d="M1,7 L11,1 L22,7 L11,13 Z" fill="#fff" stroke="#000" stroke-width="1.3"/></marker></defs>
+<rect width="1300" height="980" fill="#fff"/>
+<text x="20" y="30" font-size="19" font-weight="bold" fill="#1f3b57">Arquitectura del software · EventFlow Manager · estilo cliente-servidor en capas</text>
+<rect x="40" y="60" width="900" height="130" rx="8" fill="#eef5ff" stroke="#1f3b57" stroke-width="1.5"/>
+<text x="60" y="84" font-size="15" text-anchor="start" fill="#1f3b57" font-weight="bold">1 · Presentación (cliente) · React + TypeScript</text>
+<rect x="60.0" y="98.0" width="424.0" height="78" rx="14" fill="#ffffff" stroke="#000" stroke-width="1.4"/>
+<text x="272.0" y="126.0" font-size="13" text-anchor="middle" fill="#000">Aplicación web SPA</text>
+<text x="272.0" y="142.0" font-size="13" text-anchor="middle" fill="#000">(organizador, superadmin,</text>
+<text x="272.0" y="158.0" font-size="13" text-anchor="middle" fill="#000">asistente)</text>
+<rect x="496.0" y="98.0" width="424.0" height="78" rx="14" fill="#ffffff" stroke="#000" stroke-width="1.4"/>
+<text x="708.0" y="126.0" font-size="13" text-anchor="middle" fill="#000">PWA del validador</text>
+<text x="708.0" y="142.0" font-size="13" text-anchor="middle" fill="#000">(cámara + almacén local</text>
+<text x="708.0" y="158.0" font-size="13" text-anchor="middle" fill="#000">IndexedDB, modo offline)</text>
+<rect x="40" y="250" width="900" height="120" rx="8" fill="#f3f9f1" stroke="#1f3b57" stroke-width="1.5"/>
+<text x="60" y="274" font-size="15" text-anchor="start" fill="#1f3b57" font-weight="bold">2 · API (Spring Boot 3) · controladores REST y canal WebSocket</text>
+<rect x="60.0" y="288.0" width="278.6666666666667" height="68" rx="14" fill="#ffffff" stroke="#000" stroke-width="1.4"/>
+<text x="199.33333333333334" y="319.0" font-size="13" text-anchor="middle" fill="#000">Controladores REST /api/v1</text>
+<text x="199.33333333333334" y="335.0" font-size="13" text-anchor="middle" fill="#000">(JSON, OpenAPI 3)</text>
+<rect x="350.66666666666663" y="288.0" width="278.6666666666667" height="68" rx="14" fill="#ffffff" stroke="#000" stroke-width="1.4"/>
+<text x="490.0" y="319.0" font-size="13" text-anchor="middle" fill="#000">Filtro de seguridad</text>
+<text x="490.0" y="335.0" font-size="13" text-anchor="middle" fill="#000">(JWT + roles RBAC)</text>
+<rect x="641.3333333333334" y="288.0" width="278.6666666666667" height="68" rx="14" fill="#ffffff" stroke="#000" stroke-width="1.4"/>
+<text x="780.6666666666667" y="319.0" font-size="13" text-anchor="middle" fill="#000">Canal WebSocket</text>
+<text x="780.6666666666667" y="335.0" font-size="13" text-anchor="middle" fill="#000">(aforo en tiempo real)</text>
+<rect x="40" y="430" width="900" height="140" rx="8" fill="#fff8e7" stroke="#1f3b57" stroke-width="1.5"/>
+<text x="60" y="454" font-size="15" text-anchor="start" fill="#1f3b57" font-weight="bold">3 · Servicios de negocio (Fachada · Estrategia)</text>
+<rect x="60.0" y="468.0" width="97.0" height="88" rx="14" fill="#ffffff" stroke="#000" stroke-width="1.4"/>
+<text x="108.5" y="509.0" font-size="13" text-anchor="middle" fill="#000">Autenticación</text>
+<text x="108.5" y="525.0" font-size="13" text-anchor="middle" fill="#000">y roles</text>
+<rect x="169.0" y="468.0" width="97.0" height="88" rx="14" fill="#ffffff" stroke="#000" stroke-width="1.4"/>
+<text x="217.5" y="517.0" font-size="13" text-anchor="middle" fill="#000">Eventos</text>
+<rect x="278.0" y="468.0" width="97.0" height="88" rx="14" fill="#ffffff" stroke="#000" stroke-width="1.4"/>
+<text x="326.5" y="509.0" font-size="13" text-anchor="middle" fill="#000">Tickets</text>
+<text x="326.5" y="525.0" font-size="13" text-anchor="middle" fill="#000">y QR</text>
+<rect x="387.0" y="468.0" width="97.0" height="88" rx="14" fill="#ffffff" stroke="#000" stroke-width="1.4"/>
+<text x="435.5" y="509.0" font-size="13" text-anchor="middle" fill="#000">Validación</text>
+<text x="435.5" y="525.0" font-size="13" text-anchor="middle" fill="#000">de acceso</text>
+<rect x="496.0" y="468.0" width="97.0" height="88" rx="14" fill="#ffffff" stroke="#000" stroke-width="1.4"/>
+<text x="544.5" y="517.0" font-size="13" text-anchor="middle" fill="#000">Aforo</text>
+<rect x="605.0" y="468.0" width="97.0" height="88" rx="14" fill="#ffffff" stroke="#000" stroke-width="1.4"/>
+<text x="653.5" y="517.0" font-size="13" text-anchor="middle" fill="#000">Reportes</text>
+<rect x="714.0" y="468.0" width="97.0" height="88" rx="14" fill="#ffffff" stroke="#000" stroke-width="1.4"/>
+<text x="762.5" y="517.0" font-size="13" text-anchor="middle" fill="#000">Auditoría</text>
+<rect x="823.0" y="468.0" width="97.0" height="88" rx="14" fill="#ffffff" stroke="#000" stroke-width="1.4"/>
+<text x="871.5" y="509.0" font-size="13" text-anchor="middle" fill="#000">Notifica-</text>
+<text x="871.5" y="525.0" font-size="13" text-anchor="middle" fill="#000">ciones</text>
+<rect x="40" y="630" width="900" height="110" rx="8" fill="#f7f0fb" stroke="#1f3b57" stroke-width="1.5"/>
+<text x="60" y="654" font-size="15" text-anchor="start" fill="#1f3b57" font-weight="bold">4 · Persistencia · repositorios (Spring Data JPA)</text>
+<rect x="60.0" y="668.0" width="860.0" height="58" rx="14" fill="#ffffff" stroke="#000" stroke-width="1.4"/>
+<text x="490.0" y="694.0" font-size="13" text-anchor="middle" fill="#000">Repositorios por agregado</text>
+<text x="490.0" y="710.0" font-size="13" text-anchor="middle" fill="#000">(Usuario, Evento, Ticket, Validación, Bitácora)</text>
+<path d="M330,790 v70 a160,22 0 0 0 320,0 v-70" fill="#e8eef5" stroke="#1f3b57" stroke-width="1.5"/><ellipse cx="490" cy="790" rx="160" ry="22" fill="#e8eef5" stroke="#1f3b57" stroke-width="1.5"/>
+<text x="490" y="840" font-size="13" text-anchor="middle" fill="#000" font-weight="bold">PostgreSQL 16</text>
+<text x="490" y="856" font-size="13" text-anchor="middle" fill="#000" font-weight="bold">(primario + réplica en espera)</text>
+<rect x="980.0" y="465.0" width="260" height="70" rx="14" fill="#eeeeee" stroke="#000" stroke-width="1.4"/>
+<text x="1110" y="497" font-size="13" text-anchor="middle" fill="#000">Servicios externos</text>
+<text x="1110" y="513" font-size="13" text-anchor="middle" fill="#000">Correo (SMTP) · SMS</text>
+<polyline points="490.0,190.0 490.0,250.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="660" y="225" font-size="12" text-anchor="middle" fill="#7a2e00" font-style="italic" stroke="#fff" stroke-width="4" paint-order="stroke">HTTPS (REST/JSON) · WSS · TLS 1.3</text>
+<polyline points="490.0,370.0 490.0,430.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="590" y="405" font-size="12" text-anchor="middle" fill="#7a2e00" font-style="italic" stroke="#fff" stroke-width="4" paint-order="stroke">llamada en proceso</text>
+<polyline points="490.0,570.0 490.0,630.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="590" y="605" font-size="12" text-anchor="middle" fill="#7a2e00" font-style="italic" stroke="#fff" stroke-width="4" paint-order="stroke">llamada en proceso</text>
+<polyline points="490.0,740.0 490.0,767.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="620" y="768" font-size="12" text-anchor="middle" fill="#7a2e00" font-style="italic" stroke="#fff" stroke-width="4" paint-order="stroke">JDBC sobre TLS · puerto 5432</text>
+<polyline points="940.0,500.0 980.0,500.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="1110" y="450" font-size="12" text-anchor="middle" fill="#7a2e00" font-style="italic" stroke="#fff" stroke-width="4" paint-order="stroke">SMTP 587 STARTTLS / HTTPS</text>
+<path d="M980,60 L1268,60 L1280,72 L1280,170 L980,170 Z" fill="#fffde7" stroke="#777"/>
+<text x="988" y="78" font-size="12" text-anchor="start" fill="#000">Regla de dependencias:</text>
+<text x="988" y="93" font-size="12" text-anchor="start" fill="#000">cada capa solo llama a la</text>
+<text x="988" y="108" font-size="12" text-anchor="start" fill="#000">inmediatamente inferior.</text>
+<text x="988" y="123" font-size="12" text-anchor="start" fill="#000">La presentación nunca</text>
+<text x="988" y="138" font-size="12" text-anchor="start" fill="#000">accede a la base de datos.</text>
+<text x="988" y="153" font-size="12" text-anchor="start" fill="#000">No hay capas saltadas.</text>
+<path d="M980,620 L1268,620 L1280,632 L1280,746 L980,746 Z" fill="#fffde7" stroke="#777"/>
+<text x="988" y="638" font-size="12" text-anchor="start" fill="#000">Alternativa descartada:</text>
+<text x="988" y="653" font-size="12" text-anchor="start" fill="#000">microservicios (un servicio</text>
+<text x="988" y="668" font-size="12" text-anchor="start" fill="#000">y una base por módulo).</text>
+<text x="988" y="683" font-size="12" text-anchor="start" fill="#000">Razón: equipo de 2 personas;</text>
+<text x="988" y="698" font-size="12" text-anchor="start" fill="#000">multiplica despliegue, red y</text>
+<text x="988" y="713" font-size="12" text-anchor="start" fill="#000">monitoreo sin necesidad para</text>
+<text x="988" y="728" font-size="12" text-anchor="start" fill="#000">500 peticiones por segundo.</text>
+<text x="20" y="968" font-size="11.5" fill="#555">Estilo: cliente-servidor + monolito modular en capas · comunicación síncrona REST y notificación asíncrona por WebSocket</text>
+</svg>
