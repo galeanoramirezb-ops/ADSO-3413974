@@ -1,0 +1,342 @@
+### Evidencia de ejecución · B5 · 2026-11-26 20:25:22 -0500
+### Motor: PostgreSQL 16.15 (Ubuntu 16.15-0ubuntu0.24.04.1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0, 64-bit
+### Comando: psql -v ON_ERROR_STOP=1 -d eventflow_db -f B5-script-creacion.sql
+
+DROP SCHEMA IF EXISTS eventflow CASCADE;
+psql:B5-script-creacion.sql:7: NOTICE:  schema "eventflow" does not exist, skipping
+DROP SCHEMA
+CREATE SCHEMA eventflow;
+CREATE SCHEMA
+SET search_path TO eventflow;
+SET
+CREATE TABLE usuario (
+  id_usuario             BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  tipo_documento         VARCHAR(3) NOT NULL CONSTRAINT ck_usuario_tipo_doc CHECK (tipo_documento IN ('CC','CE','TI','PAS')),
+  numero_documento       VARCHAR(20) NOT NULL,
+  nombre_completo        VARCHAR(120) NOT NULL,
+  correo                 VARCHAR(120) NOT NULL CONSTRAINT uq_usuario_correo UNIQUE CONSTRAINT ck_usuario_correo CHECK (correo LIKE '%_@_%._%'),
+  hash_contrasena        CHAR(60) NOT NULL,
+  estado                 VARCHAR(10) NOT NULL DEFAULT 'ACTIVO' CONSTRAINT ck_usuario_estado CHECK (estado IN ('ACTIVO','BLOQUEADO','INACTIVO')),
+  fecha_registro         TIMESTAMPTZ NOT NULL DEFAULT now(),
+  CONSTRAINT uq_usuario_documento UNIQUE (tipo_documento, numero_documento)
+);
+CREATE TABLE
+COMMENT ON TABLE usuario IS 'Personas con cuenta (asistentes, organizadores, validadores y superadministradores)';
+COMMENT
+CREATE TABLE telefono_usuario (
+  id_telefono            BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  id_usuario             BIGINT NOT NULL,
+  numero                 VARCHAR(15) NOT NULL CONSTRAINT ck_telefono_numero CHECK (numero ~ '^[+]?[0-9]{7,15}$'),
+  tipo                   VARCHAR(5) NOT NULL CONSTRAINT ck_telefono_tipo CHECK (tipo IN ('MOVIL','FIJO')),
+  CONSTRAINT fk_telefono_usuario FOREIGN KEY (id_usuario) REFERENCES usuario (id_usuario) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT uq_telefono UNIQUE (id_usuario, numero)
+);
+CREATE TABLE
+COMMENT ON TABLE telefono_usuario IS 'Teléfonos de un usuario (atributo multivaluado en tabla aparte)';
+COMMENT
+CREATE TABLE rol (
+  id_rol                 SMALLINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  nombre                 VARCHAR(20) NOT NULL CONSTRAINT uq_rol_nombre UNIQUE CONSTRAINT ck_rol_nombre CHECK (nombre IN ('SUPERADMIN','ORGANIZADOR','VALIDADOR','ASISTENTE')),
+  descripcion            VARCHAR(200)
+);
+CREATE TABLE
+COMMENT ON TABLE rol IS 'Roles del sistema (RBAC)';
+COMMENT
+CREATE TABLE permiso (
+  id_permiso             SMALLINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  codigo                 VARCHAR(50) NOT NULL CONSTRAINT uq_permiso_codigo UNIQUE,
+  modulo                 VARCHAR(30) NOT NULL,
+  descripcion            VARCHAR(200)
+);
+CREATE TABLE
+COMMENT ON TABLE permiso IS 'Acciones que se pueden autorizar por rol';
+COMMENT
+CREATE TABLE usuario_rol (
+  id_usuario             BIGINT NOT NULL,
+  id_rol                 SMALLINT NOT NULL,
+  fecha_asignacion       TIMESTAMPTZ NOT NULL DEFAULT now(),
+  asignado_por           BIGINT,
+  CONSTRAINT pk_usuario_rol PRIMARY KEY (id_usuario, id_rol),
+  CONSTRAINT fk_ur_usuario FOREIGN KEY (id_usuario) REFERENCES usuario (id_usuario) ON DELETE CASCADE,
+  CONSTRAINT fk_ur_rol FOREIGN KEY (id_rol) REFERENCES rol (id_rol) ON DELETE RESTRICT,
+  CONSTRAINT fk_ur_asignado_por FOREIGN KEY (asignado_por) REFERENCES usuario (id_usuario) ON DELETE SET NULL
+);
+CREATE TABLE
+COMMENT ON TABLE usuario_rol IS 'Asignación de roles a usuarios (resuelve N:M usuario–rol)';
+COMMENT
+CREATE TABLE rol_permiso (
+  id_rol                 SMALLINT NOT NULL,
+  id_permiso             SMALLINT NOT NULL,
+  CONSTRAINT pk_rol_permiso PRIMARY KEY (id_rol, id_permiso),
+  CONSTRAINT fk_rp_rol FOREIGN KEY (id_rol) REFERENCES rol (id_rol) ON DELETE CASCADE,
+  CONSTRAINT fk_rp_permiso FOREIGN KEY (id_permiso) REFERENCES permiso (id_permiso) ON DELETE CASCADE
+);
+CREATE TABLE
+COMMENT ON TABLE rol_permiso IS 'Permisos de cada rol (resuelve N:M rol–permiso)';
+COMMENT
+CREATE TABLE consentimiento (
+  id_consentimiento      BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  id_usuario             BIGINT NOT NULL,
+  version_politica       VARCHAR(10) NOT NULL,
+  finalidad              VARCHAR(300) NOT NULL,
+  fecha_aceptacion       TIMESTAMPTZ NOT NULL DEFAULT now(),
+  fecha_revocatoria      TIMESTAMPTZ,
+  CONSTRAINT fk_consentimiento_usuario FOREIGN KEY (id_usuario) REFERENCES usuario (id_usuario) ON DELETE RESTRICT,
+  CONSTRAINT ck_consentimiento_fechas CHECK (fecha_revocatoria IS NULL OR fecha_revocatoria >= fecha_aceptacion)
+);
+CREATE TABLE
+COMMENT ON TABLE consentimiento IS 'Autorización del titular para el tratamiento de datos (Ley 1581 de 2012)';
+COMMENT
+CREATE TABLE sede (
+  id_sede                INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  nombre                 VARCHAR(80) NOT NULL CONSTRAINT uq_sede_nombre UNIQUE,
+  direccion              VARCHAR(150) NOT NULL,
+  ciudad                 VARCHAR(60) NOT NULL,
+  capacidad_fisica       INTEGER NOT NULL CONSTRAINT ck_sede_capacidad CHECK (capacidad_fisica > 0)
+);
+CREATE TABLE
+COMMENT ON TABLE sede IS 'Lugares físicos donde se realizan los eventos';
+COMMENT
+CREATE TABLE evento (
+  id_evento              BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  id_organizador         BIGINT NOT NULL,
+  id_sede                INTEGER NOT NULL,
+  titulo                 VARCHAR(150) NOT NULL,
+  descripcion            TEXT,
+  fecha_inicio           TIMESTAMPTZ NOT NULL,
+  fecha_fin              TIMESTAMPTZ NOT NULL,
+  aforo_maximo           INTEGER NOT NULL CONSTRAINT ck_evento_aforo CHECK (aforo_maximo > 0),
+  ocupacion_actual       INTEGER NOT NULL DEFAULT 0,
+  estado                 VARCHAR(10) NOT NULL DEFAULT 'BORRADOR' CONSTRAINT ck_evento_estado CHECK (estado IN ('BORRADOR','PUBLICADO','EN_CURSO','FINALIZADO','CANCELADO')),
+  CONSTRAINT fk_evento_organizador FOREIGN KEY (id_organizador) REFERENCES usuario (id_usuario) ON DELETE RESTRICT,
+  CONSTRAINT fk_evento_sede FOREIGN KEY (id_sede) REFERENCES sede (id_sede) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT ck_evento_fechas CHECK (fecha_fin > fecha_inicio),
+  CONSTRAINT ck_evento_ocupacion CHECK (ocupacion_actual BETWEEN 0 AND aforo_maximo)
+);
+CREATE TABLE
+COMMENT ON TABLE evento IS 'Eventos organizados';
+COMMENT
+CREATE TABLE categoria_entrada (
+  id_evento              BIGINT NOT NULL,
+  num_categoria          SMALLINT NOT NULL CONSTRAINT ck_categoria_num CHECK (num_categoria > 0),
+  nombre                 VARCHAR(40) NOT NULL,
+  cupo                   INTEGER NOT NULL CONSTRAINT ck_categoria_cupo CHECK (cupo > 0),
+  precio                 NUMERIC(12,2) NOT NULL DEFAULT 0 CONSTRAINT ck_categoria_precio CHECK (precio >= 0),
+  CONSTRAINT pk_categoria_entrada PRIMARY KEY (id_evento, num_categoria),
+  CONSTRAINT fk_categoria_evento FOREIGN KEY (id_evento) REFERENCES evento (id_evento) ON DELETE CASCADE,
+  CONSTRAINT uq_categoria_nombre UNIQUE (id_evento, nombre)
+);
+CREATE TABLE
+COMMENT ON TABLE categoria_entrada IS 'Categorías de entrada de un evento (entidad débil de evento)';
+COMMENT
+CREATE TABLE ticket (
+  id_ticket              BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  codigo                 VARCHAR(40) NOT NULL CONSTRAINT uq_ticket_codigo UNIQUE,
+  id_asistente           BIGINT NOT NULL,
+  id_evento              BIGINT NOT NULL,
+  num_categoria          SMALLINT NOT NULL,
+  semilla_qr             BYTEA NOT NULL,
+  fecha_emision          TIMESTAMPTZ NOT NULL DEFAULT now(),
+  estado                 VARCHAR(10) NOT NULL DEFAULT 'EMITIDO' CONSTRAINT ck_ticket_estado CHECK (estado IN ('EMITIDO','UTILIZADO','ANULADO')),
+  CONSTRAINT fk_ticket_asistente FOREIGN KEY (id_asistente) REFERENCES usuario (id_usuario) ON DELETE RESTRICT,
+  CONSTRAINT fk_ticket_categoria FOREIGN KEY (id_evento, num_categoria) REFERENCES categoria_entrada (id_evento, num_categoria) ON DELETE RESTRICT
+);
+CREATE TABLE
+COMMENT ON TABLE ticket IS 'Entradas emitidas a los asistentes';
+COMMENT
+CREATE TABLE validacion (
+  id_validacion          BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  id_ticket              BIGINT,
+  id_validador           BIGINT NOT NULL,
+  fecha_hora             TIMESTAMPTZ NOT NULL DEFAULT now(),
+  puerta                 VARCHAR(20) NOT NULL,
+  resultado              VARCHAR(9) NOT NULL CONSTRAINT ck_validacion_resultado CHECK (resultado IN ('CONCEDIDO','DENEGADO')),
+  motivo_rechazo         VARCHAR(16) CONSTRAINT ck_validacion_motivo CHECK (motivo_rechazo IN ('NO_VIGENTE','YA_UTILIZADO','FOTO_NO_COINCIDE','AFORO_LLENO')),
+  CONSTRAINT fk_validacion_ticket FOREIGN KEY (id_ticket) REFERENCES ticket (id_ticket) ON DELETE RESTRICT,
+  CONSTRAINT fk_validacion_validador FOREIGN KEY (id_validador) REFERENCES usuario (id_usuario) ON DELETE RESTRICT,
+  CONSTRAINT ck_validacion_coherencia CHECK ((resultado = 'CONCEDIDO' AND motivo_rechazo IS NULL AND id_ticket IS NOT NULL) OR (resultado = 'DENEGADO' AND motivo_rechazo IS NOT NULL))
+);
+CREATE TABLE
+COMMENT ON TABLE validacion IS 'Cada intento de ingreso en una puerta';
+COMMENT
+CREATE TABLE alerta (
+  id_alerta              BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  id_evento              BIGINT NOT NULL,
+  id_validacion          BIGINT,
+  tipo                   VARCHAR(10) NOT NULL CONSTRAINT ck_alerta_tipo CHECK (tipo IN ('AFORO','SOSPECHOSO')),
+  fecha_hora             TIMESTAMPTZ NOT NULL DEFAULT now(),
+  mensaje                VARCHAR(300) NOT NULL,
+  porcentaje_ocupacion   NUMERIC(5,2) CONSTRAINT ck_alerta_porcentaje CHECK (porcentaje_ocupacion BETWEEN 0 AND 100),
+  motivo                 VARCHAR(100),
+  atendida               BOOLEAN NOT NULL DEFAULT false,
+  CONSTRAINT fk_alerta_evento FOREIGN KEY (id_evento) REFERENCES evento (id_evento) ON DELETE CASCADE,
+  CONSTRAINT fk_alerta_validacion FOREIGN KEY (id_validacion) REFERENCES validacion (id_validacion) ON DELETE SET NULL,
+  CONSTRAINT ck_alerta_subtipo CHECK ((tipo = 'AFORO' AND porcentaje_ocupacion IS NOT NULL) OR (tipo = 'SOSPECHOSO' AND motivo IS NOT NULL))
+);
+CREATE TABLE
+COMMENT ON TABLE alerta IS 'Alertas de aforo y de intento sospechoso (generalización en una sola tabla)';
+COMMENT
+CREATE TABLE bitacora (
+  id_registro            BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  id_usuario             BIGINT NOT NULL,
+  id_validacion          BIGINT CONSTRAINT uq_bitacora_validacion UNIQUE,
+  fecha_hora             TIMESTAMPTZ NOT NULL DEFAULT now(),
+  accion                 VARCHAR(40) NOT NULL,
+  resultado              VARCHAR(20) NOT NULL,
+  ip_origen              INET,
+  huella_anterior        CHAR(64),
+  huella_integridad      CHAR(64) NOT NULL CONSTRAINT uq_bitacora_huella UNIQUE,
+  CONSTRAINT fk_bitacora_usuario FOREIGN KEY (id_usuario) REFERENCES usuario (id_usuario) ON DELETE RESTRICT,
+  CONSTRAINT fk_bitacora_validacion FOREIGN KEY (id_validacion) REFERENCES validacion (id_validacion) ON DELETE RESTRICT
+);
+CREATE TABLE
+COMMENT ON TABLE bitacora IS 'Registro inmutable de auditoría (RF12)';
+COMMENT
+CREATE INDEX ix_validacion_ticket ON validacion (id_ticket);
+CREATE INDEX
+CREATE INDEX ix_validacion_fecha ON validacion (fecha_hora);
+CREATE INDEX
+CREATE INDEX ix_evento_fecha ON evento (fecha_inicio);
+CREATE INDEX
+CREATE INDEX ix_ticket_asistente ON ticket (id_asistente);
+CREATE INDEX
+CREATE FUNCTION fn_bitacora_inmutable() RETURNS trigger LANGUAGE plpgsql AS $$
+BEGIN
+  RAISE EXCEPTION 'La bitácora es inmutable: no se permite % ', TG_OP;
+END; $$;
+CREATE FUNCTION
+CREATE TRIGGER tg_bitacora_inmutable BEFORE UPDATE OR DELETE ON bitacora
+  FOR EACH ROW EXECUTE FUNCTION fn_bitacora_inmutable();
+CREATE TRIGGER
+CREATE TRIGGER tg_bitacora_no_truncate BEFORE TRUNCATE ON bitacora
+  FOR EACH STATEMENT EXECUTE FUNCTION fn_bitacora_inmutable();
+CREATE TRIGGER
+DO $$ BEGIN
+  IF NOT EXISTS (SELECT 1 FROM pg_roles WHERE rolname='eventflow_app') THEN CREATE ROLE eventflow_app NOLOGIN; END IF;
+  IF NOT EXISTS (SELECT 1 FROM pg_roles WHERE rolname='eventflow_reportes') THEN CREATE ROLE eventflow_reportes NOLOGIN; END IF;
+  IF NOT EXISTS (SELECT 1 FROM pg_roles WHERE rolname='eventflow_auditor') THEN CREATE ROLE eventflow_auditor NOLOGIN; END IF;
+END $$;
+DO
+GRANT USAGE ON SCHEMA eventflow TO eventflow_app, eventflow_reportes, eventflow_auditor;
+GRANT
+GRANT SELECT, INSERT, UPDATE, DELETE ON usuario, telefono_usuario, usuario_rol, rol_permiso, sede, evento, categoria_entrada, ticket, alerta TO eventflow_app;
+GRANT
+GRANT SELECT ON rol, permiso TO eventflow_app;
+GRANT
+GRANT SELECT, INSERT ON consentimiento, validacion, bitacora TO eventflow_app;
+GRANT
+GRANT UPDATE (fecha_revocatoria) ON consentimiento TO eventflow_app;
+GRANT
+GRANT SELECT ON sede, evento, categoria_entrada, validacion, alerta TO eventflow_reportes;
+GRANT
+GRANT SELECT (id_ticket, id_evento, num_categoria, fecha_emision, estado) ON ticket TO eventflow_reportes;
+GRANT
+GRANT SELECT ON bitacora, validacion, usuario_rol TO eventflow_auditor;
+GRANT
+GRANT SELECT (id_usuario, nombre_completo, estado) ON usuario TO eventflow_auditor;
+GRANT
+GRANT USAGE ON ALL SEQUENCES IN SCHEMA eventflow TO eventflow_app;
+GRANT
+### Código de salida: 0 (0 = sin errores)
+
+### Tablas creadas en el esquema eventflow:
+    table_name     | columnas 
+-------------------+----------
+ alerta            |        9
+ bitacora          |        9
+ categoria_entrada |        5
+ consentimiento    |        6
+ evento            |       10
+ permiso           |        4
+ rol               |        3
+ rol_permiso       |        2
+ sede              |        5
+ telefono_usuario  |        4
+ ticket            |        8
+ usuario           |        8
+ usuario_rol       |        4
+ validacion        |        7
+(14 rows)
+
+### Restricciones por tipo:
+    tipo     | count 
+-------------+-------
+ CHECK       |    22
+ FOREIGN KEY |    18
+ PRIMARY KEY |    14
+ UNIQUE      |    10
+(4 rows)
+
+### Acciones referenciales declaradas:
+          conname          |      borrado       
+---------------------------+--------------------
+ fk_alerta_evento          | ON DELETE CASCADE
+ fk_alerta_validacion      | ON DELETE SET NULL
+ fk_bitacora_usuario       | ON DELETE RESTRICT
+ fk_bitacora_validacion    | ON DELETE RESTRICT
+ fk_categoria_evento       | ON DELETE CASCADE
+ fk_consentimiento_usuario | ON DELETE RESTRICT
+ fk_evento_organizador     | ON DELETE RESTRICT
+ fk_evento_sede            | ON DELETE RESTRICT
+ fk_rp_permiso             | ON DELETE CASCADE
+ fk_rp_rol                 | ON DELETE CASCADE
+ fk_telefono_usuario       | ON DELETE CASCADE
+ fk_ticket_asistente       | ON DELETE RESTRICT
+ fk_ticket_categoria       | ON DELETE RESTRICT
+ fk_ur_asignado_por        | ON DELETE SET NULL
+ fk_ur_rol                 | ON DELETE RESTRICT
+ fk_ur_usuario             | ON DELETE CASCADE
+ fk_validacion_ticket      | ON DELETE RESTRICT
+ fk_validacion_validador   | ON DELETE RESTRICT
+(18 rows)
+
+
+### Pruebas de restricciones: psql -d eventflow_db -f B5-pruebas-restricciones.sql (los ERROR son esperados: prueban que las restricciones funcionan)
+SET
+INSERT 0 4
+INSERT 0 3
+INSERT 0 3
+INSERT 0 1
+INSERT 0 1
+INSERT 0 3
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+     prueba     | usuarios | tickets | validaciones 
+----------------+----------+---------+--------------
+ Filas cargadas |        3 |       1 |            1
+(1 row)
+
+--- Pruebas negativas: cada sentencia DEBE fallar ---
+psql:B5-pruebas-restricciones.sql:21: ERROR:  new row for relation "evento" violates check constraint "ck_evento_fechas"
+DETAIL:  Failing row contains (2, 1, 1, Mal, null, 2026-12-12 18:00:00-05, 2026-12-12 08:00:00-05, 10, 0, BORRADOR).
+psql:B5-pruebas-restricciones.sql:23: ERROR:  new row for relation "validacion" violates check constraint "ck_validacion_coherencia"
+DETAIL:  Failing row contains (2, 1, 3, 2026-11-26 20:25:23.211134-05, P1, CONCEDIDO, YA_UTILIZADO).
+psql:B5-pruebas-restricciones.sql:25: ERROR:  new row for relation "categoria_entrada" violates check constraint "ck_categoria_precio"
+DETAIL:  Failing row contains (1, 4, Gratis, 10, -1.00).
+psql:B5-pruebas-restricciones.sql:27: ERROR:  duplicate key value violates unique constraint "uq_usuario_correo"
+DETAIL:  Key (correo)=(org@demo.test) already exists.
+psql:B5-pruebas-restricciones.sql:29: ERROR:  insert or update on table "ticket" violates foreign key constraint "fk_ticket_categoria"
+DETAIL:  Key (id_evento, num_categoria)=(1, 9) is not present in table "categoria_entrada".
+psql:B5-pruebas-restricciones.sql:31: ERROR:  update or delete on table "usuario" violates foreign key constraint "fk_evento_organizador" on table "evento"
+DETAIL:  Key (id_usuario)=(1) is still referenced from table "evento".
+psql:B5-pruebas-restricciones.sql:33: ERROR:  La bitácora es inmutable: no se permite UPDATE 
+CONTEXT:  PL/pgSQL function fn_bitacora_inmutable() line 3 at RAISE
+psql:B5-pruebas-restricciones.sql:34: ERROR:  La bitácora es inmutable: no se permite DELETE 
+CONTEXT:  PL/pgSQL function fn_bitacora_inmutable() line 3 at RAISE
+psql:B5-pruebas-restricciones.sql:36: ERROR:  new row for relation "evento" violates check constraint "ck_evento_ocupacion"
+DETAIL:  Failing row contains (1, 1, 1, Feria Empresarial 2026, null, 2026-12-12 08:00:00-05, 2026-12-12 18:00:00-05, 1200, 5000, PUBLICADO).
+--- Prueba positiva: ON DELETE CASCADE de categorías al borrar un evento sin tickets ---
+INSERT 0 1
+INSERT 0 1
+ categorias_antes 
+------------------
+                1
+(1 row)
+
+DELETE 1
+ categorias_despues_de_borrar_evento 
+-------------------------------------
+                                   0
+(1 row)
+

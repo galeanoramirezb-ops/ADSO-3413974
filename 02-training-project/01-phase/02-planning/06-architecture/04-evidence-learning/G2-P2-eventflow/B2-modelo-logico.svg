@@ -1,0 +1,232 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1470" height="1000" viewBox="0 0 1470 1000" font-family="Arial, Helvetica, sans-serif">
+<defs><marker id="arr" markerWidth="12" markerHeight="12" refX="10" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#000"/></marker>
+<marker id="tri" markerWidth="18" markerHeight="18" refX="16" refY="9" orient="auto"><path d="M0,0 L16,9 L0,18 Z" fill="#fff" stroke="#000" stroke-width="1.4"/></marker>
+<marker id="opn" markerWidth="14" markerHeight="14" refX="12" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12" fill="none" stroke="#000" stroke-width="1.4"/></marker>
+<marker id="dia" markerWidth="24" markerHeight="14" refX="1" refY="7" orient="auto"><path d="M1,7 L11,1 L22,7 L11,13 Z" fill="#000" stroke="#000"/></marker>
+<marker id="diaO" markerWidth="24" markerHeight="14" refX="1" refY="7" orient="auto"><path d="M1,7 L11,1 L22,7 L11,13 Z" fill="#fff" stroke="#000" stroke-width="1.3"/></marker></defs>
+<rect width="1470" height="1000" fill="#fff"/>
+<text x="20" y="30" font-size="19" font-weight="bold" fill="#1f3b57">Modelo lógico relacional · EventFlow Manager · PostgreSQL 16 (14 tablas)</text>
+<rect x="890" y="330" width="250" height="176" fill="#fff" stroke="#000" stroke-width="1.4"/><rect x="890" y="330" width="250" height="30" fill="#e6f4ea" stroke="#000" stroke-width="1.4"/>
+<text x="1015.0" y="350" font-size="14" font-weight="bold" text-anchor="middle">usuario</text>
+<text x="898" y="380" font-size="12">PK    id_usuario : BIGINT</text>
+<text x="898" y="397" font-size="12">      tipo_documento : VARCHAR(3)</text>
+<text x="898" y="414" font-size="12">      numero_documento : VARCHAR(20)</text>
+<text x="898" y="431" font-size="12">      nombre_completo : VARCHAR(120)</text>
+<text x="898" y="448" font-size="12">      correo : VARCHAR(120)</text>
+<text x="898" y="465" font-size="12">      hash_contrasena : CHAR(60)</text>
+<text x="898" y="482" font-size="12">      estado : VARCHAR(10)</text>
+<text x="898" y="499" font-size="12">      fecha_registro : TIMESTAMPTZ</text>
+<rect x="1180" y="60" width="250" height="108" fill="#fff" stroke="#000" stroke-width="1.4"/><rect x="1180" y="60" width="250" height="30" fill="#e6f4ea" stroke="#000" stroke-width="1.4"/>
+<text x="1305.0" y="80" font-size="14" font-weight="bold" text-anchor="middle">telefono_usuario</text>
+<text x="1188" y="110" font-size="12">PK    id_telefono : BIGINT</text>
+<text x="1188" y="127" font-size="12">FK    id_usuario : BIGINT</text>
+<text x="1188" y="144" font-size="12">      numero : VARCHAR(15)</text>
+<text x="1188" y="161" font-size="12">      tipo : VARCHAR(5)</text>
+<rect x="600" y="60" width="250" height="91" fill="#fff" stroke="#000" stroke-width="1.4"/><rect x="600" y="60" width="250" height="30" fill="#e6f4ea" stroke="#000" stroke-width="1.4"/>
+<text x="725.0" y="80" font-size="14" font-weight="bold" text-anchor="middle">rol</text>
+<text x="608" y="110" font-size="12">PK    id_rol : SMALLINT</text>
+<text x="608" y="127" font-size="12">      nombre : VARCHAR(20)</text>
+<text x="608" y="144" font-size="12">      descripcion : VARCHAR(200) ?</text>
+<rect x="20" y="60" width="250" height="108" fill="#fff" stroke="#000" stroke-width="1.4"/><rect x="20" y="60" width="250" height="30" fill="#e6f4ea" stroke="#000" stroke-width="1.4"/>
+<text x="145.0" y="80" font-size="14" font-weight="bold" text-anchor="middle">permiso</text>
+<text x="28" y="110" font-size="12">PK    id_permiso : SMALLINT</text>
+<text x="28" y="127" font-size="12">      codigo : VARCHAR(50)</text>
+<text x="28" y="144" font-size="12">      modulo : VARCHAR(30)</text>
+<text x="28" y="161" font-size="12">      descripcion : VARCHAR(200) ?</text>
+<rect x="890" y="60" width="250" height="108" fill="#fff" stroke="#000" stroke-width="1.4"/><rect x="890" y="60" width="250" height="30" fill="#e6f4ea" stroke="#000" stroke-width="1.4"/>
+<text x="1015.0" y="80" font-size="14" font-weight="bold" text-anchor="middle">usuario_rol</text>
+<text x="898" y="110" font-size="12">PK,FK id_usuario : BIGINT</text>
+<text x="898" y="127" font-size="12">PK,FK id_rol : SMALLINT</text>
+<text x="898" y="144" font-size="12">      fecha_asignacion : TIMESTAMPTZ</text>
+<text x="898" y="161" font-size="12">FK    asignado_por : BIGINT ?</text>
+<rect x="310" y="60" width="250" height="74" fill="#fff" stroke="#000" stroke-width="1.4"/><rect x="310" y="60" width="250" height="30" fill="#e6f4ea" stroke="#000" stroke-width="1.4"/>
+<text x="435.0" y="80" font-size="14" font-weight="bold" text-anchor="middle">rol_permiso</text>
+<text x="318" y="110" font-size="12">PK,FK id_rol : SMALLINT</text>
+<text x="318" y="127" font-size="12">PK,FK id_permiso : SMALLINT</text>
+<rect x="1180" y="330" width="250" height="142" fill="#fff" stroke="#000" stroke-width="1.4"/><rect x="1180" y="330" width="250" height="30" fill="#e6f4ea" stroke="#000" stroke-width="1.4"/>
+<text x="1305.0" y="350" font-size="14" font-weight="bold" text-anchor="middle">consentimiento</text>
+<text x="1188" y="380" font-size="12">PK    id_consentimiento : BIGINT</text>
+<text x="1188" y="397" font-size="12">FK    id_usuario : BIGINT</text>
+<text x="1188" y="414" font-size="12">      version_politica : VARCHAR(10)</text>
+<text x="1188" y="431" font-size="12">      finalidad : VARCHAR(300)</text>
+<text x="1188" y="448" font-size="12">      fecha_aceptacion : TIMESTAMPTZ</text>
+<text x="1188" y="465" font-size="12">      fecha_revocatoria : TIMESTAMPTZ ?</text>
+<rect x="20" y="330" width="250" height="125" fill="#fff" stroke="#000" stroke-width="1.4"/><rect x="20" y="330" width="250" height="30" fill="#e6f4ea" stroke="#000" stroke-width="1.4"/>
+<text x="145.0" y="350" font-size="14" font-weight="bold" text-anchor="middle">sede</text>
+<text x="28" y="380" font-size="12">PK    id_sede : INTEGER</text>
+<text x="28" y="397" font-size="12">      nombre : VARCHAR(80)</text>
+<text x="28" y="414" font-size="12">      direccion : VARCHAR(150)</text>
+<text x="28" y="431" font-size="12">      ciudad : VARCHAR(60)</text>
+<text x="28" y="448" font-size="12">      capacidad_fisica : INTEGER</text>
+<rect x="310" y="330" width="250" height="210" fill="#fff" stroke="#000" stroke-width="1.4"/><rect x="310" y="330" width="250" height="30" fill="#e6f4ea" stroke="#000" stroke-width="1.4"/>
+<text x="435.0" y="350" font-size="14" font-weight="bold" text-anchor="middle">evento</text>
+<text x="318" y="380" font-size="12">PK    id_evento : BIGINT</text>
+<text x="318" y="397" font-size="12">FK    id_organizador : BIGINT</text>
+<text x="318" y="414" font-size="12">FK    id_sede : INTEGER</text>
+<text x="318" y="431" font-size="12">      titulo : VARCHAR(150)</text>
+<text x="318" y="448" font-size="12">      descripcion : TEXT ?</text>
+<text x="318" y="465" font-size="12">      fecha_inicio : TIMESTAMPTZ</text>
+<text x="318" y="482" font-size="12">      fecha_fin : TIMESTAMPTZ</text>
+<text x="318" y="499" font-size="12">      aforo_maximo : INTEGER</text>
+<text x="318" y="516" font-size="12">      ocupacion_actual : INTEGER</text>
+<text x="318" y="533" font-size="12">      estado : VARCHAR(10)</text>
+<rect x="310" y="640" width="250" height="125" fill="#fff" stroke="#000" stroke-width="1.4"/><rect x="310" y="640" width="250" height="30" fill="#e6f4ea" stroke="#000" stroke-width="1.4"/>
+<text x="435.0" y="660" font-size="14" font-weight="bold" text-anchor="middle">categoria_entrada</text>
+<text x="318" y="690" font-size="12">PK,FK id_evento : BIGINT</text>
+<text x="318" y="707" font-size="12">PK    num_categoria : SMALLINT</text>
+<text x="318" y="724" font-size="12">      nombre : VARCHAR(40)</text>
+<text x="318" y="741" font-size="12">      cupo : INTEGER</text>
+<text x="318" y="758" font-size="12">      precio : NUMERIC(12,2)</text>
+<rect x="600" y="640" width="250" height="176" fill="#fff" stroke="#000" stroke-width="1.4"/><rect x="600" y="640" width="250" height="30" fill="#e6f4ea" stroke="#000" stroke-width="1.4"/>
+<text x="725.0" y="660" font-size="14" font-weight="bold" text-anchor="middle">ticket</text>
+<text x="608" y="690" font-size="12">PK    id_ticket : BIGINT</text>
+<text x="608" y="707" font-size="12">      codigo : VARCHAR(40)</text>
+<text x="608" y="724" font-size="12">FK    id_asistente : BIGINT</text>
+<text x="608" y="741" font-size="12">FK    id_evento : BIGINT</text>
+<text x="608" y="758" font-size="12">FK    num_categoria : SMALLINT</text>
+<text x="608" y="775" font-size="12">      semilla_qr : BYTEA</text>
+<text x="608" y="792" font-size="12">      fecha_emision : TIMESTAMPTZ</text>
+<text x="608" y="809" font-size="12">      estado : VARCHAR(10)</text>
+<rect x="890" y="640" width="250" height="159" fill="#fff" stroke="#000" stroke-width="1.4"/><rect x="890" y="640" width="250" height="30" fill="#e6f4ea" stroke="#000" stroke-width="1.4"/>
+<text x="1015.0" y="660" font-size="14" font-weight="bold" text-anchor="middle">validacion</text>
+<text x="898" y="690" font-size="12">PK    id_validacion : BIGINT</text>
+<text x="898" y="707" font-size="12">FK    id_ticket : BIGINT ?</text>
+<text x="898" y="724" font-size="12">FK    id_validador : BIGINT</text>
+<text x="898" y="741" font-size="12">      fecha_hora : TIMESTAMPTZ</text>
+<text x="898" y="758" font-size="12">      puerta : VARCHAR(20)</text>
+<text x="898" y="775" font-size="12">      resultado : VARCHAR(9)</text>
+<text x="898" y="792" font-size="12">      motivo_rechazo : VARCHAR(16) ?</text>
+<rect x="20" y="640" width="250" height="193" fill="#fff" stroke="#000" stroke-width="1.4"/><rect x="20" y="640" width="250" height="30" fill="#e6f4ea" stroke="#000" stroke-width="1.4"/>
+<text x="145.0" y="660" font-size="14" font-weight="bold" text-anchor="middle">alerta</text>
+<text x="28" y="690" font-size="12">PK    id_alerta : BIGINT</text>
+<text x="28" y="707" font-size="12">FK    id_evento : BIGINT</text>
+<text x="28" y="724" font-size="12">FK    id_validacion : BIGINT ?</text>
+<text x="28" y="741" font-size="12">      tipo : VARCHAR(10)</text>
+<text x="28" y="758" font-size="12">      fecha_hora : TIMESTAMPTZ</text>
+<text x="28" y="775" font-size="12">      mensaje : VARCHAR(300)</text>
+<text x="28" y="792" font-size="12">      porcentaje_ocupacion : NUMERIC(5,2) ?</text>
+<text x="28" y="809" font-size="12">      motivo : VARCHAR(100) ?</text>
+<text x="28" y="826" font-size="12">      atendida : BOOLEAN</text>
+<rect x="1180" y="640" width="250" height="193" fill="#fff" stroke="#000" stroke-width="1.4"/><rect x="1180" y="640" width="250" height="30" fill="#e6f4ea" stroke="#000" stroke-width="1.4"/>
+<text x="1305.0" y="660" font-size="14" font-weight="bold" text-anchor="middle">bitacora</text>
+<text x="1188" y="690" font-size="12">PK    id_registro : BIGINT</text>
+<text x="1188" y="707" font-size="12">FK    id_usuario : BIGINT</text>
+<text x="1188" y="724" font-size="12">FK    id_validacion : BIGINT ?</text>
+<text x="1188" y="741" font-size="12">      fecha_hora : TIMESTAMPTZ</text>
+<text x="1188" y="758" font-size="12">      accion : VARCHAR(40)</text>
+<text x="1188" y="775" font-size="12">      resultado : VARCHAR(20)</text>
+<text x="1188" y="792" font-size="12">      ip_origen : INET ?</text>
+<text x="1188" y="809" font-size="12">      huella_anterior : CHAR(64) ?</text>
+<text x="1188" y="826" font-size="12">      huella_integridad : CHAR(64)</text>
+<polyline points="1098.9,330.0 1253.5,168.0" fill="none" stroke="#000" stroke-width="1.4" stroke-dasharray="7,5"/>
+<line x1="1109.6" y1="330.5" x2="1098.0" y2="319.4" stroke="#000" stroke-width="1.4"/>
+<line x1="1118.5" y1="321.1" x2="1107.0" y2="310.0" stroke="#000" stroke-width="1.4"/>
+<line x1="1247.0" y1="161.8" x2="1243.8" y2="178.1" stroke="#000" stroke-width="1.4"/>
+<line x1="1260.0" y1="174.2" x2="1243.8" y2="178.1" stroke="#000" stroke-width="1.4"/>
+<circle cx="1236.2" cy="186.1" r="5" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<polyline points="1015.0,330.0 1015.0,168.0" fill="none" stroke="#000" stroke-width="1.4"/>
+<line x1="1023.0" y1="323.0" x2="1007.0" y2="323.0" stroke="#000" stroke-width="1.4"/>
+<line x1="1023.0" y1="310.0" x2="1007.0" y2="310.0" stroke="#000" stroke-width="1.4"/>
+<line x1="1006.0" y1="168.0" x2="1015.0" y2="182.0" stroke="#000" stroke-width="1.4"/>
+<line x1="1024.0" y1="168.0" x2="1015.0" y2="182.0" stroke="#000" stroke-width="1.4"/>
+<circle cx="1015.0" cy="193.0" r="5" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<polyline points="850.0,109.2 890.0,110.3" fill="none" stroke="#000" stroke-width="1.4"/>
+<line x1="856.8" y1="117.4" x2="857.2" y2="101.4" stroke="#000" stroke-width="1.4"/>
+<line x1="869.8" y1="117.7" x2="870.2" y2="101.8" stroke="#000" stroke-width="1.4"/>
+<line x1="890.3" y1="101.3" x2="876.0" y2="109.9" stroke="#000" stroke-width="1.4"/>
+<line x1="889.7" y1="119.3" x2="876.0" y2="109.9" stroke="#000" stroke-width="1.4"/>
+<circle cx="865.0" cy="109.6" r="5" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<polyline points="1023.7,330.0 1020.3,168.0" fill="none" stroke="#000" stroke-width="1.4" stroke-dasharray="7,5"/>
+<line x1="1031.5" y1="322.8" x2="1015.5" y2="323.2" stroke="#000" stroke-width="1.4"/>
+<circle cx="1023.2" cy="305.0" r="5" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<line x1="1011.3" y1="168.2" x2="1020.6" y2="182.0" stroke="#000" stroke-width="1.4"/>
+<line x1="1029.3" y1="167.8" x2="1020.6" y2="182.0" stroke="#000" stroke-width="1.4"/>
+<circle cx="1020.8" cy="193.0" r="5" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<polyline points="600.0,101.8 560.0,100.7" fill="none" stroke="#000" stroke-width="1.4"/>
+<line x1="593.2" y1="93.6" x2="592.8" y2="109.6" stroke="#000" stroke-width="1.4"/>
+<line x1="580.2" y1="93.3" x2="579.8" y2="109.2" stroke="#000" stroke-width="1.4"/>
+<line x1="559.7" y1="109.7" x2="574.0" y2="101.1" stroke="#000" stroke-width="1.4"/>
+<line x1="560.3" y1="91.7" x2="574.0" y2="101.1" stroke="#000" stroke-width="1.4"/>
+<circle cx="585.0" cy="101.4" r="5" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<polyline points="270.0,106.7 310.0,104.3" fill="none" stroke="#000" stroke-width="1.4"/>
+<line x1="277.5" y1="114.2" x2="276.5" y2="98.3" stroke="#000" stroke-width="1.4"/>
+<line x1="290.4" y1="113.5" x2="289.5" y2="97.5" stroke="#000" stroke-width="1.4"/>
+<line x1="309.5" y1="95.3" x2="296.0" y2="105.1" stroke="#000" stroke-width="1.4"/>
+<line x1="310.5" y1="113.3" x2="296.0" y2="105.1" stroke="#000" stroke-width="1.4"/>
+<circle cx="285.0" cy="105.8" r="5" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<polyline points="1140.0,410.7 1180.0,408.3" fill="none" stroke="#000" stroke-width="1.4" stroke-dasharray="7,5"/>
+<line x1="1147.5" y1="418.2" x2="1146.5" y2="402.3" stroke="#000" stroke-width="1.4"/>
+<line x1="1160.4" y1="417.5" x2="1159.5" y2="401.5" stroke="#000" stroke-width="1.4"/>
+<line x1="1179.5" y1="399.3" x2="1166.0" y2="409.1" stroke="#000" stroke-width="1.4"/>
+<line x1="1180.5" y1="417.3" x2="1166.0" y2="409.1" stroke="#000" stroke-width="1.4"/>
+<circle cx="1155.0" cy="409.8" r="5" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<polyline points="890.0,421.7 560.0,431.3" fill="none" stroke="#000" stroke-width="1.4" stroke-dasharray="7,5"/>
+<line x1="882.8" y1="413.9" x2="883.2" y2="429.9" stroke="#000" stroke-width="1.4"/>
+<line x1="869.8" y1="414.3" x2="870.2" y2="430.2" stroke="#000" stroke-width="1.4"/>
+<line x1="560.3" y1="440.3" x2="574.0" y2="430.9" stroke="#000" stroke-width="1.4"/>
+<line x1="559.7" y1="422.3" x2="574.0" y2="430.9" stroke="#000" stroke-width="1.4"/>
+<circle cx="585.0" cy="430.6" r="5" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<polyline points="270.0,410.8 310.0,416.7" fill="none" stroke="#000" stroke-width="1.4" stroke-dasharray="7,5"/>
+<line x1="275.8" y1="419.7" x2="278.1" y2="403.9" stroke="#000" stroke-width="1.4"/>
+<line x1="288.6" y1="421.6" x2="290.9" y2="405.8" stroke="#000" stroke-width="1.4"/>
+<line x1="311.3" y1="407.8" x2="296.1" y2="414.7" stroke="#000" stroke-width="1.4"/>
+<line x1="308.7" y1="425.6" x2="296.1" y2="414.7" stroke="#000" stroke-width="1.4"/>
+<circle cx="285.3" cy="413.1" r="5" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<polyline points="435.0,540.0 435.0,640.0" fill="none" stroke="#000" stroke-width="1.4"/>
+<line x1="427.0" y1="547.0" x2="443.0" y2="547.0" stroke="#000" stroke-width="1.4"/>
+<line x1="427.0" y1="560.0" x2="443.0" y2="560.0" stroke="#000" stroke-width="1.4"/>
+<line x1="444.0" y1="640.0" x2="435.0" y2="626.0" stroke="#000" stroke-width="1.4"/>
+<line x1="426.0" y1="640.0" x2="435.0" y2="626.0" stroke="#000" stroke-width="1.4"/>
+<circle cx="435.0" cy="615.0" r="5" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<polyline points="932.7,506.0 807.3,640.0" fill="none" stroke="#000" stroke-width="1.4" stroke-dasharray="7,5"/>
+<line x1="922.1" y1="505.6" x2="933.7" y2="516.6" stroke="#000" stroke-width="1.4"/>
+<line x1="913.2" y1="515.1" x2="924.9" y2="526.1" stroke="#000" stroke-width="1.4"/>
+<line x1="813.9" y1="646.1" x2="816.9" y2="629.8" stroke="#000" stroke-width="1.4"/>
+<line x1="800.8" y1="633.9" x2="816.9" y2="629.8" stroke="#000" stroke-width="1.4"/>
+<circle cx="824.4" cy="621.7" r="5" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<polyline points="560.0,713.5 600.0,717.0" fill="none" stroke="#000" stroke-width="1.4" stroke-dasharray="7,5"/>
+<line x1="566.3" y1="722.1" x2="567.7" y2="706.1" stroke="#000" stroke-width="1.4"/>
+<line x1="579.2" y1="723.2" x2="580.6" y2="707.3" stroke="#000" stroke-width="1.4"/>
+<line x1="600.8" y1="708.0" x2="586.1" y2="715.8" stroke="#000" stroke-width="1.4"/>
+<line x1="599.2" y1="726.0" x2="586.1" y2="715.8" stroke="#000" stroke-width="1.4"/>
+<circle cx="575.1" cy="714.8" r="5" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<polyline points="850.0,724.3 890.0,723.2" fill="none" stroke="#000" stroke-width="1.4" stroke-dasharray="7,5"/>
+<line x1="857.2" y1="732.1" x2="856.8" y2="716.1" stroke="#000" stroke-width="1.4"/>
+<circle cx="875.0" cy="723.6" r="5" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<line x1="889.7" y1="714.2" x2="876.0" y2="723.6" stroke="#000" stroke-width="1.4"/>
+<line x1="890.3" y1="732.2" x2="876.0" y2="723.6" stroke="#000" stroke-width="1.4"/>
+<circle cx="865.0" cy="723.9" r="5" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<polyline points="1015.0,506.0 1015.0,640.0" fill="none" stroke="#000" stroke-width="1.4" stroke-dasharray="7,5"/>
+<line x1="1007.0" y1="513.0" x2="1023.0" y2="513.0" stroke="#000" stroke-width="1.4"/>
+<line x1="1007.0" y1="526.0" x2="1023.0" y2="526.0" stroke="#000" stroke-width="1.4"/>
+<line x1="1024.0" y1="640.0" x2="1015.0" y2="626.0" stroke="#000" stroke-width="1.4"/>
+<line x1="1006.0" y1="640.0" x2="1015.0" y2="626.0" stroke="#000" stroke-width="1.4"/>
+<circle cx="1015.0" cy="615.0" r="5" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<polyline points="334.0,540.0 237.8,640.0" fill="none" stroke="#000" stroke-width="1.4" stroke-dasharray="7,5"/>
+<line x1="323.4" y1="539.5" x2="334.9" y2="550.6" stroke="#000" stroke-width="1.4"/>
+<line x1="314.4" y1="548.9" x2="325.9" y2="560.0" stroke="#000" stroke-width="1.4"/>
+<line x1="244.3" y1="646.2" x2="247.5" y2="629.9" stroke="#000" stroke-width="1.4"/>
+<line x1="231.3" y1="633.8" x2="247.5" y2="629.9" stroke="#000" stroke-width="1.4"/>
+<circle cx="255.1" cy="622.0" r="5" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<polyline points="1015.0,799.0 1015.0,863.0 145.0,863.0 145.0,833.0" fill="none" stroke="#000" stroke-width="1.4" stroke-dasharray="7,5"/>
+<line x1="1007.0" y1="806.0" x2="1023.0" y2="806.0" stroke="#000" stroke-width="1.4"/>
+<circle cx="1015.0" cy="824.0" r="5" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<line x1="136.0" y1="833.0" x2="145.0" y2="847.0" stroke="#000" stroke-width="1.4"/>
+<line x1="154.0" y1="833.0" x2="145.0" y2="847.0" stroke="#000" stroke-width="1.4"/>
+<circle cx="145.0" cy="858.0" r="5" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<polyline points="1095.1,506.0 1217.1,640.0" fill="none" stroke="#000" stroke-width="1.4" stroke-dasharray="7,5"/>
+<line x1="1093.9" y1="516.6" x2="1105.8" y2="505.8" stroke="#000" stroke-width="1.4"/>
+<line x1="1102.7" y1="526.2" x2="1114.5" y2="515.4" stroke="#000" stroke-width="1.4"/>
+<line x1="1223.8" y1="633.9" x2="1207.7" y2="629.6" stroke="#000" stroke-width="1.4"/>
+<line x1="1210.5" y1="646.1" x2="1207.7" y2="629.6" stroke="#000" stroke-width="1.4"/>
+<circle cx="1200.3" cy="621.5" r="5" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<polyline points="1140.0,726.8 1180.0,729.2" fill="none" stroke="#000" stroke-width="1.4" stroke-dasharray="7,5"/>
+<line x1="1146.5" y1="735.2" x2="1147.5" y2="719.3" stroke="#000" stroke-width="1.4"/>
+<circle cx="1165.0" cy="728.3" r="5" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<line x1="1173.5" y1="720.8" x2="1172.5" y2="736.7" stroke="#000" stroke-width="1.4"/>
+<circle cx="1155.0" cy="727.7" r="5" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<path d="M20,925 L1438,925 L1450,937 L1450,971 L20,971 Z" fill="#fffde7" stroke="#777"/>
+<text x="28" y="943" font-size="12" text-anchor="start" fill="#000">PK = llave primaria · FK = llave foránea · ? = admite nulos · Pata de gallo: | uno, o cero, pata = muchos · línea continua = relación identificadora (la FK es parte de la PK) · discontinua = no identificadora.</text>
+<text x="28" y="958" font-size="12" text-anchor="start" fill="#000">Nombres y tipos idénticos al diccionario (B4) y al script (B5): los tres se generan de la misma especificación.</text>
+<text x="20" y="988" font-size="11.5" fill="#555">14 tablas · 18 llaves foráneas · N:M resueltas: usuario_rol, rol_permiso</text>
+</svg>

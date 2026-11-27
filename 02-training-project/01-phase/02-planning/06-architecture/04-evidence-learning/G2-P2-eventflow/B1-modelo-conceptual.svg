@@ -1,0 +1,204 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1430" height="1000" viewBox="0 0 1430 1000" font-family="Arial, Helvetica, sans-serif">
+<defs><marker id="arr" markerWidth="12" markerHeight="12" refX="10" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#000"/></marker>
+<marker id="tri" markerWidth="18" markerHeight="18" refX="16" refY="9" orient="auto"><path d="M0,0 L16,9 L0,18 Z" fill="#fff" stroke="#000" stroke-width="1.4"/></marker>
+<marker id="opn" markerWidth="14" markerHeight="14" refX="12" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12" fill="none" stroke="#000" stroke-width="1.4"/></marker>
+<marker id="dia" markerWidth="24" markerHeight="14" refX="1" refY="7" orient="auto"><path d="M1,7 L11,1 L22,7 L11,13 Z" fill="#000" stroke="#000"/></marker>
+<marker id="diaO" markerWidth="24" markerHeight="14" refX="1" refY="7" orient="auto"><path d="M1,7 L11,1 L22,7 L11,13 Z" fill="#fff" stroke="#000" stroke-width="1.3"/></marker></defs>
+<rect width="1430" height="1000" fill="#fff"/>
+<text x="20" y="30" font-size="19" font-weight="bold" fill="#1f3b57">B1 · Modelo conceptual (entidad-relación) · EventFlow Manager · notación pata de gallo</text>
+<rect x="20" y="60" width="250" height="125" fill="#fff" stroke="#000" stroke-width="1.4"/><rect x="20" y="60" width="250" height="30" fill="#e6f4ea" stroke="#000" stroke-width="1.4"/>
+<text x="145.0" y="80" font-size="14" font-weight="bold" text-anchor="middle">CONSENTIMIENTO</text>
+<text x="28" y="110" font-size="12"># id_consentimiento</text>
+<text x="28" y="127" font-size="12">version_politica</text>
+<text x="28" y="144" font-size="12">finalidad</text>
+<text x="28" y="161" font-size="12">fecha_aceptacion</text>
+<text x="28" y="178" font-size="12">fecha_revocatoria</text>
+<rect x="400" y="60" width="250" height="159" fill="#fff" stroke="#000" stroke-width="1.4"/><rect x="400" y="60" width="250" height="30" fill="#e6f4ea" stroke="#000" stroke-width="1.4"/>
+<text x="525.0" y="80" font-size="14" font-weight="bold" text-anchor="middle">USUARIO</text>
+<text x="408" y="110" font-size="12"># id_usuario</text>
+<text x="408" y="127" font-size="12">tipo + número de documento (único)</text>
+<text x="408" y="144" font-size="12">nombre_completo</text>
+<text x="408" y="161" font-size="12">correo (único)</text>
+<text x="408" y="178" font-size="12">hash_contrasena</text>
+<text x="408" y="195" font-size="12">{ telefono } (multivaluado)</text>
+<text x="408" y="212" font-size="12">estado</text>
+<rect x="780" y="60" width="250" height="91" fill="#fff" stroke="#000" stroke-width="1.4"/><rect x="780" y="60" width="250" height="30" fill="#e6f4ea" stroke="#000" stroke-width="1.4"/>
+<text x="905.0" y="80" font-size="14" font-weight="bold" text-anchor="middle">ROL</text>
+<text x="788" y="110" font-size="12"># id_rol</text>
+<text x="788" y="127" font-size="12">nombre (único)</text>
+<text x="788" y="144" font-size="12">descripcion</text>
+<rect x="1160" y="60" width="250" height="91" fill="#fff" stroke="#000" stroke-width="1.4"/><rect x="1160" y="60" width="250" height="30" fill="#e6f4ea" stroke="#000" stroke-width="1.4"/>
+<text x="1285.0" y="80" font-size="14" font-weight="bold" text-anchor="middle">PERMISO</text>
+<text x="1168" y="110" font-size="12"># id_permiso</text>
+<text x="1168" y="127" font-size="12">codigo (único)</text>
+<text x="1168" y="144" font-size="12">modulo</text>
+<rect x="20" y="380" width="250" height="125" fill="#fff" stroke="#000" stroke-width="1.4"/><rect x="20" y="380" width="250" height="30" fill="#e6f4ea" stroke="#000" stroke-width="1.4"/>
+<text x="145.0" y="400" font-size="14" font-weight="bold" text-anchor="middle">SEDE</text>
+<text x="28" y="430" font-size="12"># id_sede</text>
+<text x="28" y="447" font-size="12">nombre</text>
+<text x="28" y="464" font-size="12">direccion</text>
+<text x="28" y="481" font-size="12">ciudad</text>
+<text x="28" y="498" font-size="12">capacidad_fisica</text>
+<rect x="400" y="380" width="250" height="159" fill="#fff" stroke="#000" stroke-width="1.4"/><rect x="400" y="380" width="250" height="30" fill="#e6f4ea" stroke="#000" stroke-width="1.4"/>
+<text x="525.0" y="400" font-size="14" font-weight="bold" text-anchor="middle">EVENTO</text>
+<text x="408" y="430" font-size="12"># id_evento</text>
+<text x="408" y="447" font-size="12">titulo</text>
+<text x="408" y="464" font-size="12">fecha_inicio</text>
+<text x="408" y="481" font-size="12">fecha_fin</text>
+<text x="408" y="498" font-size="12">aforo_maximo</text>
+<text x="408" y="515" font-size="12">ocupacion_actual</text>
+<text x="408" y="532" font-size="12">estado</text>
+<rect x="780" y="380" width="250" height="108" fill="#fff" stroke="#000" stroke-width="1.4"/><rect x="780" y="380" width="250" height="30" fill="#e6f4ea" stroke="#000" stroke-width="1.4"/>
+<text x="905.0" y="400" font-size="14" font-weight="bold" text-anchor="middle">TICKET</text>
+<text x="788" y="430" font-size="12"># id_ticket</text>
+<text x="788" y="447" font-size="12">codigo (único)</text>
+<text x="788" y="464" font-size="12">fecha_emision</text>
+<text x="788" y="481" font-size="12">estado</text>
+<rect x="1160" y="380" width="250" height="125" fill="#fff" stroke="#000" stroke-width="1.4"/><rect x="1160" y="380" width="250" height="30" fill="#e6f4ea" stroke="#000" stroke-width="1.4"/>
+<text x="1285.0" y="400" font-size="14" font-weight="bold" text-anchor="middle">VALIDACION</text>
+<text x="1168" y="430" font-size="12"># id_validacion</text>
+<text x="1168" y="447" font-size="12">fecha_hora</text>
+<text x="1168" y="464" font-size="12">puerta</text>
+<text x="1168" y="481" font-size="12">resultado</text>
+<text x="1168" y="498" font-size="12">motivo_rechazo</text>
+<rect x="20" y="690" width="250" height="158" fill="#fff" stroke="#000" stroke-width="1.4"/><rect x="20" y="690" width="250" height="46" fill="#e6f4ea" stroke="#000" stroke-width="1.4"/>
+<text x="145.0" y="710" font-size="11" text-anchor="middle" fill="#000" font-style="italic">«generalización»</text>
+<text x="145.0" y="726" font-size="14" font-weight="bold" text-anchor="middle">ALERTA</text>
+<text x="28" y="756" font-size="12"># id_alerta</text>
+<text x="28" y="773" font-size="12">fecha_hora</text>
+<text x="28" y="790" font-size="12">mensaje</text>
+<text x="28" y="807" font-size="12">atendida</text>
+<text x="28" y="824" font-size="12">{subtipo AFORO: porcentaje_ocupacion}</text>
+<text x="28" y="841" font-size="12">{subtipo SOSPECHOSO: motivo}</text>
+<rect x="395" y="685" width="260" height="134" fill="none" stroke="#000" stroke-width="1.2"/>
+<rect x="400" y="690" width="250" height="124" fill="#fff" stroke="#000" stroke-width="1.4"/><rect x="400" y="690" width="250" height="46" fill="#e6f4ea" stroke="#000" stroke-width="1.4"/>
+<text x="525.0" y="710" font-size="11" text-anchor="middle" fill="#000" font-style="italic">«entidad débil»</text>
+<text x="525.0" y="726" font-size="14" font-weight="bold" text-anchor="middle">CATEGORIA_ENTRADA</text>
+<text x="408" y="756" font-size="12"># (id_evento) + num_categoria</text>
+<text x="408" y="773" font-size="12">nombre</text>
+<text x="408" y="790" font-size="12">cupo</text>
+<text x="408" y="807" font-size="12">precio</text>
+<rect x="1160" y="690" width="250" height="142" fill="#fff" stroke="#000" stroke-width="1.4"/><rect x="1160" y="690" width="250" height="30" fill="#e6f4ea" stroke="#000" stroke-width="1.4"/>
+<text x="1285.0" y="710" font-size="14" font-weight="bold" text-anchor="middle">BITACORA</text>
+<text x="1168" y="740" font-size="12"># id_registro</text>
+<text x="1168" y="757" font-size="12">fecha_hora</text>
+<text x="1168" y="774" font-size="12">accion</text>
+<text x="1168" y="791" font-size="12">resultado</text>
+<text x="1168" y="808" font-size="12">huella_anterior</text>
+<text x="1168" y="825" font-size="12">huella_integridad</text>
+<polyline points="400.0,120.0 270.0,120.0" fill="none" stroke="#000" stroke-width="1.4"/>
+<text x="325" y="96" font-size="12" text-anchor="middle" fill="#7a2e00" font-style="italic" stroke="#fff" stroke-width="4" paint-order="stroke">otorga</text>
+<line x1="393.0" y1="112.0" x2="393.0" y2="128.0" stroke="#000" stroke-width="1.4"/>
+<line x1="380.0" y1="112.0" x2="380.0" y2="128.0" stroke="#000" stroke-width="1.4"/>
+<line x1="270.0" y1="129.0" x2="284.0" y2="120.0" stroke="#000" stroke-width="1.4"/>
+<line x1="270.0" y1="111.0" x2="284.0" y2="120.0" stroke="#000" stroke-width="1.4"/>
+<line x1="290.0" y1="128.0" x2="290.0" y2="112.0" stroke="#000" stroke-width="1.4"/>
+<text x="384.0" y="113.0" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#0b4f9c">(1,1)</text>
+<text x="286.0" y="135.0" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#0b4f9c">(1,N)</text>
+<polyline points="650.0,120.0 780.0,120.0" fill="none" stroke="#000" stroke-width="1.4"/>
+<text x="715" y="96" font-size="12" text-anchor="middle" fill="#7a2e00" font-style="italic" stroke="#fff" stroke-width="4" paint-order="stroke">tiene</text>
+<line x1="650.0" y1="129.0" x2="664.0" y2="120.0" stroke="#000" stroke-width="1.4"/>
+<line x1="650.0" y1="111.0" x2="664.0" y2="120.0" stroke="#000" stroke-width="1.4"/>
+<circle cx="675.0" cy="120.0" r="5" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<line x1="780.0" y1="111.0" x2="766.0" y2="120.0" stroke="#000" stroke-width="1.4"/>
+<line x1="780.0" y1="129.0" x2="766.0" y2="120.0" stroke="#000" stroke-width="1.4"/>
+<line x1="760.0" y1="112.0" x2="760.0" y2="128.0" stroke="#000" stroke-width="1.4"/>
+<text x="666.0" y="135.0" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#0b4f9c">(0,N)</text>
+<text x="764.0" y="113.0" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#0b4f9c">(1,N)</text>
+<text x="715" y="158.0" font-size="10.5" text-anchor="middle" fill="#555" font-style="italic">atributos de la relación:</text>
+<text x="715" y="171.5" font-size="10.5" text-anchor="middle" fill="#555" font-style="italic">fecha_asignacion, asignado_por</text>
+<polyline points="1030.0,120.0 1160.0,120.0" fill="none" stroke="#000" stroke-width="1.4"/>
+<text x="1095" y="96" font-size="12" text-anchor="middle" fill="#7a2e00" font-style="italic" stroke="#fff" stroke-width="4" paint-order="stroke">concede</text>
+<line x1="1030.0" y1="129.0" x2="1044.0" y2="120.0" stroke="#000" stroke-width="1.4"/>
+<line x1="1030.0" y1="111.0" x2="1044.0" y2="120.0" stroke="#000" stroke-width="1.4"/>
+<circle cx="1055.0" cy="120.0" r="5" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<line x1="1160.0" y1="111.0" x2="1146.0" y2="120.0" stroke="#000" stroke-width="1.4"/>
+<line x1="1160.0" y1="129.0" x2="1146.0" y2="120.0" stroke="#000" stroke-width="1.4"/>
+<line x1="1140.0" y1="112.0" x2="1140.0" y2="128.0" stroke="#000" stroke-width="1.4"/>
+<text x="1046.0" y="135.0" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#0b4f9c">(0,N)</text>
+<text x="1144.0" y="113.0" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#0b4f9c">(1,N)</text>
+<polyline points="480.0,219.0 480.0,380.0" fill="none" stroke="#000" stroke-width="1.4"/>
+<text x="530" y="340" font-size="12" text-anchor="middle" fill="#7a2e00" font-style="italic" stroke="#fff" stroke-width="4" paint-order="stroke">organiza</text>
+<line x1="472.0" y1="226.0" x2="488.0" y2="226.0" stroke="#000" stroke-width="1.4"/>
+<line x1="472.0" y1="239.0" x2="488.0" y2="239.0" stroke="#000" stroke-width="1.4"/>
+<line x1="489.0" y1="380.0" x2="480.0" y2="366.0" stroke="#000" stroke-width="1.4"/>
+<line x1="471.0" y1="380.0" x2="480.0" y2="366.0" stroke="#000" stroke-width="1.4"/>
+<circle cx="480.0" cy="355.0" r="5" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<text x="469.0" y="239.0" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#0b4f9c">(1,1)</text>
+<text x="491.0" y="368.0" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#0b4f9c">(0,N)</text>
+<polyline points="600.0,219.0 840.0,380.0" fill="none" stroke="#000" stroke-width="1.4"/>
+<text x="700" y="320" font-size="12" text-anchor="middle" fill="#7a2e00" font-style="italic" stroke="#fff" stroke-width="4" paint-order="stroke">posee</text>
+<line x1="601.4" y1="229.5" x2="610.3" y2="216.3" stroke="#000" stroke-width="1.4"/>
+<line x1="612.2" y1="236.8" x2="621.1" y2="223.5" stroke="#000" stroke-width="1.4"/>
+<line x1="845.0" y1="372.5" x2="828.4" y2="372.2" stroke="#000" stroke-width="1.4"/>
+<line x1="835.0" y1="387.5" x2="828.4" y2="372.2" stroke="#000" stroke-width="1.4"/>
+<circle cx="819.2" cy="366.1" r="5" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<text x="607.2" y="241.0" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#0b4f9c">(1,1)</text>
+<text x="832.8" y="366.0" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#0b4f9c">(0,N)</text>
+<polyline points="650.0,199.0 1290.0,199.0 1290.0,380.0" fill="none" stroke="#000" stroke-width="1.4"/>
+<text x="1180" y="191" font-size="12" text-anchor="middle" fill="#7a2e00" font-style="italic" stroke="#fff" stroke-width="4" paint-order="stroke">realiza</text>
+<line x1="657.0" y1="207.0" x2="657.0" y2="191.0" stroke="#000" stroke-width="1.4"/>
+<line x1="670.0" y1="207.0" x2="670.0" y2="191.0" stroke="#000" stroke-width="1.4"/>
+<line x1="1299.0" y1="380.0" x2="1290.0" y2="366.0" stroke="#000" stroke-width="1.4"/>
+<line x1="1281.0" y1="380.0" x2="1290.0" y2="366.0" stroke="#000" stroke-width="1.4"/>
+<circle cx="1290.0" cy="355.0" r="5" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<text x="666.0" y="214.0" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#0b4f9c">(1,1)</text>
+<text x="1301.0" y="368.0" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#0b4f9c">(0,N)</text>
+<polyline points="270.0,440.0 400.0,440.0" fill="none" stroke="#000" stroke-width="1.4"/>
+<text x="325" y="430" font-size="12" text-anchor="middle" fill="#7a2e00" font-style="italic" stroke="#fff" stroke-width="4" paint-order="stroke">aloja</text>
+<line x1="277.0" y1="448.0" x2="277.0" y2="432.0" stroke="#000" stroke-width="1.4"/>
+<line x1="290.0" y1="448.0" x2="290.0" y2="432.0" stroke="#000" stroke-width="1.4"/>
+<line x1="400.0" y1="431.0" x2="386.0" y2="440.0" stroke="#000" stroke-width="1.4"/>
+<line x1="400.0" y1="449.0" x2="386.0" y2="440.0" stroke="#000" stroke-width="1.4"/>
+<circle cx="375.0" cy="440.0" r="5" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<text x="286.0" y="455.0" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#0b4f9c">(1,1)</text>
+<text x="384.0" y="433.0" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#0b4f9c">(0,N)</text>
+<polyline points="1030.0,440.0 1160.0,440.0" fill="none" stroke="#000" stroke-width="1.4"/>
+<text x="1095" y="430" font-size="12" text-anchor="middle" fill="#7a2e00" font-style="italic" stroke="#fff" stroke-width="4" paint-order="stroke">se verifica en</text>
+<line x1="1037.0" y1="448.0" x2="1037.0" y2="432.0" stroke="#000" stroke-width="1.4"/>
+<line x1="1050.0" y1="448.0" x2="1050.0" y2="432.0" stroke="#000" stroke-width="1.4"/>
+<line x1="1160.0" y1="431.0" x2="1146.0" y2="440.0" stroke="#000" stroke-width="1.4"/>
+<line x1="1160.0" y1="449.0" x2="1146.0" y2="440.0" stroke="#000" stroke-width="1.4"/>
+<circle cx="1135.0" cy="440.0" r="5" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<text x="1046.0" y="455.0" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#0b4f9c">(1,1)</text>
+<text x="1144.0" y="433.0" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#0b4f9c">(0,N)</text>
+<polyline points="525.0,539.0 525.0,690.0" fill="none" stroke="#000" stroke-width="1.4"/>
+<text x="600" y="660" font-size="12" text-anchor="middle" fill="#7a2e00" font-style="italic" stroke="#fff" stroke-width="4" paint-order="stroke">ofrece (identificadora)</text>
+<line x1="517.0" y1="546.0" x2="533.0" y2="546.0" stroke="#000" stroke-width="1.4"/>
+<line x1="517.0" y1="559.0" x2="533.0" y2="559.0" stroke="#000" stroke-width="1.4"/>
+<line x1="534.0" y1="690.0" x2="525.0" y2="676.0" stroke="#000" stroke-width="1.4"/>
+<line x1="516.0" y1="690.0" x2="525.0" y2="676.0" stroke="#000" stroke-width="1.4"/>
+<line x1="533.0" y1="670.0" x2="517.0" y2="670.0" stroke="#000" stroke-width="1.4"/>
+<text x="514.0" y="559.0" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#0b4f9c">(1,1)</text>
+<text x="536.0" y="678.0" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#0b4f9c">(1,N)</text>
+<polyline points="650.0,730.0 910.0,730.0 910.0,488.0" fill="none" stroke="#000" stroke-width="1.4"/>
+<text x="800" y="722" font-size="12" text-anchor="middle" fill="#7a2e00" font-style="italic" stroke="#fff" stroke-width="4" paint-order="stroke">clasifica</text>
+<line x1="657.0" y1="738.0" x2="657.0" y2="722.0" stroke="#000" stroke-width="1.4"/>
+<line x1="670.0" y1="738.0" x2="670.0" y2="722.0" stroke="#000" stroke-width="1.4"/>
+<line x1="901.0" y1="488.0" x2="910.0" y2="502.0" stroke="#000" stroke-width="1.4"/>
+<line x1="919.0" y1="488.0" x2="910.0" y2="502.0" stroke="#000" stroke-width="1.4"/>
+<circle cx="910.0" cy="513.0" r="5" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<text x="666.0" y="745.0" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#0b4f9c">(1,1)</text>
+<text x="899.0" y="508.0" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#0b4f9c">(0,N)</text>
+<polyline points="430.0,539.0 430.0,650.0 150.0,650.0 145.0,690.0" fill="none" stroke="#000" stroke-width="1.4"/>
+<text x="260" y="642" font-size="12" text-anchor="middle" fill="#7a2e00" font-style="italic" stroke="#fff" stroke-width="4" paint-order="stroke">genera</text>
+<line x1="422.0" y1="546.0" x2="438.0" y2="546.0" stroke="#000" stroke-width="1.4"/>
+<line x1="422.0" y1="559.0" x2="438.0" y2="559.0" stroke="#000" stroke-width="1.4"/>
+<line x1="153.9" y1="691.1" x2="146.7" y2="676.1" stroke="#000" stroke-width="1.4"/>
+<line x1="136.1" y1="688.9" x2="146.7" y2="676.1" stroke="#000" stroke-width="1.4"/>
+<circle cx="148.1" cy="665.2" r="5" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<text x="419.0" y="559.0" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#0b4f9c">(1,1)</text>
+<text x="157.9" y="679.5" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#0b4f9c">(0,N)</text>
+<polyline points="1285.0,505.0 1285.0,690.0" fill="none" stroke="#000" stroke-width="1.4"/>
+<text x="1330" y="660" font-size="12" text-anchor="middle" fill="#7a2e00" font-style="italic" stroke="#fff" stroke-width="4" paint-order="stroke">queda en</text>
+<line x1="1277.0" y1="512.0" x2="1293.0" y2="512.0" stroke="#000" stroke-width="1.4"/>
+<circle cx="1285.0" cy="530.0" r="5" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<line x1="1293.0" y1="683.0" x2="1277.0" y2="683.0" stroke="#000" stroke-width="1.4"/>
+<line x1="1293.0" y1="670.0" x2="1277.0" y2="670.0" stroke="#000" stroke-width="1.4"/>
+<text x="1274.0" y="525.0" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#0b4f9c">(0,1)</text>
+<text x="1296.0" y="678.0" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#0b4f9c">(1,1)</text>
+<path d="M400,880 L1398,880 L1410,892 L1410,926 L400,926 Z" fill="#fffde7" stroke="#777"/>
+<text x="408" y="898" font-size="12" text-anchor="start" fill="#000"># = identificador · { } = atributo multivaluado · (mín, máx) en cada extremo · relación N:M: USUARIO–ROL y ROL–PERMISO · 1:N: USUARIO–EVENTO, EVENTO–CATEGORIA_ENTRADA…</text>
+<text x="408" y="913" font-size="12" text-anchor="start" fill="#000">Tipo de base de datos: relacional (PostgreSQL) porque el aforo y los tickets exigen transacciones ACID e integridad referencial (ver A1).</text>
+<text x="20" y="988" font-size="11.5" fill="#555">11 entidades · 2 relaciones N:M · 9 relaciones 1:N · 1 relación 1:1 opcional (VALIDACION–BITACORA)</text>
+</svg>
