@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1220" height="1100" viewBox="0 0 1220 1100" font-family="Arial, Helvetica, sans-serif">
+<defs><marker id="arr" markerWidth="12" markerHeight="12" refX="10" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#000"/></marker>
+<marker id="tri" markerWidth="18" markerHeight="18" refX="16" refY="9" orient="auto"><path d="M0,0 L16,9 L0,18 Z" fill="#fff" stroke="#000" stroke-width="1.4"/></marker></defs>
+<rect width="1220" height="1100" fill="#fff"/>
+<text x="20" y="30" font-size="19" font-weight="bold" fill="#1f3b57">Diagrama de actividades · CU-07 Obtener ticket con QR dinámico</text>
+<rect x="20" y="50" width="310" height="1010" fill="#fafcff" stroke="#1f3b57" stroke-width="1.5"/><rect x="20" y="50" width="310" height="36" fill="#dbe7f3" stroke="#1f3b57" stroke-width="1.5"/>
+<text x="175.0" y="74" font-size="15" text-anchor="middle" fill="#000" font-weight="bold">Asistente</text>
+<rect x="330" y="50" width="570" height="1010" fill="#fafcff" stroke="#1f3b57" stroke-width="1.5"/><rect x="330" y="50" width="570" height="36" fill="#dbe7f3" stroke="#1f3b57" stroke-width="1.5"/>
+<text x="615.0" y="74" font-size="15" text-anchor="middle" fill="#000" font-weight="bold">Sistema EventFlow</text>
+<rect x="900" y="50" width="300" height="1010" fill="#fafcff" stroke="#1f3b57" stroke-width="1.5"/><rect x="900" y="50" width="300" height="36" fill="#dbe7f3" stroke="#1f3b57" stroke-width="1.5"/>
+<text x="1050.0" y="74" font-size="15" text-anchor="middle" fill="#000" font-weight="bold">Servicio de correo (externo)</text>
+<circle cx="175" cy="120" r="13" fill="#000"/>
+<rect x="65.0" y="163.0" width="220" height="54" rx="14" fill="#ffffff" stroke="#000" stroke-width="1.4"/>
+<text x="175" y="187" font-size="13" text-anchor="middle" fill="#000">Seleccionar evento y</text>
+<text x="175" y="203" font-size="13" text-anchor="middle" fill="#000">categoría de entrada</text>
+<rect x="410.0" y="163.0" width="220" height="54" rx="14" fill="#ffffff" stroke="#000" stroke-width="1.4"/>
+<text x="520" y="187" font-size="13" text-anchor="middle" fill="#000">Verificar cupo de</text>
+<text x="520" y="203" font-size="13" text-anchor="middle" fill="#000">la categoría</text>
+<polygon points="520,259 546,285 520,311 494,285" fill="#fff8e1" stroke="#000" stroke-width="1.4"/>
+<rect x="680.0" y="258.0" width="200" height="54" rx="14" fill="#ffffff" stroke="#000" stroke-width="1.4"/>
+<text x="780" y="282" font-size="13" text-anchor="middle" fill="#000">Ofrecer categorías</text>
+<text x="780" y="298" font-size="13" text-anchor="middle" fill="#000">con cupo disponible</text>
+<polygon points="780,359 806,385 780,411 754,385" fill="#fff8e1" stroke="#000" stroke-width="1.4"/>
+<circle cx="780" cy="470" r="15" fill="#fff" stroke="#000" stroke-width="2"/><circle cx="780" cy="470" r="9" fill="#000"/>
+<text x="802" y="475" font-size="11" text-anchor="start" fill="#444" font-style="italic">Termina sin ticket</text>
+<rect x="65.0" y="358.0" width="220" height="54" rx="14" fill="#ffffff" stroke="#000" stroke-width="1.4"/>
+<text x="175" y="382" font-size="13" text-anchor="middle" fill="#000">Confirmar datos y aceptar</text>
+<text x="175" y="398" font-size="13" text-anchor="middle" fill="#000">condiciones del evento</text>
+<rect x="410.0" y="453.0" width="220" height="54" rx="14" fill="#ffffff" stroke="#000" stroke-width="1.4"/>
+<text x="520" y="477" font-size="13" text-anchor="middle" fill="#000">Registrar ticket y</text>
+<text x="520" y="493" font-size="13" text-anchor="middle" fill="#000">generar QR dinámico</text>
+<rect x="410.0" y="556" width="700" height="8" fill="#000"/>
+<rect x="410.0" y="613.0" width="220" height="54" rx="14" fill="#ffffff" stroke="#000" stroke-width="1.4"/>
+<text x="520" y="637" font-size="13" text-anchor="middle" fill="#000">Mostrar QR dinámico en</text>
+<text x="520" y="653" font-size="13" text-anchor="middle" fill="#000">la cuenta del asistente</text>
+<rect x="935.0" y="613.0" width="230" height="54" rx="14" fill="#ffffff" stroke="#000" stroke-width="1.4"/>
+<text x="1050" y="637" font-size="13" text-anchor="middle" fill="#000">Entregar ticket en PDF</text>
+<text x="1050" y="653" font-size="13" text-anchor="middle" fill="#000">al correo del asistente</text>
+<polygon points="1050,714 1076,740 1050,766 1024,740" fill="#fff8e1" stroke="#000" stroke-width="1.4"/>
+<rect x="680.0" y="713.0" width="200" height="54" rx="14" fill="#ffffff" stroke="#000" stroke-width="1.4"/>
+<text x="780" y="737" font-size="13" text-anchor="middle" fill="#000">Programar reintento y</text>
+<text x="780" y="753" font-size="13" text-anchor="middle" fill="#000">avisar en pantalla</text>
+<polygon points="1050,804 1076,830 1050,856 1024,830" fill="#fff8e1" stroke="#000" stroke-width="1.4"/>
+<rect x="410.0" y="896" width="700" height="8" fill="#000"/>
+<rect x="65.0" y="953.0" width="220" height="54" rx="14" fill="#ffffff" stroke="#000" stroke-width="1.4"/>
+<text x="175" y="977" font-size="13" text-anchor="middle" fill="#000">Ver y descargar</text>
+<text x="175" y="993" font-size="13" text-anchor="middle" fill="#000">su ticket</text>
+<circle cx="175" cy="1050" r="15" fill="#fff" stroke="#000" stroke-width="2"/><circle cx="175" cy="1050" r="9" fill="#000"/>
+<polyline points="175.0,133.0 175.0,163.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<polyline points="285.0,190.0 410.0,190.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<polyline points="520.0,217.0 520.0,259.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<polyline points="546.0,285.0 680.0,285.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="640" y="276" font-size="12" text-anchor="middle" fill="#7a2e00" font-style="italic" stroke="#fff" stroke-width="4" paint-order="stroke">[categoría agotada]</text>
+<polyline points="520.0,311.0 520.0,335.0 175.0,335.0 175.0,358.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="470" y="328" font-size="12" text-anchor="middle" fill="#7a2e00" font-style="italic" stroke="#fff" stroke-width="4" paint-order="stroke">[hay cupo]</text>
+<polyline points="780.0,312.0 780.0,359.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<polyline points="806.0,385.0 880.0,385.0 880.0,190.0 630.0,190.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="820" y="178" font-size="12" text-anchor="middle" fill="#7a2e00" font-style="italic" stroke="#fff" stroke-width="4" paint-order="stroke">[elige otra categoría]</text>
+<polyline points="780.0,411.0 780.0,455.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="700" y="440" font-size="12" text-anchor="middle" fill="#7a2e00" font-style="italic" stroke="#fff" stroke-width="4" paint-order="stroke">[no hay otra o no acepta]</text>
+<polyline points="175.0,412.0 175.0,480.0 410.0,480.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<polyline points="520.0,507.0 520.0,556.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<polyline points="520.0,564.0 520.0,613.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<polyline points="1050.0,564.0 1050.0,613.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<polyline points="520.0,667.0 520.0,896.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<polyline points="1050.0,667.0 1050.0,714.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<polyline points="1050.0,766.0 1050.0,804.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="1095" y="790" font-size="12" text-anchor="middle" fill="#7a2e00" font-style="italic" stroke="#fff" stroke-width="4" paint-order="stroke">[entregado]</text>
+<polyline points="1024.0,740.0 880.0,740.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="970" y="731" font-size="12" text-anchor="middle" fill="#7a2e00" font-style="italic" stroke="#fff" stroke-width="4" paint-order="stroke">[rechazado]</text>
+<polyline points="780.0,767.0 780.0,830.0 1024.0,830.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<polyline points="1050.0,856.0 1050.0,896.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<polyline points="520.0,904.0 520.0,940.0 175.0,940.0 175.0,953.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<polyline points="175.0,1007.0 175.0,1035.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<path d="M345,980 L853,980 L865,992 L865,1026 L345,1026 Z" fill="#fffde7" stroke="#777"/>
+<text x="353" y="998" font-size="12" text-anchor="start" fill="#000">Concurrencia: tras registrar el ticket, mostrar el QR y entregar</text>
+<text x="353" y="1013" font-size="12" text-anchor="start" fill="#000">el correo ocurren en paralelo (bifurcación y unión).</text>
+<text x="20" y="1088" font-size="11.5" fill="#555">Notación UML 2.5 · Guardas entre corchetes · Rama alterna y excepciones también en la plantilla CU-07</text>
+</svg>

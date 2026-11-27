@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="1230" viewBox="0 0 1240 1230" font-family="Arial, Helvetica, sans-serif">
+<defs><marker id="arr" markerWidth="12" markerHeight="12" refX="10" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#000"/></marker>
+<marker id="tri" markerWidth="18" markerHeight="18" refX="16" refY="9" orient="auto"><path d="M0,0 L16,9 L0,18 Z" fill="#fff" stroke="#000" stroke-width="1.4"/></marker></defs>
+<rect width="1240" height="1230" fill="#fff"/>
+<text x="20" y="30" font-size="19" font-weight="bold" fill="#1f3b57">Diagrama de actividades · CU-09 Validar acceso con QR</text>
+<rect x="20" y="50" width="260" height="1140" fill="#fafcff" stroke="#1f3b57" stroke-width="1.5"/><rect x="20" y="50" width="260" height="36" fill="#dbe7f3" stroke="#1f3b57" stroke-width="1.5"/>
+<text x="150.0" y="74" font-size="15" text-anchor="middle" fill="#000" font-weight="bold">Asistente</text>
+<rect x="280" y="50" width="320" height="1140" fill="#fafcff" stroke="#1f3b57" stroke-width="1.5"/><rect x="280" y="50" width="320" height="36" fill="#dbe7f3" stroke="#1f3b57" stroke-width="1.5"/>
+<text x="440.0" y="74" font-size="15" text-anchor="middle" fill="#000" font-weight="bold">Validador de acceso</text>
+<rect x="600" y="50" width="620" height="1140" fill="#fafcff" stroke="#1f3b57" stroke-width="1.5"/><rect x="600" y="50" width="620" height="36" fill="#dbe7f3" stroke="#1f3b57" stroke-width="1.5"/>
+<text x="910.0" y="74" font-size="15" text-anchor="middle" fill="#000" font-weight="bold">Sistema EventFlow</text>
+<circle cx="150" cy="115" r="13" fill="#000"/>
+<rect x="55.0" y="153.0" width="190" height="54" rx="14" fill="#ffffff" stroke="#000" stroke-width="1.4"/>
+<text x="150" y="177" font-size="13" text-anchor="middle" fill="#000">Presentar QR</text>
+<text x="150" y="193" font-size="13" text-anchor="middle" fill="#000">dinámico</text>
+<rect x="330.0" y="153.0" width="220" height="54" rx="14" fill="#ffffff" stroke="#000" stroke-width="1.4"/>
+<text x="440" y="185" font-size="13" text-anchor="middle" fill="#000">Escanear código QR</text>
+<rect x="695.0" y="153.0" width="230" height="54" rx="14" fill="#ffffff" stroke="#000" stroke-width="1.4"/>
+<text x="810" y="177" font-size="13" text-anchor="middle" fill="#000">Verificar vigencia y</text>
+<text x="810" y="193" font-size="13" text-anchor="middle" fill="#000">autenticidad del código</text>
+<polygon points="810,249 836,275 810,301 784,275" fill="#fff8e1" stroke="#000" stroke-width="1.4"/>
+<rect x="970.0" y="248.0" width="200" height="54" rx="14" fill="#fdecea" stroke="#000" stroke-width="1.4"/>
+<text x="1070" y="272" font-size="13" text-anchor="middle" fill="#000">Denegar: código</text>
+<text x="1070" y="288" font-size="13" text-anchor="middle" fill="#000">no vigente</text>
+<polygon points="810,344 836,370 810,396 784,370" fill="#fff8e1" stroke="#000" stroke-width="1.4"/>
+<rect x="970.0" y="343.0" width="200" height="54" rx="14" fill="#fdecea" stroke="#000" stroke-width="1.4"/>
+<text x="1070" y="367" font-size="13" text-anchor="middle" fill="#000">Denegar: mostrar hora y</text>
+<text x="1070" y="383" font-size="13" text-anchor="middle" fill="#000">puerta del uso previo</text>
+<rect x="695.0" y="443.0" width="230" height="54" rx="14" fill="#ffffff" stroke="#000" stroke-width="1.4"/>
+<text x="810" y="467" font-size="13" text-anchor="middle" fill="#000">Mostrar foto y nombre</text>
+<text x="810" y="483" font-size="13" text-anchor="middle" fill="#000">del titular</text>
+<rect x="330.0" y="533.0" width="220" height="54" rx="14" fill="#ffffff" stroke="#000" stroke-width="1.4"/>
+<text x="440" y="557" font-size="13" text-anchor="middle" fill="#000">Comparar la foto</text>
+<text x="440" y="573" font-size="13" text-anchor="middle" fill="#000">con la persona</text>
+<polygon points="810,534 836,560 810,586 784,560" fill="#fff8e1" stroke="#000" stroke-width="1.4"/>
+<polygon points="1070,534 1096,560 1070,586 1044,560" fill="#fff8e1" stroke="#000" stroke-width="1.4"/>
+<rect x="960.0" y="633.0" width="220" height="54" rx="14" fill="#fdecea" stroke="#000" stroke-width="1.4"/>
+<text x="1070" y="657" font-size="13" text-anchor="middle" fill="#000">Alertar intento sospechoso</text>
+<text x="1070" y="673" font-size="13" text-anchor="middle" fill="#000">al titular (CU-12)</text>
+<rect x="695.0" y="633.0" width="230" height="54" rx="14" fill="#e8f5e9" stroke="#000" stroke-width="1.4"/>
+<text x="810" y="657" font-size="13" text-anchor="middle" fill="#000">Conceder acceso y</text>
+<text x="810" y="673" font-size="13" text-anchor="middle" fill="#000">sumar a la ocupación</text>
+<polygon points="810,729 836,755 810,781 784,755" fill="#fff8e1" stroke="#000" stroke-width="1.4"/>
+<rect x="695.0" y="823.0" width="230" height="54" rx="14" fill="#fff3e0" stroke="#000" stroke-width="1.4"/>
+<text x="810" y="847" font-size="13" text-anchor="middle" fill="#000">Emitir alerta de</text>
+<text x="810" y="863" font-size="13" text-anchor="middle" fill="#000">aforo (CU-11)</text>
+<polygon points="810,924 836,950 810,976 784,950" fill="#fff8e1" stroke="#000" stroke-width="1.4"/>
+<rect x="695.0" y="1013.0" width="230" height="54" rx="14" fill="#ffffff" stroke="#000" stroke-width="1.4"/>
+<text x="810" y="1037" font-size="13" text-anchor="middle" fill="#000">Registrar validación</text>
+<text x="810" y="1053" font-size="13" text-anchor="middle" fill="#000">en bitácora (CU-10)</text>
+<circle cx="810" cy="1130" r="15" fill="#fff" stroke="#000" stroke-width="2"/><circle cx="810" cy="1130" r="9" fill="#000"/>
+<polyline points="150.0,128.0 150.0,153.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<polyline points="245.0,180.0 330.0,180.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<polyline points="550.0,180.0 695.0,180.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<polyline points="810.0,207.0 810.0,249.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<polyline points="836.0,275.0 970.0,275.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="898" y="265" font-size="12" text-anchor="middle" fill="#7a2e00" font-style="italic" stroke="#fff" stroke-width="4" paint-order="stroke">[caducado o inválido]</text>
+<polyline points="810.0,301.0 810.0,344.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="750" y="330" font-size="12" text-anchor="middle" fill="#7a2e00" font-style="italic" stroke="#fff" stroke-width="4" paint-order="stroke">[código vigente]</text>
+<polyline points="836.0,370.0 970.0,370.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="900" y="360" font-size="12" text-anchor="middle" fill="#7a2e00" font-style="italic" stroke="#fff" stroke-width="4" paint-order="stroke">[ya utilizado]</text>
+<polyline points="810.0,396.0 810.0,443.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="770" y="428" font-size="12" text-anchor="middle" fill="#7a2e00" font-style="italic" stroke="#fff" stroke-width="4" paint-order="stroke">[sin usar]</text>
+<polyline points="810.0,497.0 810.0,520.0 440.0,520.0 440.0,533.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<polyline points="550.0,560.0 784.0,560.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<polyline points="836.0,560.0 1044.0,560.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="940" y="550" font-size="12" text-anchor="middle" fill="#7a2e00" font-style="italic" stroke="#fff" stroke-width="4" paint-order="stroke">[no coincide]</text>
+<polyline points="1070.0,397.0 1070.0,534.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<polyline points="1170.0,275.0 1195.0,275.0 1195.0,560.0 1096.0,560.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<polyline points="1070.0,586.0 1070.0,633.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<polyline points="810.0,586.0 810.0,633.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="770" y="615" font-size="12" text-anchor="middle" fill="#7a2e00" font-style="italic" stroke="#fff" stroke-width="4" paint-order="stroke">[coincide]</text>
+<polyline points="810.0,687.0 810.0,729.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<polyline points="810.0,781.0 810.0,823.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="880" y="808" font-size="12" text-anchor="middle" fill="#7a2e00" font-style="italic" stroke="#fff" stroke-width="4" paint-order="stroke">[ocupación ≥ 80 %]</text>
+<polyline points="784.0,755.0 660.0,755.0 660.0,950.0 784.0,950.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="700" y="745" font-size="12" text-anchor="middle" fill="#7a2e00" font-style="italic" stroke="#fff" stroke-width="4" paint-order="stroke">[ocupación &lt; 80 %]</text>
+<polyline points="810.0,877.0 810.0,924.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<polyline points="1070.0,687.0 1070.0,950.0 836.0,950.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<polyline points="810.0,976.0 810.0,1013.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<polyline points="810.0,1067.0 810.0,1115.0" fill="none" stroke="#000" stroke-width="1.4" marker-end="url(#arr)"/>
+<path d="M300,860 L568,860 L580,872 L580,922 L300,922 Z" fill="#fffde7" stroke="#777"/>
+<text x="308" y="878" font-size="12" text-anchor="start" fill="#000">Sin concurrencia: las acciones de</text>
+<text x="308" y="893" font-size="12" text-anchor="start" fill="#000">CU-09 son secuenciales; no se</text>
+<text x="308" y="908" font-size="12" text-anchor="start" fill="#000">usa bifurcación ni unión.</text>
+<text x="20" y="1218" font-size="11.5" fill="#555">Notación UML 2.5 · Guardas entre corchetes · Toda rama aparece también en la plantilla CU-09 · Rojo: denegaciones · Verde: acceso concedido</text>
+</svg>

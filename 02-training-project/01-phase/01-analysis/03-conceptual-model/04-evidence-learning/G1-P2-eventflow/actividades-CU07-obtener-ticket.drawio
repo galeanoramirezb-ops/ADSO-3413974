@@ -1,0 +1,57 @@
+<mxfile host="app.diagrams.net"><diagram id="d" name="Diagrama de actividades · CU-07 Obtener ticket con QR dinámico"><mxGraphModel grid="1" gridSize="10" page="1" pageWidth="1220" pageHeight="1100"><root>
+<mxCell id="0"/>
+<mxCell id="1" parent="0"/>
+<mxCell id="title" value="Diagrama de actividades · CU-07 Obtener ticket con QR dinámico" style="text;fontSize=18;fontStyle=1;fontColor=#1f3b57;align=left;" vertex="1" parent="1"><mxGeometry x="20" y="10" width="900" height="30" as="geometry"/></mxCell>
+<mxCell id="L1" value="Asistente" style="swimlane;startSize=36;fillColor=#dbe7f3;swimlaneFillColor=#fafcff;strokeColor=#1f3b57;fontStyle=1;fontSize=14;" vertex="1" parent="1"><mxGeometry x="20" y="50" width="310" height="1010" as="geometry"/></mxCell>
+<mxCell id="L2" value="Sistema EventFlow" style="swimlane;startSize=36;fillColor=#dbe7f3;swimlaneFillColor=#fafcff;strokeColor=#1f3b57;fontStyle=1;fontSize=14;" vertex="1" parent="1"><mxGeometry x="330" y="50" width="570" height="1010" as="geometry"/></mxCell>
+<mxCell id="L3" value="Servicio de correo (externo)" style="swimlane;startSize=36;fillColor=#dbe7f3;swimlaneFillColor=#fafcff;strokeColor=#1f3b57;fontStyle=1;fontSize=14;" vertex="1" parent="1"><mxGeometry x="900" y="50" width="300" height="1010" as="geometry"/></mxCell>
+<mxCell id="s" value="" style="ellipse;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1"><mxGeometry x="162" y="107" width="26" height="26" as="geometry"/></mxCell>
+<mxCell id="a1" value="Seleccionar evento y
+categoría de entrada" style="rounded=1;arcSize=30;whiteSpace=wrap;html=0;fontSize=12;fillColor=#ffffff;" vertex="1" parent="1"><mxGeometry x="65.0" y="163.0" width="220" height="54" as="geometry"/></mxCell>
+<mxCell id="a2" value="Verificar cupo de
+la categoría" style="rounded=1;arcSize=30;whiteSpace=wrap;html=0;fontSize=12;fillColor=#ffffff;" vertex="1" parent="1"><mxGeometry x="410.0" y="163.0" width="220" height="54" as="geometry"/></mxCell>
+<mxCell id="d1" value="" style="rhombus;fillColor=#fff8e1;" vertex="1" parent="1"><mxGeometry x="494" y="259" width="52" height="52" as="geometry"/></mxCell>
+<mxCell id="a4" value="Ofrecer categorías
+con cupo disponible" style="rounded=1;arcSize=30;whiteSpace=wrap;html=0;fontSize=12;fillColor=#ffffff;" vertex="1" parent="1"><mxGeometry x="680.0" y="258.0" width="200" height="54" as="geometry"/></mxCell>
+<mxCell id="d2" value="" style="rhombus;fillColor=#fff8e1;" vertex="1" parent="1"><mxGeometry x="754" y="359" width="52" height="52" as="geometry"/></mxCell>
+<mxCell id="ef" value="" style="ellipse;shape=endState;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1"><mxGeometry x="765" y="455" width="30" height="30" as="geometry"/></mxCell>
+<mxCell id="a3" value="Confirmar datos y aceptar
+condiciones del evento" style="rounded=1;arcSize=30;whiteSpace=wrap;html=0;fontSize=12;fillColor=#ffffff;" vertex="1" parent="1"><mxGeometry x="65.0" y="358.0" width="220" height="54" as="geometry"/></mxCell>
+<mxCell id="a5" value="Registrar ticket y
+generar QR dinámico" style="rounded=1;arcSize=30;whiteSpace=wrap;html=0;fontSize=12;fillColor=#ffffff;" vertex="1" parent="1"><mxGeometry x="410.0" y="453.0" width="220" height="54" as="geometry"/></mxCell>
+<mxCell id="f1" value="" style="line;strokeWidth=8;fillColor=none;html=1;" vertex="1" parent="1"><mxGeometry x="410.0" y="556" width="700" height="8" as="geometry"/></mxCell>
+<mxCell id="a6" value="Mostrar QR dinámico en
+la cuenta del asistente" style="rounded=1;arcSize=30;whiteSpace=wrap;html=0;fontSize=12;fillColor=#ffffff;" vertex="1" parent="1"><mxGeometry x="410.0" y="613.0" width="220" height="54" as="geometry"/></mxCell>
+<mxCell id="a7" value="Entregar ticket en PDF
+al correo del asistente" style="rounded=1;arcSize=30;whiteSpace=wrap;html=0;fontSize=12;fillColor=#ffffff;" vertex="1" parent="1"><mxGeometry x="935.0" y="613.0" width="230" height="54" as="geometry"/></mxCell>
+<mxCell id="d3" value="" style="rhombus;fillColor=#fff8e1;" vertex="1" parent="1"><mxGeometry x="1024" y="714" width="52" height="52" as="geometry"/></mxCell>
+<mxCell id="a8" value="Programar reintento y
+avisar en pantalla" style="rounded=1;arcSize=30;whiteSpace=wrap;html=0;fontSize=12;fillColor=#ffffff;" vertex="1" parent="1"><mxGeometry x="680.0" y="713.0" width="200" height="54" as="geometry"/></mxCell>
+<mxCell id="m1" value="" style="rhombus;fillColor=#fff8e1;" vertex="1" parent="1"><mxGeometry x="1024" y="804" width="52" height="52" as="geometry"/></mxCell>
+<mxCell id="j1" value="" style="line;strokeWidth=8;fillColor=none;html=1;" vertex="1" parent="1"><mxGeometry x="410.0" y="896" width="700" height="8" as="geometry"/></mxCell>
+<mxCell id="a9" value="Ver y descargar
+su ticket" style="rounded=1;arcSize=30;whiteSpace=wrap;html=0;fontSize=12;fillColor=#ffffff;" vertex="1" parent="1"><mxGeometry x="65.0" y="953.0" width="220" height="54" as="geometry"/></mxCell>
+<mxCell id="e" value="" style="ellipse;shape=endState;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1"><mxGeometry x="160" y="1035" width="30" height="30" as="geometry"/></mxCell>
+<mxCell id="e1" value="" style="endArrow=block;endFill=1;html=1;rounded=0;fontColor=#7A2E00;fontStyle=2;" edge="1" parent="1" source="s" target="a1"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="e2" value="" style="endArrow=block;endFill=1;html=1;rounded=0;fontColor=#7A2E00;fontStyle=2;" edge="1" parent="1" source="a1" target="a2"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="e3" value="" style="endArrow=block;endFill=1;html=1;rounded=0;fontColor=#7A2E00;fontStyle=2;" edge="1" parent="1" source="a2" target="d1"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="e4" value="[categoría agotada]" style="endArrow=block;endFill=1;html=1;rounded=0;fontColor=#7A2E00;fontStyle=2;" edge="1" parent="1" source="d1" target="a4"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="e5" value="[hay cupo]" style="endArrow=block;endFill=1;html=1;rounded=0;fontColor=#7A2E00;fontStyle=2;" edge="1" parent="1" source="d1" target="a3"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="520" y="335"/><mxPoint x="175" y="335"/></Array></mxGeometry></mxCell>
+<mxCell id="e6" value="" style="endArrow=block;endFill=1;html=1;rounded=0;fontColor=#7A2E00;fontStyle=2;" edge="1" parent="1" source="a4" target="d2"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="e7" value="[elige otra categoría]" style="endArrow=block;endFill=1;html=1;rounded=0;fontColor=#7A2E00;fontStyle=2;" edge="1" parent="1" source="d2" target="a2"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="880" y="385"/><mxPoint x="880" y="190"/></Array></mxGeometry></mxCell>
+<mxCell id="e8" value="[no hay otra o no acepta]" style="endArrow=block;endFill=1;html=1;rounded=0;fontColor=#7A2E00;fontStyle=2;" edge="1" parent="1" source="d2" target="ef"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="e9" value="" style="endArrow=block;endFill=1;html=1;rounded=0;fontColor=#7A2E00;fontStyle=2;" edge="1" parent="1" source="a3" target="a5"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="175" y="480"/></Array></mxGeometry></mxCell>
+<mxCell id="e10" value="" style="endArrow=block;endFill=1;html=1;rounded=0;fontColor=#7A2E00;fontStyle=2;" edge="1" parent="1" source="a5" target="f1"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="e11" value="" style="endArrow=block;endFill=1;html=1;rounded=0;fontColor=#7A2E00;fontStyle=2;" edge="1" parent="1" source="f1" target="a6"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="e12" value="" style="endArrow=block;endFill=1;html=1;rounded=0;fontColor=#7A2E00;fontStyle=2;" edge="1" parent="1" source="f1" target="a7"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="e13" value="" style="endArrow=block;endFill=1;html=1;rounded=0;fontColor=#7A2E00;fontStyle=2;" edge="1" parent="1" source="a6" target="j1"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="e14" value="" style="endArrow=block;endFill=1;html=1;rounded=0;fontColor=#7A2E00;fontStyle=2;" edge="1" parent="1" source="a7" target="d3"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="e15" value="[entregado]" style="endArrow=block;endFill=1;html=1;rounded=0;fontColor=#7A2E00;fontStyle=2;" edge="1" parent="1" source="d3" target="m1"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="e16" value="[rechazado]" style="endArrow=block;endFill=1;html=1;rounded=0;fontColor=#7A2E00;fontStyle=2;" edge="1" parent="1" source="d3" target="a8"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="e17" value="" style="endArrow=block;endFill=1;html=1;rounded=0;fontColor=#7A2E00;fontStyle=2;" edge="1" parent="1" source="a8" target="m1"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="780" y="830"/></Array></mxGeometry></mxCell>
+<mxCell id="e18" value="" style="endArrow=block;endFill=1;html=1;rounded=0;fontColor=#7A2E00;fontStyle=2;" edge="1" parent="1" source="m1" target="j1"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="e19" value="" style="endArrow=block;endFill=1;html=1;rounded=0;fontColor=#7A2E00;fontStyle=2;" edge="1" parent="1" source="j1" target="a9"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="520" y="940"/><mxPoint x="175" y="940"/></Array></mxGeometry></mxCell>
+<mxCell id="e20" value="" style="endArrow=block;endFill=1;html=1;rounded=0;fontColor=#7A2E00;fontStyle=2;" edge="1" parent="1" source="a9" target="e"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="note21" value="Concurrencia: tras registrar el ticket, mostrar el QR y entregar
+el correo ocurren en paralelo (bifurcación y unión)." style="shape=note;size=12;whiteSpace=wrap;html=0;fillColor=#fffde7;strokeColor=#777777;align=left;spacingLeft=6;fontSize=11;" vertex="1" parent="1"><mxGeometry x="345" y="980" width="520" height="46" as="geometry"/></mxCell>
+</root></mxGraphModel></diagram></mxfile>
