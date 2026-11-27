@@ -61,7 +61,7 @@
 | Día | Qué avancé (mensaje del commit) |
 |---|---|
 | Jueves 26/11/2026 | `G2-P1: artefactos de diseño EventFlow (clases, patrones, arquitectura, componentes, despliegue)` |
-| Viernes 27/11/2026 | `G2-P2: modelo de datos, script SQL y verificación` y actualización de este README |
+| Viernes 27/11/2026 | `G2-P2: modelo de datos, script SQL ejecutado y verificación` y `G2-P1: README con historial de los 2 días` |
 
 ## 6. Uso de inteligencia artificial (declaración obligatoria)
 
