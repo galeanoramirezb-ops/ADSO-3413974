@@ -21,12 +21,12 @@ Ruta: `02-training-project/01-phase/01-analysis/03-conceptual-model/04-evidence-
 
 | # | Artefacto | Qué cambié y por qué | Enlace al commit |
 |---|---|---|---|
-| 1 | Diagrama de casos de uso | Agregué 2 «include» (CU-07→CU-08, CU-09→CU-10) y 3 «extend» (CU-03→CU-02, CU-11→CU-09, CU-12→CU-09), cada uno justificado. La versión anterior no tenía ninguno (criterio C4). | (pegar enlace) |
-| 2 | Diagrama de casos de uso | Eliminé el actor "Sistema / Motor de aforo": el sistema no puede ser actor de sí mismo. Lo reemplacé por el actor secundario externo "Servicio de correo" (C4, regla 6). | (pegar enlace) |
-| 3 | Diagrama de casos de uso | Separé "Autenticación y Gestión de Roles" en CU-02 Iniciar sesión y CU-04 Gestionar roles y permisos, porque eran dos funciones con actores distintos. También agregué la generalización de actores hacia "Usuario registrado" (C4). | (pegar enlace) |
-| 4 | Diagrama de casos de uso | Unifiqué los dos catálogos que no coincidían (9 casos en la figura y 20 en la tabla) en 16 casos con nombre verbo + objeto. Agrupé el CRUD de eventos en CU-05 Gestionar evento (C4, regla 1). | (pegar enlace) |
-| 5 | Diagrama de casos de uso | Lo pasé de imagen pegada en Word a fuente editable `.drawio` más `.png` y `.svg` (artefacto f). | (pegar enlace) |
-| 6 | SRS / matriz | Unifiqué el nombre del sistema, "EventFlow Manager (SIGEV)", y actualicé el equipo a 2 integrantes (C3). | (pegar enlace) |
+| 1 | Diagrama de casos de uso | Agregué 2 «include» (CU-07→CU-08, CU-09→CU-10) y 3 «extend» (CU-03→CU-02, CU-11→CU-09, CU-12→CU-09), cada uno justificado. La versión anterior no tenía ninguno (criterio C4). | [9286c01](https://github.com/galeanoramirezb-ops/ADSO-3413974/commit/9286c01) |
+| 2 | Diagrama de casos de uso | Eliminé el actor "Sistema / Motor de aforo": el sistema no puede ser actor de sí mismo. Lo reemplacé por el actor secundario externo "Servicio de correo" (C4, regla 6). | [9286c01](https://github.com/galeanoramirezb-ops/ADSO-3413974/commit/9286c01) |
+| 3 | Diagrama de casos de uso | Separé "Autenticación y Gestión de Roles" en CU-02 Iniciar sesión y CU-04 Gestionar roles y permisos, porque eran dos funciones con actores distintos. También agregué la generalización de actores hacia "Usuario registrado" (C4). | [9286c01](https://github.com/galeanoramirezb-ops/ADSO-3413974/commit/9286c01) |
+| 4 | Diagrama de casos de uso | Unifiqué los dos catálogos que no coincidían (9 casos en la figura y 20 en la tabla) en 16 casos con nombre verbo + objeto. Agrupé el CRUD de eventos en CU-05 Gestionar evento (C4, regla 1). | [9286c01](https://github.com/galeanoramirezb-ops/ADSO-3413974/commit/9286c01) |
+| 5 | Diagrama de casos de uso | Lo pasé de imagen pegada en Word a fuente editable `.drawio` más `.png` y `.svg` (artefacto f). | [9286c01](https://github.com/galeanoramirezb-ops/ADSO-3413974/commit/9286c01) |
+| 6 | SRS / matriz | Unifiqué el nombre del sistema, "EventFlow Manager (SIGEV)", y actualicé el equipo a 2 integrantes (C3). | [9286c01](https://github.com/galeanoramirezb-ops/ADSO-3413974/commit/9286c01) |
 
 ## 4. Qué construí nuevo
 
@@ -65,6 +65,6 @@ Firma: galeanoramirezb-ops · 26/11/2026
 
 ## 8. Autocontrol antes del push
 
-- [ ] Hice commits propios en al menos 2 días distintos entre el 21 de noviembre de 2026 y la entrega.
+- [x] Hice commits propios en al menos 2 días distintos (26/11 y 27/11/2026).
 - [x] No subí el marco documental del instructor, plantillas sin diligenciar ni archivos de otras personas.
-- [ ] Hice `push` y comprobé en GitHub que la carpeta está publicada.
+- [x] Hice `push` y comprobé en GitHub que la carpeta está publicada.

@@ -22,11 +22,11 @@ Ruta: `02-training-project/01-phase/01-analysis/03-conceptual-model/04-evidence-
 
 | # | Artefacto | Qué cambié y por qué | Enlace al commit |
 |---|---|---|---|
-| 1 | Plantilla CU-09 | Quité el endpoint, el motor de base de datos y los algoritmos del flujo, y lo redacté como intención (criterio C2, regla 10 de arbitraje) | (pegar enlace) |
-| 2 | Plantilla CU-09 | Reclasifiqué «código caducado» y «ya utilizado» de flujo alterno a **excepción**; agregué la excepción 6a y el alterno 7a (C2, regla 4) | (pegar enlace) |
-| 3 | Plantilla CU-09 | Saqué al «Sistema Backend» del papel de actor primario (C2) | (pegar enlace) |
-| 4 | MER | Resolví la N:M USUARIO–ROL con la entidad asociativa USUARIO_ROL con atributos propios (C4) | (pegar enlace) |
-| 5 | Prototipo | Del boceto del Dashboard pasé a 3 pantallas rotuladas con los casos críticos CU-05, CU-07 y CU-09 (C5) | (pegar enlace) |
+| 1 | Plantilla CU-09 | Quité el endpoint, el motor de base de datos y los algoritmos del flujo, y lo redacté como intención (criterio C2, regla 10 de arbitraje) | [a1c745f](https://github.com/galeanoramirezb-ops/ADSO-3413974/commit/a1c745f) |
+| 2 | Plantilla CU-09 | Reclasifiqué «código caducado» y «ya utilizado» de flujo alterno a **excepción**; agregué la excepción 6a y el alterno 7a (C2, regla 4) | [a1c745f](https://github.com/galeanoramirezb-ops/ADSO-3413974/commit/a1c745f) |
+| 3 | Plantilla CU-09 | Saqué al «Sistema Backend» del papel de actor primario (C2) | [a1c745f](https://github.com/galeanoramirezb-ops/ADSO-3413974/commit/a1c745f) |
+| 4 | MER | Resolví la N:M USUARIO–ROL con la entidad asociativa USUARIO_ROL con atributos propios (C4) | [a1c745f](https://github.com/galeanoramirezb-ops/ADSO-3413974/commit/a1c745f) |
+| 5 | Prototipo | Del boceto del Dashboard pasé a 3 pantallas rotuladas con los casos críticos CU-05, CU-07 y CU-09 (C5) | [a1c745f](https://github.com/galeanoramirezb-ops/ADSO-3413974/commit/a1c745f) |
 
 ## 4. Qué construí nuevo
 
@@ -68,6 +68,6 @@ Firma: galeanoramirezb-ops · 26/11/2026
 
 ## 8. Autocontrol antes del push
 
-- [ ] Hice commits propios en al menos 2 días distintos entre el 21 de noviembre de 2026 y la entrega.
+- [x] Hice commits propios en al menos 2 días distintos (26/11 y 27/11/2026).
 - [x] No subí el marco documental del instructor, plantillas sin diligenciar ni archivos de otras personas.
-- [ ] Hice `push` y comprobé en GitHub que la carpeta está publicada.
+- [x] Hice `push` y comprobé en GitHub que la carpeta está publicada.
